@@ -31,8 +31,8 @@ const Certifications = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
         {certifications.map((cert) => (
           <Sparkle key={cert.id} duration={Math.floor(Math.random() * 10000) + 10000}>
-            <div className="p-8 rounded-3xl bg-white/[0.05] backdrop-blur-sm border border-white/[0.1] transition duration-200 hover:bg-white/[0.08] h-full flex flex-col items-center justify-center">
-              <div className="flex flex-col items-center text-center space-y-6 w-full">
+            <div className="p-6 rounded-3xl bg-white/[0.05] backdrop-blur-sm border border-white/[0.1] transition duration-200 hover:bg-white/[0.08] h-full flex flex-col items-center justify-center">
+              <div className="flex flex-col items-center text-center space-y-4 w-full">
                 {cert.credlyBadgeId ? (
                   <div 
                     data-iframe-width="150" 
@@ -45,13 +45,12 @@ const Certifications = () => {
                   <img
                     src={cert.badgeUrl}
                     alt={`${cert.title} badge`}
-                    className="w-32 h-32 object-contain"
+                    className="w-24 h-24 object-contain"
                   />
                 )}
-                <div className="space-y-2 w-full">
-                  <h4 className="text-xl font-bold text-white">{cert.title}</h4>
-                  <p className="text-white/90">{cert.issuer}</p>
-                  <p className="text-sm text-white/70">{cert.date}</p>
+                <div className="space-y-1 w-full">
+                  <h4 className="text-lg font-bold text-white">{cert.title}</h4>
+                  <p className="text-white/90 text-sm">{cert.issuer}</p>
                 </div>
               </div>
             </div>
