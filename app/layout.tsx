@@ -29,15 +29,15 @@ export const metadata: Metadata = {
     template: '%s - Bhushan Rane',
   },
   description:
-    'A customizable portfolio template for frontend developers, created by Bhushan Rane. Showcase your skills, projects, and experience with a clean and modern design.',
+    'Bhushan Rane Portfolio to showcase his skills and projects.',
   icons: {
     icon: './favicon.ico',
   },
-  applicationName: 'Frontend Portfolio Template by Bhushan Rane',
+  applicationName: 'Bhushan Rane Portfolio',
   authors: [
     {
       name: 'Bhushan Rane',
-      url: 'https://www.linkedin.com/in/atzin-escandia/',
+      url: 'https://www.linkedin.com/in/drtinkerer/',
     },
   ],
   generator: 'Next.js',

@@ -22,7 +22,7 @@ export const projects = [
     className: "md:col-span-1",
     titleClassName: "justify-end",
     img: "https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif",
-    github: "https://github.com/atzin-escandia",
+    github: "https://github.com/drtinkerer",
     link: "https://www.instagram.com/atzinescandia",
     techs: ["JavaScript", "React", "NodeJS", "Express", "MongoDB", "Tailwind"]
   },
@@ -120,17 +120,12 @@ export const socialMedia = [
   {
     id: 1,
     img: "assets/git.svg",
-    link: "https://github.com/atzin-escandia",
+    link: "https://github.com/drtinkerer",
   },
   {
     id: 2,
     img: "assets/linkedin.svg",
-    link: "https://www.linkedin.com/in/atzin-escandia/",
-  },
-  {
-    id: 3,
-    img: "assets/link.svg",
-    link: "https://theplumup.com/",
+    link: "https://www.linkedin.com/in/drtinkerer/",
   },
 ];
 
