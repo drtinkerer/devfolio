@@ -20,14 +20,14 @@ export const myTechStack = [
 export const projects = [
   {
     id: 1,
-    title: "FitLife: Your Gym Buddy in Code",
-    description: "What if your fitness app could help you design websites while tracking your push-ups? This is it. Built with love, sweat, and a bit of JavaScript magic!",
+    title: "AWS: Landing Zone",
+    description: "An AWS Landing Zone is a well-architected, multi-account AWS environment that serves as a secure and scalable starting point for deploying workloads and applications, based on AWS best practices for security, governance, and networking.",
     className: "md:col-span-1",
     titleClassName: "justify-end",
     img: "https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif",
-    github: "https://github.com/drtinkerer",
-    link: "https://www.instagram.com/atzinescandia",
-    techs: ["JavaScript", "React", "NodeJS", "Express", "MongoDB", "Tailwind"]
+    github: "https://github.com/ollionorg/aws-landing-zone",
+    link: "https://github.com/ollionorg/aws-landing-zone",
+    techs: ["AWS", "Terraform", "AWS CodePipeline", "Secure Networking", "Cloud Security", "DevSecOps"]
   },
   {
     id: 2,
