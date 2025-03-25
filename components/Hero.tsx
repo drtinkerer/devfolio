@@ -26,10 +26,10 @@ const Hero = () => {
           </h1>
         </Reveal>
         <h2 className="title my-6 text-xl md:text-3xl lg:text-5xl">
-          I&apos;m a Software Developer
+          I&apos;m a DevOps & Cloud Specialist
         </h2>
         <p className="max-w-[700px] mx-auto">
-          A designer, developer and fitness enthusiast who spends way too much time creating websites that look cool. If you&apos;re into tech, fitness, or just want to chat DM me - let&apos;s make your brand everyone&apos;s crush! 🍓
+          A DevOps engineer and cloud architect with expertise in building scalable infrastructure, implementing CI/CD pipelines, and leveraging data engineering and data science to drive business innovation. Let&apos;s transform your ideas into robust, data-driven solutions! 🚀
         </p>
         <a className="mt-10 mx-auto" href="#contact">
           <Button

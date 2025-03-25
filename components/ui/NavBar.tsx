@@ -9,66 +9,42 @@ const NavBar = (): JSX.Element => {
   const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.getAttribute("id");
-            if (id) {
-              setActiveSection(id);
-            }
-          }
-        });
-      },
-      {
-        threshold: 0.5,
-        rootMargin: "-20% 0px -20% 0px"
-      }
-    );
-
-    // Get all sections with IDs
-    const sections = document.querySelectorAll("section[id]");
-    
-    // Set initial active section based on scroll position
-    const setInitialActiveSection = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 3;
-      let activeId = "";
-      
-      // Check if we're at the top of the page
-      if (window.scrollY < 100) {
-        setActiveSection("");
-        return;
-      }
-      
-      sections.forEach((section) => {
-        const sectionElement = section as HTMLElement;
-        const sectionTop = sectionElement.offsetTop;
-        const sectionHeight = sectionElement.offsetHeight;
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          activeId = section.id;
-        }
-      });
-      
-      if (activeId) {
-        setActiveSection(activeId);
-      }
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -20% 0px",
+      threshold: 0
     };
 
-    // Set initial active section
-    setInitialActiveSection();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute("id");
+          if (id) {
+            setActiveSection(id);
+          }
+        }
+      });
+    }, observerOptions);
 
     // Observe all sections
+    const sections = document.querySelectorAll("section[id]");
     sections.forEach((section) => {
       observer.observe(section);
     });
 
-    // Add scroll event listener for better section detection
-    window.addEventListener("scroll", setInitialActiveSection);
+    // Handle initial scroll position
+    const handleInitialScroll = () => {
+      if (window.scrollY < 100) {
+        setActiveSection("");
+      }
+    };
+
+    handleInitialScroll();
+    window.addEventListener("scroll", handleInitialScroll, { passive: true });
 
     return () => {
       observer.disconnect();
-      window.removeEventListener("scroll", setInitialActiveSection);
+      window.removeEventListener("scroll", handleInitialScroll);
     };
   }, []);
 
@@ -92,6 +68,7 @@ const NavBar = (): JSX.Element => {
               const sectionId = link.replace('#', '');
               if (sectionId === '') {
                 setActiveSection('');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
               } else {
                 setActiveSection(sectionId);
                 const element = document.getElementById(sectionId);
