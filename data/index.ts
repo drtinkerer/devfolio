@@ -7,11 +7,14 @@ export const navItems = [
 ];
 
 export const myTechStack = [
-  "Linux",
-  "Kubernetes",
-  "Python",
-  "Amazon Web Services",
-  "Google Cloud Platform"
+  "Cloud Computing",
+  "DevSecOps",
+  "Big Data Analytics",
+  "CI/CD",
+  "Generative AI",
+  "Infrastructure as Code",
+  "Container Orchestration",
+  "Cloud Security"
 ]
 
 export const projects = [
