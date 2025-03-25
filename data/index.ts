@@ -2,30 +2,16 @@ export const navItems = [
   { name: "About", link: "#about" },
   { name: "Projects", link: "#projects" },
   { name: "Experience", link: "#experience" },
+  { name: "Certifications", link: "#certifications" },
   { name: "Contact", link: "#contact" },
 ];
 
 export const myTechStack = [
-  "JavaScript (ES6+)",
-  "React",
-  "Next.js",
-  "TypeScript",
-  "Jest",
-  "Cypress",
-  "Storybook",
-  "Performance Testing",
-  "HTML",
-  "CSS",
-  "SCSS",
-  "Tailwind",
-  "ShadCn/UI",
-  "Figma",
-  "Framer",
-  "Git",
-  "TanStack Query",
-  "CI/CD",
-  "Jira",
-  "Agile"
+  "Linux",
+  "Kubernetes",
+  "Python",
+  "Amazon Web Services",
+  "Google Cloud Platform"
 ]
 
 export const projects = [
@@ -33,7 +19,7 @@ export const projects = [
     id: 1,
     title: "FitLife: Your Gym Buddy in Code",
     description: "What if your fitness app could help you design websites while tracking your push-ups? This is it. Built with love, sweat, and a bit of JavaScript magic!",
-    className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
+    className: "md:col-span-1",
     titleClassName: "justify-end",
     img: "https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif",
     github: "https://github.com/atzin-escandia",
@@ -43,8 +29,8 @@ export const projects = [
   {
     id: 2,
     title: "Timezone Buddy: Never Miss a Workout",
-    description: "You can’t train for a marathon if you're confused about timezones! Sync with your squad no matter where they are and never miss a coding session or a yoga flow.",
-    className: "lg:col-span-2 md:col-span-3 md:row-span-2",
+    description: "You can't train for a marathon if you're confused about timezones! Sync with your squad no matter where they are and never miss a coding session or a yoga flow.",
+    className: "md:col-span-1",
     titleClassName: "justify-start",
     img: "https://i.pinimg.com/originals/84/f6/d1/84f6d14f1f88d34d3956150d19060d3a.gif",
     github: "https://github.com/atzin-escandia",
@@ -53,46 +39,25 @@ export const projects = [
   },
   {
     id: 3,
-    title: "Code & Paint: A Creative Playground",
-    description: "What if coding met art? This interactive web builder lets you design while you create. Whether you’re coding a landing page or painting a masterpiece, this is where your creativity comes to life.",
-    className: "lg:col-span-2 md:col-span-3 md:row-span-2",
-    titleClassName: "justify-center",
-    img: "https://i.pinimg.com/originals/54/b5/24/54b52468335fd6eb935e330eb3197b25.gif",
+    title: "CloudOps Dashboard",
+    description: "A comprehensive dashboard for monitoring and managing cloud resources across multiple providers. Built with real-time updates and intuitive controls.",
+    className: "md:col-span-1",
+    titleClassName: "justify-start",
+    img: "https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif",
     github: "https://github.com/atzin-escandia",
-    link: "https://theplumup.com",
-    techs: ["TypeScript", "React", "NextJS", "CSS", "AWS", "GitHub"]
+    link: "https://www.threads.net/@atzinescandia",
+    techs: ["TypeScript", "React", "AWS", "Kubernetes", "Docker", "Grafana"]
   },
   {
     id: 4,
-    title: "JavaScript Quest: Level Up Your Code",
-    description: "Time to put your JavaScript skills to the test in an RPG-style adventure. Solve puzzles, defeat bugs, and unlock pro tips as you level up to coding mastery.",
-    className: "lg:col-span-2 md:col-span-3 md:row-span-1",
+    title: "AI-Powered Code Review Assistant",
+    description: "An intelligent tool that helps developers review code faster and more effectively. Uses machine learning to identify potential issues and suggest improvements.",
+    className: "md:col-span-1",
     titleClassName: "justify-start",
-    img: "https://i.pinimg.com/736x/c7/de/01/c7de016c811fa5fae9d7120402f27645.jpg",
+    img: "https://i.pinimg.com/originals/84/f6/d1/84f6d14f1f88d34d3956150d19060d3a.gif",
     github: "https://github.com/atzin-escandia",
-    link: "https://theplumup.com",
-    techs: ["JavaScript", "NodeJS", "Express", "React", "Heroku", "GitHub"]
-  },
-  {
-    id: 5,
-    title: "JS Animation Magic: Making Transitions Dance",
-    description: "No more boring fades or slides. Animate your website with smooth, interactive animations that will have users tapping their feet. It's magic, but with code!",
-    className: "md:col-span-3 md:row-span-2",
-    titleClassName: "justify-center md:justify-start lg:justify-center",
-    img: "https://i.pinimg.com/736x/09/2e/25/092e252b5562c7e5eb576215c6d9db8d.jpg",
-    github: "https://github.com/atzin-escandia",
-    link: "https://theplumup.com/about",
-    techs: ["JavaScript", "CSS", "React", "Tailwind", "GitHub", "AWS"]
-  },
-  {
-    id: 6,
-    title: "Space Explorer App: Code Your Way Through the Cosmos",
-    description: "Ever wanted to explore space? Now you can—without leaving your desk. Navigate through galaxies, discover planets, and learn about the universe, all while building your dream website.",
-    className: "lg:col-span-2 md:col-span-3 md:row-span-1",
-    img: "https://i.pinimg.com/originals/bf/c3/fb/bfc3fb764ff5f4d8d9ecb6da8544709c.gif",
-    github: "https://github.com/atzin-escandia",
-    link: "https://atzinescandia.com/contact",
-    techs: ["JavaScript", "React", "NodeJS", "CSS", "NextJS", "GitHub"]
+    link: "https://www.threads.net/@atzinescandia",
+    techs: ["Python", "TensorFlow", "React", "FastAPI", "PostgreSQL", "Docker"]
   }
 ];
 
@@ -135,7 +100,7 @@ export const workExperience = [
     id: 3,
     company: "DesignHub",
     title: "Design Systems Guru",
-    desc: "Crafted design systems that were so organized they could be put in a museum. Pushed for consistent, user-friendly components that made developers’ lives easier.",
+    desc: "Crafted design systems that were so organized they could be put in a museum. Pushed for consistent, user-friendly components that made developers' lives easier.",
     className: "md:col-span-2",
     location: "Remote",
     period: "2016 - 2020",
@@ -170,3 +135,107 @@ export const socialMedia = [
 ];
 
 export const skills = ["TypeScript", "React", "Redux", "NodeJS", "NextJS", "Tailwind"];
+
+export interface Certification {
+  id: number;
+  title: string;
+  issuer: string;
+  date: string;
+  badgeUrl: string;
+  credentialUrl: string;
+  credlyBadgeId?: string;
+  credlyBadgeHost?: string;
+}
+
+export const certifications: Certification[] = [
+  {
+    id: 1,
+    title: "AWS Certified Solutions Architect - Associate",
+    issuer: "Amazon Web Services",
+    date: "March 2024",
+    badgeUrl: "https://images.credly.com/size/340x340/images/0e284c3f-5164-4b21-b866-a1e76fdd2018/image.png",
+    credentialUrl: "https://www.credly.com/org/aws/badge/your-badge-id",
+    credlyBadgeId: "279777b5-af1c-4ecb-b311-74757d3e7184",
+    credlyBadgeHost: "https://www.credly.com"
+  },
+  {
+    id: 2,
+    title: "Google Cloud Professional Cloud Architect",
+    issuer: "Google Cloud",
+    date: "February 2024",
+    badgeUrl: "https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png",
+    credentialUrl: "https://www.credly.com/org/google-cloud/badge/your-badge-id",
+    credlyBadgeId: "dummy-badge-id-2",
+    credlyBadgeHost: "https://www.credly.com"
+  },
+  {
+    id: 3,
+    title: "Azure Solutions Architect Expert",
+    issuer: "Microsoft",
+    date: "January 2024",
+    badgeUrl: "https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png",
+    credentialUrl: "https://www.credly.com/org/microsoft/badge/your-badge-id",
+    credlyBadgeId: "dummy-badge-id-3",
+    credlyBadgeHost: "https://www.credly.com"
+  },
+  {
+    id: 4,
+    title: "Kubernetes Administrator",
+    issuer: "Cloud Native Computing Foundation",
+    date: "December 2023",
+    badgeUrl: "https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png",
+    credentialUrl: "https://www.credly.com/org/cncf/badge/your-badge-id",
+    credlyBadgeId: "dummy-badge-id-4",
+    credlyBadgeHost: "https://www.credly.com"
+  },
+  {
+    id: 5,
+    title: "Terraform Associate",
+    issuer: "HashiCorp",
+    date: "November 2023",
+    badgeUrl: "https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png",
+    credentialUrl: "https://www.credly.com/org/hashicorp/badge/your-badge-id",
+    credlyBadgeId: "dummy-badge-id-5",
+    credlyBadgeHost: "https://www.credly.com"
+  },
+  {
+    id: 6,
+    title: "Docker Certified Associate",
+    issuer: "Docker",
+    date: "October 2023",
+    badgeUrl: "https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png",
+    credentialUrl: "https://www.credly.com/org/docker/badge/your-badge-id",
+    credlyBadgeId: "dummy-badge-id-6",
+    credlyBadgeHost: "https://www.credly.com"
+  },
+  {
+    id: 7,
+    title: "AWS Certified DevOps Engineer",
+    issuer: "Amazon Web Services",
+    date: "September 2023",
+    badgeUrl: "https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png",
+    credentialUrl: "https://www.credly.com/org/aws/badge/your-badge-id",
+    credlyBadgeId: "dummy-badge-id-7",
+    credlyBadgeHost: "https://www.credly.com"
+  },
+  {
+    id: 8,
+    title: "Google Cloud Professional Data Engineer",
+    issuer: "Google Cloud",
+    date: "August 2023",
+    badgeUrl: "https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png",
+    credentialUrl: "https://www.credly.com/org/google-cloud/badge/your-badge-id",
+    credlyBadgeId: "dummy-badge-id-8",
+    credlyBadgeHost: "https://www.credly.com"
+  },
+  {
+    id: 9,
+    title: "Azure DevOps Engineer Expert",
+    issuer: "Microsoft",
+    date: "July 2023",
+    badgeUrl: "https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png",
+    credentialUrl: "https://www.credly.com/org/microsoft/badge/your-badge-id",
+    credlyBadgeId: "dummy-badge-id-9",
+    credlyBadgeHost: "https://www.credly.com"
+  }
+];

@@ -9,7 +9,7 @@ interface BentoGridProps {
 export const BentoGrid: React.FC<BentoGridProps> = ({ className, children }) => (
   <div
     className={cn(
-      "grid grid-cols-1 md:grid-cols-6 lg:grid-cols-5 md:grid-row-7 gap-4 lg:gap-8 mx-auto",
+      "grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 mx-auto",
       className
     )}
   >
@@ -45,18 +45,18 @@ export const BentoGridItem: React.FC<BentoGridItemProps> = ({
       className
     )}
   >
-    <div className={cn(id === 6 && "flex justify-center", "h-full")}>
+    <div className="h-full relative">
       {img && (
-        <div className="w-full h-full absolute">
+        <div className="absolute inset-0 w-full h-full">
           <img
             src={img}
             alt={`Image for ${title}`}
-            className="object-cover object-center opacity-20 w-full h-full"
+            className="object-cover object-center opacity-20 w-full h-full transition-opacity duration-300 group-hover/bento:opacity-30"
           />
         </div>
       )}
 
-      <div className={cn(id === 5 && "w-full opacity-80", "absolute right-0 -bottom-5")} />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 opacity-0 group-hover/bento:opacity-100 transition-opacity duration-300" />
 
       <div
         className={cn(

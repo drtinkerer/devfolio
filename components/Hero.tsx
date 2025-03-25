@@ -21,7 +21,7 @@ const Hero = () => {
           <h1 className="text-center text-4xl md:text-6xl lg:text-8xl font-extrabold">
             Hey, I&apos;m {''}
             <span className="bg-gradient-to-r from-purple to-red-700 bg-clip-text text-transparent">
-              Atzin Escandia!
+              Bhushan Rane!
             </span>
           </h1>
         </Reveal>

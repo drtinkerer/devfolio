@@ -9,18 +9,67 @@ const NavBar = (): JSX.Element => {
   const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute("id");
-          if (id) setActiveSection(id);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            if (id) {
+              setActiveSection(id);
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: "-10% 0px -10% 0px"
+      }
+    );
+
+    // Get all sections with IDs
+    const sections = document.querySelectorAll("section[id]");
+    
+    // Set initial active section based on scroll position
+    const setInitialActiveSection = () => {
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      let activeId = "";
+      
+      // Check if we're at the top of the page
+      if (window.scrollY < 100) {
+        setActiveSection("");
+        return;
+      }
+      
+      sections.forEach((section) => {
+        const sectionElement = section as HTMLElement;
+        const sectionTop = sectionElement.offsetTop;
+        const sectionHeight = sectionElement.offsetHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          activeId = section.id;
         }
       });
+      
+      if (activeId) {
+        setActiveSection(activeId);
+      }
+    };
+
+    // Set initial active section
+    setInitialActiveSection();
+
+    // Observe all sections
+    sections.forEach((section) => {
+      observer.observe(section);
     });
 
-    document.querySelectorAll("section").forEach((section) => observer.observe(section));
+    // Add scroll event listener for better section detection
+    window.addEventListener("scroll", setInitialActiveSection);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", setInitialActiveSection);
+    };
   }, []);
 
   return (
@@ -32,7 +81,7 @@ const NavBar = (): JSX.Element => {
       className="sticky top-0 left-0 h-screen shadow-lg backdrop-blur-3xl border-r-2 border-white/10 w-10 sm:w-16 flex flex-col z-50 justify-evenly"
     >
       {navItems.map(({ name, link }, index) => {
-        const isActive = `#${activeSection}` === link;
+        const isActive = link === "#" ? !activeSection : `#${activeSection}` === link;
 
         return (
           <Link

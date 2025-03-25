@@ -25,18 +25,18 @@ export default function RootLayout({
 // Change this data with your own 🤭
 export const metadata: Metadata = {
   title: {
-    default: 'Atzin Escandia ✷ Portfolio',
-    template: '%s - Atzin Escandia',
+    default: 'Bhushan Rane ✷ Portfolio',
+    template: '%s - Bhushan Rane',
   },
   description:
-    'A customizable portfolio template for frontend developers, created by Atzin Escandia. Showcase your skills, projects, and experience with a clean and modern design.',
+    'A customizable portfolio template for frontend developers, created by Bhushan Rane. Showcase your skills, projects, and experience with a clean and modern design.',
   icons: {
     icon: './favicon.ico',
   },
-  applicationName: 'Frontend Portfolio Template by Atzin Escandia',
+  applicationName: 'Frontend Portfolio Template by Bhushan Rane',
   authors: [
     {
-      name: 'Atzin Escandia',
+      name: 'Bhushan Rane',
       url: 'https://www.linkedin.com/in/atzin-escandia/',
     },
   ],
@@ -45,6 +45,6 @@ export const metadata: Metadata = {
   themeColor: '#120012',
   colorScheme: 'dark',
   viewport: 'width=device-width, initial-scale=1',
-  creator: 'Atzin Escandia',
+  creator: 'Bhushan Rane',
   publisher: 'The Plum Up',
 };

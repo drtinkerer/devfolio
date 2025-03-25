@@ -17,7 +17,7 @@
     </a>
   </div>
 
-  <h3 align="center">Atzin Escandia's Devfolio</h3>
+  <h3 align="center">Bhushan Rane's Devfolio</h3>
   <p align="center">A super easy, simple, and neon purple (pretty me) ready to create your developer portfolio. Because who has time for complicated setups?</p>
 </div>
 
@@ -99,7 +99,7 @@ Now, head to [http://localhost:3000](http://localhost:3000) in your browser and 
 
 Looking for some inspo? Check out these amazing portfolios made using this template!
 
-- [Atzin Escandia Portfolio](https://theplumup.com) - My personal site, where I show off my journey as a web dev and showcase my projects.
+- [Bhushan Rane Portfolio](https://theplumup.com) - My personal site, where I show off my journey as a web dev and showcase my projects.
 - [The Plum Up Purple Neon](https://vscodethemes.com/e/atzinescandia.theplumup/theplumup) - A collection of portfolios by talented devs around the globe.
 
 ## 📝 More Resources

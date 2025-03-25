@@ -30,7 +30,7 @@ const Footer = () => {
             target="_blank"
             href="https://theplumup.com"
           >
-            Atzin Escandia.
+            Bhushan Rane.
           </a>
         </p>
       </div>
