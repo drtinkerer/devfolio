@@ -90,10 +90,14 @@ const NavBar = (): JSX.Element => {
             onClick={(e) => {
               e.preventDefault();
               const sectionId = link.replace('#', '');
-              setActiveSection(sectionId);
-              const element = document.getElementById(sectionId);
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
+              if (sectionId === '') {
+                setActiveSection('');
+              } else {
+                setActiveSection(sectionId);
+                const element = document.getElementById(sectionId);
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
               }
             }}
             className={cn(
