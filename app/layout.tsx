@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
-const poppins = Poppins({ subsets: ["latin"], weight: ["100", "200", "400", "700", '900'] });
+// Adjust weights for balance: lighter for body, bolder for headings
+const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "600", "700", '800'] });
 
 export default function RootLayout({
   children,
@@ -10,11 +11,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // Consider adding 'dark' class if implementing theme switching later
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/logo.svg" sizes="any" />
       </head>
-      <body className={`${poppins.className}`}>
+      {/* Apply base background and font */}
+      <body className={`${poppins.className} bg-black-100`}>
         {children}
       </body>
     </html>
@@ -29,25 +32,26 @@ export const metadata: Metadata = {
     template: '%s - Bhushan Rane',
   },
   description:
-    'Bhushan Rane Portfolio to showcase his skills and projects.',
+    'Bhushan Rane Portfolio showcasing expertise in DevOps, Cloud, AI, and Mechanical Engineering.', // Updated description
   icons: {
-    icon: './favicon.ico',
+    icon: './favicon.ico', // Ensure favicon exists or update path
   },
   applicationName: 'Bhushan Rane Portfolio',
   authors: [
     {
       name: 'Bhushan Rane',
-      url: 'https://www.linkedin.com/in/drtinkerer/',
+      url: 'https://www.linkedin.com/in/drtinkerer/', // Verify URL
     },
   ],
   generator: 'Next.js',
   referrer: 'origin',
-  colorScheme: 'dark',
+  colorScheme: 'dark', // Set to dark as per base theme
   viewport: 'width=device-width, initial-scale=1',
   creator: 'Bhushan Rane',
-  publisher: 'The Plum Up',
+  publisher: 'The Plum Up', // Consider changing if not applicable
 };
 
 export const viewport = {
-  themeColor: '#120012',
+  // Use a color from the new palette
+  themeColor: '#4A4F54', // steelGray.dark
 };

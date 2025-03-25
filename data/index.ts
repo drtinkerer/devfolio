@@ -139,7 +139,7 @@ export interface Certification {
   title: string;
   issuer: string;
   date: string;
-  badgeUrl: string;
+  badgeUrl: string; // Can be kept for fallback or removed if not needed
   credentialUrl: string;
   credlyBadgeId?: string;
   credlyBadgeHost?: string;
@@ -151,10 +151,10 @@ export const certifications: Certification[] = [
     title: "AWS Certified Solutions Architect - Associate",
     issuer: "Amazon Web Services",
     date: "March 2024",
-    badgeUrl: "https://images.credly.com/size/340x340/images/0e284c3f-5164-4b21-b866-a1e76fdd2018/image.png",
-    credentialUrl: "https://www.credly.com/org/aws/badge/your-badge-id",
-    credlyBadgeId: "279777b5-af1c-4ecb-b311-74757d3e7184",
-    credlyBadgeHost: "https://www.credly.com"
+    badgeUrl: "https://images.credly.com/size/340x340/images/0e284c3f-5164-4b21-b866-a1e76fdd2018/image.png", // Kept original badgeUrl, though Credly embed will override visually
+    credentialUrl: "https://www.credly.com/badges/279777b5-af1c-4ecb-b311-74757d3e7184/public_url", // Updated verification URL
+    credlyBadgeId: "279777b5-af1c-4ecb-b311-74757d3e7184", // Correct ID
+    credlyBadgeHost: "https://www.credly.com" // Standard host
   },
   {
     id: 2,
@@ -162,8 +162,8 @@ export const certifications: Certification[] = [
     issuer: "Google Cloud",
     date: "February 2024",
     badgeUrl: "https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png",
-    credentialUrl: "https://www.credly.com/org/google-cloud/badge/your-badge-id",
-    credlyBadgeId: "dummy-badge-id-2",
+    credentialUrl: "https://www.credly.com/org/google-cloud/badge/your-badge-id", // Placeholder - update if you have the real ID/URL
+    credlyBadgeId: "dummy-badge-id-2", // Placeholder
     credlyBadgeHost: "https://www.credly.com"
   },
   {
@@ -172,8 +172,8 @@ export const certifications: Certification[] = [
     issuer: "Microsoft",
     date: "January 2024",
     badgeUrl: "https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png",
-    credentialUrl: "https://www.credly.com/org/microsoft/badge/your-badge-id",
-    credlyBadgeId: "dummy-badge-id-3",
+    credentialUrl: "https://www.credly.com/org/microsoft/badge/your-badge-id", // Placeholder
+    credlyBadgeId: "dummy-badge-id-3", // Placeholder
     credlyBadgeHost: "https://www.credly.com"
   },
   {
@@ -182,8 +182,8 @@ export const certifications: Certification[] = [
     issuer: "Cloud Native Computing Foundation",
     date: "December 2023",
     badgeUrl: "https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png",
-    credentialUrl: "https://www.credly.com/org/cncf/badge/your-badge-id",
-    credlyBadgeId: "dummy-badge-id-4",
+    credentialUrl: "https://www.credly.com/org/cncf/badge/your-badge-id", // Placeholder
+    credlyBadgeId: "dummy-badge-id-4", // Placeholder
     credlyBadgeHost: "https://www.credly.com"
   },
   {
@@ -192,8 +192,8 @@ export const certifications: Certification[] = [
     issuer: "HashiCorp",
     date: "November 2023",
     badgeUrl: "https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png",
-    credentialUrl: "https://www.credly.com/org/hashicorp/badge/your-badge-id",
-    credlyBadgeId: "dummy-badge-id-5",
+    credentialUrl: "https://www.credly.com/org/hashicorp/badge/your-badge-id", // Placeholder
+    credlyBadgeId: "dummy-badge-id-5", // Placeholder
     credlyBadgeHost: "https://www.credly.com"
   },
   {
@@ -202,8 +202,8 @@ export const certifications: Certification[] = [
     issuer: "Docker",
     date: "October 2023",
     badgeUrl: "https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png",
-    credentialUrl: "https://www.credly.com/org/docker/badge/your-badge-id",
-    credlyBadgeId: "dummy-badge-id-6",
+    credentialUrl: "https://www.credly.com/org/docker/badge/your-badge-id", // Placeholder
+    credlyBadgeId: "dummy-badge-id-6", // Placeholder
     credlyBadgeHost: "https://www.credly.com"
   },
   {
@@ -212,8 +212,8 @@ export const certifications: Certification[] = [
     issuer: "Amazon Web Services",
     date: "September 2023",
     badgeUrl: "https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png",
-    credentialUrl: "https://www.credly.com/org/aws/badge/your-badge-id",
-    credlyBadgeId: "dummy-badge-id-7",
+    credentialUrl: "https://www.credly.com/org/aws/badge/your-badge-id", // Placeholder
+    credlyBadgeId: "dummy-badge-id-7", // Placeholder
     credlyBadgeHost: "https://www.credly.com"
   },
   {
@@ -222,8 +222,8 @@ export const certifications: Certification[] = [
     issuer: "Google Cloud",
     date: "August 2023",
     badgeUrl: "https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png",
-    credentialUrl: "https://www.credly.com/org/google-cloud/badge/your-badge-id",
-    credlyBadgeId: "dummy-badge-id-8",
+    credentialUrl: "https://www.credly.com/org/google-cloud/badge/your-badge-id", // Placeholder
+    credlyBadgeId: "dummy-badge-id-8", // Placeholder
     credlyBadgeHost: "https://www.credly.com"
   },
   {
@@ -232,8 +232,8 @@ export const certifications: Certification[] = [
     issuer: "Microsoft",
     date: "July 2023",
     badgeUrl: "https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png",
-    credentialUrl: "https://www.credly.com/org/microsoft/badge/your-badge-id",
-    credlyBadgeId: "dummy-badge-id-9",
+    credentialUrl: "https://www.credly.com/org/microsoft/badge/your-badge-id", // Placeholder
+    credlyBadgeId: "dummy-badge-id-9", // Placeholder
     credlyBadgeHost: "https://www.credly.com"
   }
 ];

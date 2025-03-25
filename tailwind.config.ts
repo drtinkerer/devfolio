@@ -25,31 +25,76 @@ const config = {
     },
     extend: {
       colors: {
+        // Core Palette
+        steelGray: {
+          DEFAULT: "#71797E", // Base steel gray
+          light: "#A9B1B6",   // Lighter shade
+          dark: "#4A4F54",    // Darker shade
+        },
+        brushedAluminum: {
+          DEFAULT: "#C0C0C0", // Silver/Aluminum
+          light: "#D9D9D9",
+          dark: "#A8A8A8",
+        },
+        electricBlue: {
+          DEFAULT: "#00FFFF", // Cyan/Electric Blue
+          light: "#7FFFD4",   // Aquamarine shade
+          dark: "#00CED1",    // Dark Turquoise
+        },
+        circuitGreen: {
+          DEFAULT: "#39FF14", // Neon Green
+          light: "#ADFF2F",   // Green Yellow
+          dark: "#008000",    // Standard Green
+        },
+
+        // Supporting Palette & Existing (adjust if needed)
         black: {
-          DEFAULT: "#000",
-          100: "#000319",
-          200: "rgba(17, 25, 40, 0.75)",
-          300: "rgba(255, 255, 255, 0.125)",
+          DEFAULT: "#0A0A0A", // Slightly off-black for depth
+          100: "#141414",
+          200: "rgba(20, 20, 20, 0.75)", // Darker overlay
+          300: "rgba(200, 200, 200, 0.1)", // Lighter overlay for contrast
         },
         white: {
-          DEFAULT: "#FFF",
-          100: "#BEC1DD",
-          200: "#C1C2D3",
+          DEFAULT: "#F5F5F5", // Off-white for softer text
+          100: "#E0E0E0",
+          200: "#CCCCCC",
         },
-        blue: {
-          "100": "#E4ECFF",
-        },
+        // Keep purple for potential accents or remove if not needed
         purple: "#9B4D96",
+
+        // Shadcn/ui defaults (can be overridden or removed if not using shadcn heavily)
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        background: "hsl(var(--background))", // Will be overridden by base styles
+        foreground: "hsl(var(--foreground))", // Will be overridden by base styles
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "hsl(var(--primary))", // Map to new palette, e.g., electricBlue.dark
+          foreground: "hsl(var(--primary-foreground))", // e.g., black.DEFAULT
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "hsl(var(--secondary))", // Map to new palette, e.g., steelGray.light
+          foreground: "hsl(var(--secondary-foreground))", // e.g., black.100
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))", // Map to new palette, e.g., circuitGreen.light
+          foreground: "hsl(var(--accent-foreground))", // e.g., black.DEFAULT
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
       },
       keyframes: {
@@ -68,6 +113,7 @@ const config = {
             transform: "translate(calc(-50% - 0.5rem))",
           },
         },
+        // Add subtle mechanical/digital animations later
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -75,6 +121,7 @@ const config = {
         spotlight: "spotlight 2s ease .75s 1 forwards",
         scroll:
           "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+        // Add animation utilities later
       },
     },
   },
@@ -106,14 +153,55 @@ const config = {
   ],
 } satisfies Config;
 
+// Helper function to expose colors as CSS variables
 function addVariablesForColors({ addBase, theme }: any) {
   let allColors = flattenColorPalette(theme("colors"));
+  // Filter out deprecated colors or adjust keys as needed
   let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+    Object.entries(allColors)
+      .filter(([key]) => !['background', 'foreground', 'primary', 'secondary', 'destructive', 'muted', 'accent', 'popover', 'card', 'border', 'input', 'ring'].includes(key)) // Avoid direct mapping of complex objects
+      .map(([key, val]) => [`--${key.replace('.', '-')}`, val]) // Replace dots for CSS var compatibility
   );
 
+  // Manually add mappings for complex/hsl colors if needed
+  newVars['--background'] = 'hsl(var(--background-hsl))'; // Example if using HSL vars
+  newVars['--foreground'] = 'hsl(var(--foreground-hsl))'; // Example
+
   addBase({
-    ":root": newVars,
+    ":root": {
+      // Define HSL values for shadcn/ui compatibility if used
+      "--background-hsl": "0 0% 7%", // ~ black.100
+      "--foreground-hsl": "0 0% 96%", // ~ white.DEFAULT
+
+      "--card-hsl": "0 0% 7%",
+      "--card-foreground-hsl": "0 0% 96%",
+
+      "--popover-hsl": "0 0% 7%",
+      "--popover-foreground-hsl": "0 0% 96%",
+
+      "--primary-hsl": "195 100% 50%", // ~ electricBlue.DEFAULT (adjust HSL)
+      "--primary-foreground-hsl": "0 0% 5%", // ~ black.DEFAULT
+
+      "--secondary-hsl": "210 6% 70%", // ~ steelGray.light (adjust HSL)
+      "--secondary-foreground-hsl": "0 0% 10%", // ~ black.100
+
+      "--muted-hsl": "210 6% 30%", // ~ steelGray.dark
+      "--muted-foreground-hsl": "0 0% 70%", // ~ white.100
+
+      "--accent-hsl": "128 100% 54%", // ~ circuitGreen.DEFAULT (adjust HSL)
+      "--accent-foreground-hsl": "0 0% 5%", // ~ black.DEFAULT
+
+      "--destructive-hsl": "0 84% 60%",
+      "--destructive-foreground-hsl": "0 0% 98%",
+
+      "--border-hsl": "210 6% 40%", // ~ steelGray.dark
+      "--input-hsl": "210 6% 50%", // ~ steelGray.DEFAULT
+      "--ring-hsl": "195 100% 50%", // ~ electricBlue.DEFAULT
+
+      "--radius": "0.5rem",
+      ...newVars // Add the flattened color variables
+    },
+    // Add .dark class support if needed later
   });
 }
 

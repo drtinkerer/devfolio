@@ -4,43 +4,45 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 350 15% 10%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 350 15% 10%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 350 15% 10%;
-
-    --primary: 350 65% 40%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 350 60% 95%;
-    --secondary-foreground: 350 65% 40%;
+    /* Define base HSL values (already done in tailwind.config.js via plugin) */
+    /* Example: --background: 210 40% 96%; */
   }
+
+  /* Define dark mode if needed later
+  .dark {
+     Example: --background: 210 40% 9%;
+  }
+  */
 }
 
 @layer base {
   * {
-    @apply !scroll-smooth;
+    @apply border-border !scroll-smooth; /* Use border color from new palette */
   }
   body {
-    @apply text-white;
+    @apply bg-black-100 text-white; /* Use new background and text colors */
+    /* Apply a subtle background texture if desired */
+    /* Example: background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px); background-size: 20px 20px; */
   }
   button {
-    @apply active:outline-none;
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background; /* Enhanced focus state */
   }
 }
 
 @layer utilities {
+  /* Typography adjustments for technical rigor + modern minimalism */
+  h1 {
+      @apply text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight; /* Slightly tighter tracking */
+  }
   h2 {
-    @apply text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-extrabold;
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight; /* Bold instead of extrabold */
   }
   h3 {
-    @apply text-4xl sm:text-5xl md:text-6xl text-center font-extrabold;
+    @apply text-3xl sm:text-4xl md:text-5xl text-center font-semibold; /* Semibold for subheadings */
   }
-  p{
-     @apply text-sm sm:text-lg;
+  p {
+     @apply text-base sm:text-lg text-white-100 leading-relaxed; /* Slightly lighter text, relaxed leading */
   }
+  /* Add styles for code blocks if needed */
+  /* code, pre { @apply font-mono text-sm bg-steelGray-dark text-circuitGreen-light p-1 rounded; } */
 }
