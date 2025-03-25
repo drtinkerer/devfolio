@@ -42,9 +42,12 @@ export const metadata: Metadata = {
   ],
   generator: 'Next.js',
   referrer: 'origin',
-  themeColor: '#120012',
   colorScheme: 'dark',
   viewport: 'width=device-width, initial-scale=1',
   creator: 'Bhushan Rane',
   publisher: 'The Plum Up',
+};
+
+export const viewport = {
+  themeColor: '#120012',
 };
