@@ -21,8 +21,8 @@ const NavBar = (): JSX.Element => {
         });
       },
       {
-        threshold: 0.2,
-        rootMargin: "-10% 0px -10% 0px"
+        threshold: 0.5,
+        rootMargin: "-20% 0px -20% 0px"
       }
     );
 
@@ -31,7 +31,7 @@ const NavBar = (): JSX.Element => {
     
     // Set initial active section based on scroll position
     const setInitialActiveSection = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
       let activeId = "";
       
       // Check if we're at the top of the page
@@ -87,6 +87,15 @@ const NavBar = (): JSX.Element => {
           <Link
             key={`nav-item-${index}`}
             href={link}
+            onClick={(e) => {
+              e.preventDefault();
+              const sectionId = link.replace('#', '');
+              setActiveSection(sectionId);
+              const element = document.getElementById(sectionId);
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
             className={cn(
               "flex items-center justify-center transform rotate-90 transition-all duration-100 ease-in-out",
               isActive && "scale-110"
