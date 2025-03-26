@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const BackgroundPatterns = () => {
   const [clickedPositions, setClickedPositions] = useState<Array<{ x: number; y: number; id: number }>>([]);
@@ -31,6 +32,14 @@ const BackgroundPatterns = () => {
     return () => window.removeEventListener('click', handleClick);
   }, []);
 
+  const techIcons = [
+    { src: "/aws-svgrepo-com.svg", alt: "AWS" },
+    { src: "/google-cloud-svgrepo-com.svg", alt: "Google Cloud" },
+    { src: "/kubernetes-svgrepo-com.svg", alt: "Kubernetes" },
+    { src: "/linux-svgrepo-com.svg", alt: "Linux" },
+    { src: "/python-svgrepo-com.svg", alt: "Python" },
+  ];
+
   if (!mounted) {
     return null;
   }
@@ -43,21 +52,88 @@ const BackgroundPatterns = () => {
       {/* Circuit Pattern - Representing Computer Science */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.1)_1px,transparent_1px)] bg-[size:2rem_2rem] opacity-20"></div>
 
-      {/* Name in Background */}
-      <motion.div
-        animate={{
-          opacity: [0.1, 0.15, 0.1],
-          scale: [1, 1.02, 1],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-[10%] left-1/2 transform -translate-x-1/2 text-3xl md:text-5xl font-bold text-electricBlue/10 whitespace-nowrap"
-      >
-        Hey, I am Bhushan
-      </motion.div>
+      {/* Floating Tech Icons */}
+      <div className="absolute inset-0 pointer-events-none">
+        {techIcons.map((icon, index) => (
+          <motion.div
+            key={icon.alt}
+            initial={{
+              x: `${Math.random() * 80 + 10}vw`,
+              y: `${Math.random() * 80 + 10}vh`,
+            }}
+            animate={{
+              rotate: 360,
+              x: [`${Math.random() * 80 + 10}vw`, `${Math.random() * 80 + 10}vw`],
+              y: [`${Math.random() * 80 + 10}vh`, `${Math.random() * 80 + 10}vh`],
+            }}
+            transition={{
+              rotate: {
+                duration: 15 + index * 5,
+                repeat: Infinity,
+                ease: "linear",
+              },
+              x: {
+                duration: 30 + index * 7,
+                repeat: Infinity,
+                yoyo: true,
+                ease: "easeInOut",
+              },
+              y: {
+                duration: 25 + index * 7,
+                repeat: Infinity,
+                yoyo: true,
+                ease: "easeInOut",
+              },
+            }}
+            className="absolute w-8 h-8 md:w-12 md:h-12 opacity-10 hover:opacity-30 transition-opacity"
+          >
+            <Image
+              src={icon.src}
+              alt={icon.alt}
+              width={48}
+              height={48}
+              className="w-full h-full"
+            />
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Name in Background with Kubernetes Icon */}
+      <div className="absolute top-[10%] left-1/2 transform -translate-x-1/2 flex items-center gap-4">
+        <motion.div
+          animate={{
+            opacity: [0.1, 0.15, 0.1],
+            scale: [1, 1.02, 1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="text-3xl md:text-5xl font-bold text-electricBlue/10 whitespace-nowrap"
+        >
+          Hey, I am Bhushan
+        </motion.div>
+        <motion.div
+          animate={{
+            rotate: 360
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="w-12 h-12 md:w-16 md:h-16"
+        >
+          <Image
+            src="/kubernetes.svg"
+            alt="Kubernetes"
+            width={64}
+            height={64}
+            className="w-full h-full"
+          />
+        </motion.div>
+      </div>
 
       {/* Trigonometric Graphs */}
       <div className="absolute inset-0 opacity-20">
