@@ -11,27 +11,27 @@
   },
   "dependencies": {
     "clsx": "^2.1.0",
-    "framer-motion": "^11.0.25",
-    "lucide-react": "^0.484.0",
+    "framer-motion": "^11.0.8",
+    "lucide-react": "^0.358.0",
     "mini-svg-data-uri": "^1.4.4",
-    "next": "14.1.4",
-    "react": "^18",
-    "react-dom": "^18",
-    "react-icons": "^5.5.0",
-    "tailwind-merge": "^2.2.2",
+    "next": "14.1.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.20",
+    "react-icons": "^5.0.1",
+    "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "vercel": "^34.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/node": "^20.11.25",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
     "@types/react-lottie": "^1.2.10",
-    "autoprefixer": "^10.0.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.1.4",
-    "postcss": "^8",
-    "tailwindcss": "^3.3.0",
-    "typescript": "^5"
+    "autoprefixer": "^10.4.18",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.1.3",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.4.2"
   }
 }
