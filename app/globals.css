@@ -46,3 +46,12 @@
   /* Add styles for code blocks if needed */
   /* code, pre { @apply font-mono text-sm bg-steelGray-dark text-circuitGreen-light p-1 rounded; } */
 }
+
+/* Animation delay utilities */
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}

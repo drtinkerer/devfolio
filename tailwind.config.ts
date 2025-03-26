@@ -113,7 +113,20 @@ const config = {
             transform: "translate(calc(-50% - 0.5rem))",
           },
         },
-        // Add subtle mechanical/digital animations later
+        blob: {
+          "0%": {
+            transform: "translate(0px, 0px) scale(1)",
+          },
+          "33%": {
+            transform: "translate(30px, -50px) scale(1.1)",
+          },
+          "66%": {
+            transform: "translate(-20px, 20px) scale(0.9)",
+          },
+          "100%": {
+            transform: "translate(0px, 0px) scale(1)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -121,7 +134,7 @@ const config = {
         spotlight: "spotlight 2s ease .75s 1 forwards",
         scroll:
           "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
-        // Add animation utilities later
+        blob: "blob 7s infinite",
       },
     },
   },
