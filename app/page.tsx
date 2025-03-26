@@ -8,10 +8,12 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/ui/NavBar";
 import Certifications from "@/components/Certifications";
+import CustomCursor from "@/components/ui/CustomCursor";
 
 const Home = () => {
   return (
-    <main className="min-h-screen relative">
+    <main className="min-h-screen relative cursor-none">
+      <CustomCursor />
       {/* Animated background elements */}
       <div className="fixed inset-0 bg-gradient-to-b from-purple-950 via-purple-900 to-purple-950">
         {/* Animated gradient orbs */}
