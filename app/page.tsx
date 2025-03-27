@@ -10,6 +10,7 @@ import NavBar from "@/components/ui/NavBar";
 import Certifications from "@/components/Certifications";
 import CustomCursor from "@/components/ui/CustomCursor";
 import BackgroundPatterns from "@/components/ui/BackgroundPatterns";
+import { motion } from "framer-motion";
 
 const Home = () => {
   return (

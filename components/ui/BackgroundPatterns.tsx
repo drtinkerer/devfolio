@@ -7,6 +7,7 @@ import Image from "next/image";
 const BackgroundPatterns = () => {
   const [clickedPositions, setClickedPositions] = useState<Array<{ x: number; y: number; id: number }>>([]);
   const [mounted, setMounted] = useState(false);
+  const [lastClickTime, setLastClickTime] = useState(0);
 
   useEffect(() => {
     setMounted(true);
@@ -21,6 +22,7 @@ const BackgroundPatterns = () => {
           id: Date.now(),
         };
         setClickedPositions(prev => [...prev, newPosition]);
+        setLastClickTime(Date.now());
         
         setTimeout(() => {
           setClickedPositions(prev => prev.filter(pos => pos.id !== newPosition.id));
@@ -32,12 +34,14 @@ const BackgroundPatterns = () => {
     return () => window.removeEventListener('click', handleClick);
   }, []);
 
-  const techIcons = [
-    { src: "/aws-svgrepo-com.svg", alt: "AWS" },
-    { src: "/google-cloud-svgrepo-com.svg", alt: "Google Cloud" },
-    { src: "/kubernetes-svgrepo-com.svg", alt: "Kubernetes" },
-    { src: "/linux-svgrepo-com.svg", alt: "Linux" },
-    { src: "/python-svgrepo-com.svg", alt: "Python" },
+  const techIcons: Array<{ src: string; alt: string; rotate?: boolean }> = [
+    { src: "/floating-icons/aws-svgrepo-com.svg", alt: "" },
+    { src: "/floating-icons/docker.svg", alt: "" },
+    { src: "/floating-icons/google-cloud-svgrepo-com.svg", alt: "" },
+    { src: "/floating-icons/kubernetes-svgrepo-com.svg", alt: "" },
+    { src: "/floating-icons/linux-svgrepo-com.svg", alt: "" },
+    { src: "/floating-icons/machine-learning-03.svg", alt: "" },
+    { src: "/floating-icons/python-svgrepo-com.svg", alt: "" }
   ];
 
   if (!mounted) {
@@ -56,21 +60,27 @@ const BackgroundPatterns = () => {
       <div className="absolute inset-0 pointer-events-none">
         {techIcons.map((icon, index) => (
           <motion.div
-            key={icon.alt}
+            key={icon.alt || index}
             initial={{
               x: `${Math.random() * 80 + 10}vw`,
               y: `${Math.random() * 80 + 10}vh`,
             }}
             animate={{
-              rotate: 360,
-              x: [`${Math.random() * 80 + 10}vw`, `${Math.random() * 80 + 10}vw`],
-              y: [`${Math.random() * 80 + 10}vh`, `${Math.random() * 80 + 10}vh`],
+              rotate: icon.rotate ? 360 : 0,
+              scale: lastClickTime ? [1, 1.2, 0.9, 1] : 1,
+              x: `${Math.random() * 80 + 10}vw`,
+              y: `${Math.random() * 80 + 10}vh`,
             }}
             transition={{
               rotate: {
-                duration: 15 + index * 5,
+                duration: 15,
                 repeat: Infinity,
                 ease: "linear",
+              },
+              scale: {
+                duration: 0.5,
+                times: [0, 0.2, 0.5, 1],
+                ease: "easeInOut",
               },
               x: {
                 duration: 30 + index * 7,
@@ -96,43 +106,6 @@ const BackgroundPatterns = () => {
             />
           </motion.div>
         ))}
-      </div>
-
-      {/* Name in Background with Kubernetes Icon */}
-      <div className="absolute top-[10%] left-1/2 transform -translate-x-1/2 flex items-center gap-4">
-        <motion.div
-          animate={{
-            opacity: [0.1, 0.15, 0.1],
-            scale: [1, 1.02, 1],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="text-3xl md:text-5xl font-bold text-electricBlue/10 whitespace-nowrap"
-        >
-          Hey, I am Bhushan
-        </motion.div>
-        <motion.div
-          animate={{
-            rotate: 360
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="w-12 h-12 md:w-16 md:h-16"
-        >
-          <Image
-            src="/kubernetes.svg"
-            alt="Kubernetes"
-            width={64}
-            height={64}
-            className="w-full h-full"
-          />
-        </motion.div>
       </div>
 
       {/* Trigonometric Graphs */}
@@ -346,33 +319,6 @@ const BackgroundPatterns = () => {
               <path
                 fill="currentColor"
                 d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"
-              />
-            </svg>
-          </motion.div>
-        ))}
-
-        {/* Gears */}
-        {[1, 2].map((gear, index) => (
-          <motion.div
-            key={`gear-${gear}`}
-            animate={{
-              rotate: 360,
-              scale: [1, 1.1, 1],
-            }}
-            transition={{
-              duration: 20 + index * 5,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className={`absolute text-electricBlue/60 ${
-              index === 0 ? "top-[35%] right-[2%]" :
-              "bottom-[35%] left-[2%]"
-            }`}
-          >
-            <svg viewBox="0 0 24 24" className="w-10 h-10 md:w-12 md:h-12">
-              <path
-                fill="currentColor"
-                d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM12 18a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
               />
             </svg>
           </motion.div>
