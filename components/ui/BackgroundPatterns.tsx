@@ -9,7 +9,13 @@ const BackgroundPatterns = () => {
   const [mounted, setMounted] = useState(false);
   const [lastClickTime, setLastClickTime] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [techIcons, setTechIcons] = useState<Array<{ src: string; alt: string; rotate?: boolean }>>([]);
+  const [techIcons, setTechIcons] = useState<Array<{ 
+    src: string; 
+    alt: string; 
+    rotate?: boolean;
+    position: { x: number; y: number };
+    velocity: { x: number; y: number };
+  }>>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const scrollTimeoutRef = useRef<NodeJS.Timeout>();
@@ -109,18 +115,32 @@ const BackgroundPatterns = () => {
     };
   }, []);
 
+  // Function to generate random velocity
+  const generateVelocity = () => ({
+    x: (Math.random() - 0.5) * 2,
+    y: (Math.random() - 0.5) * 2
+  });
+
+  // Function to generate initial position
+  const generatePosition = () => ({
+    x: Math.random() * 80 + 10,
+    y: Math.random() * 80 + 10
+  });
+
   // Fetch SVG icons when component mounts
   useEffect(() => {
     const fetchIcons = async () => {
       try {
         const response = await fetch('/api/get-floating-icons');
         const icons = await response.json();
-        console.log('Fetched icons:', icons); // Debug log
-        setTechIcons(icons.map((icon: string) => ({
+        const mappedIcons = icons.map((icon: string) => ({
           src: `/floating-icons/${icon}`,
           alt: icon.replace('.svg', ''),
-          rotate: icon.toLowerCase().includes('gear') || icon.toLowerCase().includes('cog')
-        })));
+          rotate: icon.toLowerCase().includes('gear') || icon.toLowerCase().includes('cog'),
+          position: generatePosition(),
+          velocity: generateVelocity()
+        }));
+        setTechIcons(mappedIcons);
       } catch (error) {
         console.error('Error fetching icons:', error);
       }
@@ -128,6 +148,51 @@ const BackgroundPatterns = () => {
 
     fetchIcons();
     setMounted(true);
+  }, []);
+
+  // Animation loop for continuous movement
+  useEffect(() => {
+    let animationFrameId: number;
+    const speed = 0.1; // Adjust this to control movement speed
+
+    const animate = () => {
+      setTechIcons(prevIcons => 
+        prevIcons.map(icon => {
+          const newPosition = {
+            x: icon.position.x + icon.velocity.x * speed,
+            y: icon.position.y + icon.velocity.y * speed
+          };
+
+          // Bounce off edges
+          const newVelocity = { ...icon.velocity };
+          if (newPosition.x <= 0 || newPosition.x >= 100) {
+            newVelocity.x = -newVelocity.x;
+          }
+          if (newPosition.y <= 0 || newPosition.y >= 100) {
+            newVelocity.y = -newVelocity.y;
+          }
+
+          // Constrain position within bounds
+          newPosition.x = Math.max(0, Math.min(100, newPosition.x));
+          newPosition.y = Math.max(0, Math.min(100, newPosition.y));
+
+          return {
+            ...icon,
+            position: newPosition,
+            velocity: newVelocity
+          };
+        })
+      );
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -185,15 +250,14 @@ const BackgroundPatterns = () => {
               {techIcons.map((icon, index) => (
                 <motion.div
                   key={icon.src}
-                  initial={{
-                    x: `${Math.random() * 100}vw`,
-                    y: `${Math.random() * 100}vh`,
+                  style={{
+                    position: 'absolute',
+                    left: `${icon.position.x}vw`,
+                    top: `${icon.position.y}vh`,
                   }}
                   animate={{
                     rotate: icon.rotate ? 360 : 0,
                     scale: isAnimating ? [1, 1.3, 0.9, 1.1, 1] : 1,
-                    x: `${Math.random() * 100}vw`,
-                    y: `${Math.random() * 100}vh`,
                   }}
                   transition={{
                     rotate: {
@@ -205,30 +269,16 @@ const BackgroundPatterns = () => {
                       duration: 0.5,
                       times: [0, 0.2, 0.4, 0.6, 1],
                       ease: "easeInOut",
-                    },
-                    x: {
-                      duration: 15 + index * 3,
-                      repeat: Infinity,
-                      yoyo: true,
-                      ease: "easeInOut",
-                      repeatDelay: isAnimating ? 0.5 : 0,
-                    },
-                    y: {
-                      duration: 12 + index * 3,
-                      repeat: Infinity,
-                      yoyo: true,
-                      ease: "easeInOut",
-                      repeatDelay: isAnimating ? 0.5 : 0,
-                    },
+                    }
                   }}
-                  className="absolute w-8 h-8 md:w-12 md:h-12 opacity-20 hover:opacity-40 transition-opacity"
+                  className="absolute w-10 h-10 md:w-14 md:h-14 opacity-25 hover:opacity-40 transition-opacity"
                 >
                   <Image
                     src={icon.src}
                     alt={icon.alt}
-                    width={48}
-                    height={48}
-                    className="w-full h-full drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+                    width={56}
+                    height={56}
+                    className="w-full h-full drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"
                   />
                 </motion.div>
               ))}
@@ -489,15 +539,14 @@ const BackgroundPatterns = () => {
               {techIcons.map((icon, index) => (
                 <motion.div
                   key={`center-${icon.src}`}
-                  initial={{
-                    x: `${Math.random() * 100}vw`,
-                    y: `${Math.random() * 100}vh`,
+                  style={{
+                    position: 'absolute',
+                    left: `${icon.position.x}vw`,
+                    top: `${icon.position.y}vh`,
                   }}
                   animate={{
                     rotate: icon.rotate ? 360 : 0,
                     scale: isAnimating ? [1, 1.3, 0.9, 1.1, 1] : 1,
-                    x: `${Math.random() * 100}vw`,
-                    y: `${Math.random() * 100}vh`,
                   }}
                   transition={{
                     rotate: {
@@ -509,30 +558,16 @@ const BackgroundPatterns = () => {
                       duration: 0.5,
                       times: [0, 0.2, 0.4, 0.6, 1],
                       ease: "easeInOut",
-                    },
-                    x: {
-                      duration: 15 + index * 3,
-                      repeat: Infinity,
-                      yoyo: true,
-                      ease: "easeInOut",
-                      repeatDelay: isAnimating ? 0.5 : 0,
-                    },
-                    y: {
-                      duration: 12 + index * 3,
-                      repeat: Infinity,
-                      yoyo: true,
-                      ease: "easeInOut",
-                      repeatDelay: isAnimating ? 0.5 : 0,
-                    },
+                    }
                   }}
-                  className="absolute w-8 h-8 md:w-12 md:h-12 opacity-20 hover:opacity-40 transition-opacity"
+                  className="absolute w-10 h-10 md:w-14 md:h-14 opacity-25 hover:opacity-40 transition-opacity"
                 >
                   <Image
                     src={icon.src}
                     alt={icon.alt}
-                    width={48}
-                    height={48}
-                    className="w-full h-full drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+                    width={56}
+                    height={56}
+                    className="w-full h-full drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"
                   />
                 </motion.div>
               ))}
@@ -793,15 +828,14 @@ const BackgroundPatterns = () => {
               {techIcons.map((icon, index) => (
                 <motion.div
                   key={`right-${icon.src}`}
-                  initial={{
-                    x: `${Math.random() * 100}vw`,
-                    y: `${Math.random() * 100}vh`,
+                  style={{
+                    position: 'absolute',
+                    left: `${icon.position.x}vw`,
+                    top: `${icon.position.y}vh`,
                   }}
                   animate={{
                     rotate: icon.rotate ? 360 : 0,
                     scale: isAnimating ? [1, 1.3, 0.9, 1.1, 1] : 1,
-                    x: `${Math.random() * 100}vw`,
-                    y: `${Math.random() * 100}vh`,
                   }}
                   transition={{
                     rotate: {
@@ -813,30 +847,16 @@ const BackgroundPatterns = () => {
                       duration: 0.5,
                       times: [0, 0.2, 0.4, 0.6, 1],
                       ease: "easeInOut",
-                    },
-                    x: {
-                      duration: 15 + index * 3,
-                      repeat: Infinity,
-                      yoyo: true,
-                      ease: "easeInOut",
-                      repeatDelay: isAnimating ? 0.5 : 0,
-                    },
-                    y: {
-                      duration: 12 + index * 3,
-                      repeat: Infinity,
-                      yoyo: true,
-                      ease: "easeInOut",
-                      repeatDelay: isAnimating ? 0.5 : 0,
-                    },
+                    }
                   }}
-                  className="absolute w-8 h-8 md:w-12 md:h-12 opacity-20 hover:opacity-40 transition-opacity"
+                  className="absolute w-10 h-10 md:w-14 md:h-14 opacity-25 hover:opacity-40 transition-opacity"
                 >
                   <Image
                     src={icon.src}
                     alt={icon.alt}
-                    width={48}
-                    height={48}
-                    className="w-full h-full drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+                    width={56}
+                    height={56}
+                    className="w-full h-full drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"
                   />
                 </motion.div>
               ))}
