@@ -17,7 +17,7 @@
 
 @layer base {
   * {
-    @apply border-border !scroll-smooth; /* Use border color from new palette */
+    @apply border-border; /* Removed !scroll-smooth */
   }
   body {
     @apply bg-black-100 text-white; /* Use new background and text colors */

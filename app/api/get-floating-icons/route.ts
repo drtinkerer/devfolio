@@ -23,4 +23,4 @@ export async function GET() {
     console.error('Error reading floating-icons directory:', error);
     return NextResponse.json([], { status: 500 });
   }
-} 
+}

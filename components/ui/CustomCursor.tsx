@@ -61,4 +61,4 @@ const CustomCursor = () => {
   );
 };
 
-export default CustomCursor; 
+export default CustomCursor;
