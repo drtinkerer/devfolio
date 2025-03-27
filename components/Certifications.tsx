@@ -33,19 +33,19 @@ const Certifications = () => {
         {certifications.map((cert) => (
           <div 
             key={cert.id} 
-            className="group relative bg-black/20 rounded-3xl border border-white/10 p-4 hover:border-white/20 transition-all duration-300 overflow-hidden"
+            className="group relative bg-black/40 rounded-3xl border border-white/10 p-4 hover:border-white/20 transition-all duration-300 overflow-hidden backdrop-blur-sm"
           >
             {/* Background Image with Animation */}
             <div className="absolute inset-0 w-full h-full">
               <img
                 src="https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif"
                 alt="Background"
-                className="object-cover object-center opacity-20 w-full h-full transition-opacity duration-300 group-hover:opacity-30"
+                className="object-cover object-center opacity-10 w-full h-full transition-opacity duration-300 group-hover:opacity-20"
               />
             </div>
 
             {/* Gradient Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-b from-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-b from-transparent to-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
             {/* Content */}
             <div className="relative flex flex-col items-center space-y-2">
@@ -60,10 +60,16 @@ const Certifications = () => {
               </div>
 
               {/* Certification Info */}
-              <div className="text-center space-y-1 mt-2">
-                <h4 className="text-base font-semibold text-white leading-tight">{cert.title}</h4>
-                <p className="text-sm text-gray-400">{cert.issuer}</p>
-                <p className="text-xs text-gray-500">{cert.date}</p>
+              <div className="text-center space-y-2 mt-4">
+                <h4 className="text-lg font-bold text-white leading-tight tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                  {cert.title}
+                </h4>
+                <p className="text-base font-medium text-gray-200 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                  {cert.issuer}
+                </p>
+                <p className="text-sm font-medium text-gray-300 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                  {cert.date}
+                </p>
               </div>
 
               {/* Verification Link */}
@@ -72,13 +78,13 @@ const Certifications = () => {
                   href={cert.credentialUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-electricBlue-light hover:text-electricBlue text-sm transition-colors duration-200 mt-2"
+                  className="text-electricBlue-light hover:text-electricBlue text-sm font-semibold transition-colors duration-200 mt-4 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]"
                 >
                   Verify on Credly →
-                     </a>
-                   )}
-                </div>
-              </div>
+                </a>
+              )}
+            </div>
+          </div>
         ))}
       </div>
     </section>
