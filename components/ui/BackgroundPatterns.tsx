@@ -8,6 +8,7 @@ const BackgroundPatterns = () => {
   const [clickedPositions, setClickedPositions] = useState<Array<{ x: number; y: number; id: number }>>([]);
   const [mounted, setMounted] = useState(false);
   const [lastClickTime, setLastClickTime] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -23,10 +24,15 @@ const BackgroundPatterns = () => {
         };
         setClickedPositions(prev => [...prev, newPosition]);
         setLastClickTime(Date.now());
+        setIsAnimating(true);
         
         setTimeout(() => {
           setClickedPositions(prev => prev.filter(pos => pos.id !== newPosition.id));
         }, 2000);
+        
+        setTimeout(() => {
+          setIsAnimating(false);
+        }, 500);
       }
     };
 
@@ -41,7 +47,9 @@ const BackgroundPatterns = () => {
     { src: "/floating-icons/kubernetes-svgrepo-com.svg", alt: "" },
     { src: "/floating-icons/linux-svgrepo-com.svg", alt: "" },
     { src: "/floating-icons/machine-learning-03.svg", alt: "" },
-    { src: "/floating-icons/python-svgrepo-com.svg", alt: "" }
+    { src: "/floating-icons/python-svgrepo-com.svg", alt: "" },
+    { src: "/floating-icons/openai.svg", alt: "" },
+    { src: "/floating-icons/argocd.svg", alt: "" }
   ];
 
   if (!mounted) {
@@ -67,7 +75,7 @@ const BackgroundPatterns = () => {
             }}
             animate={{
               rotate: icon.rotate ? 360 : 0,
-              scale: lastClickTime ? [1, 1.2, 0.9, 1] : 1,
+              scale: isAnimating ? [1, 1.3, 0.9, 1.1, 1] : 1,
               x: `${Math.random() * 80 + 10}vw`,
               y: `${Math.random() * 80 + 10}vh`,
             }}
@@ -79,7 +87,7 @@ const BackgroundPatterns = () => {
               },
               scale: {
                 duration: 0.5,
-                times: [0, 0.2, 0.5, 1],
+                times: [0, 0.2, 0.4, 0.6, 1],
                 ease: "easeInOut",
               },
               x: {
@@ -87,15 +95,17 @@ const BackgroundPatterns = () => {
                 repeat: Infinity,
                 yoyo: true,
                 ease: "easeInOut",
+                repeatDelay: isAnimating ? 0.5 : 0,
               },
               y: {
                 duration: 25 + index * 7,
                 repeat: Infinity,
                 yoyo: true,
                 ease: "easeInOut",
+                repeatDelay: isAnimating ? 0.5 : 0,
               },
             }}
-            className="absolute w-8 h-8 md:w-12 md:h-12 opacity-10 hover:opacity-30 transition-opacity"
+            className={`absolute w-8 h-8 md:w-12 md:h-12 opacity-10 hover:opacity-30 transition-opacity`}
           >
             <Image
               src={icon.src}
@@ -225,13 +235,13 @@ const BackgroundPatterns = () => {
           { eq: "F = ma", bottom: "30%", left: "2%", type: "physics" },
           { eq: "PV = nRT", top: "20%", left: "2%", type: "physics" },
           { eq: "v = u + at", bottom: "40%", right: "2%", type: "physics" },
-          
+
           // Mathematics Equations
           { eq: "∫(x² + 2x + 1)dx", top: "30%", left: "2%", type: "math" },
           { eq: "πr²", top: "50%", right: "2%", type: "math" },
           { eq: "∇ × F", bottom: "20%", right: "2%", type: "math" },
           { eq: "∑(n=1 to ∞) 1/n²", top: "70%", left: "2%", type: "math" },
-          
+
           // Engineering Equations
           { eq: "τ = F × r", bottom: "50%", left: "2%", type: "engineering" },
           { eq: "P = VI", top: "80%", right: "2%", type: "engineering" },
@@ -244,9 +254,9 @@ const BackgroundPatterns = () => {
               y: [0, -30, 0],
               opacity: [0.4, 0.8, 0.4],
               scale: [1, 1.1, 1],
-              rotate: equation.type === "physics" ? [0, 2, -2, 0] : 
-                      equation.type === "math" ? [0, -2, 2, 0] : 
-                      [0, 1, -1, 0],
+              rotate: equation.type === "physics" ? [0, 2, -2, 0] :
+                equation.type === "math" ? [0, -2, 2, 0] :
+                  [0, 1, -1, 0],
             }}
             transition={{
               duration: 8 + index,
@@ -254,11 +264,10 @@ const BackgroundPatterns = () => {
               ease: "easeInOut",
               delay: index * 1.5,
             }}
-            className={`absolute text-base md:text-lg font-mono whitespace-nowrap ${
-              equation.type === "physics" ? "text-circuitGreen/60" :
-              equation.type === "math" ? "text-electricBlue/60" :
-              "text-brushedAluminum/60"
-            } ${equation.top ? `top-[${equation.top}]` : ''} ${equation.bottom ? `bottom-[${equation.bottom}]` : ''} ${equation.left ? `left-[${equation.left}]` : ''} ${equation.right ? `right-[${equation.right}]` : ''}`}
+            className={`absolute text-base md:text-lg font-mono whitespace-nowrap ${equation.type === "physics" ? "text-circuitGreen/60" :
+                equation.type === "math" ? "text-electricBlue/60" :
+                  "text-brushedAluminum/60"
+              } ${equation.top ? `top-[${equation.top}]` : ''} ${equation.bottom ? `bottom-[${equation.bottom}]` : ''} ${equation.left ? `left-[${equation.left}]` : ''} ${equation.right ? `right-[${equation.right}]` : ''}`}
           >
             {equation.eq}
           </motion.div>
@@ -281,11 +290,10 @@ const BackgroundPatterns = () => {
               ease: "easeInOut",
               delay: index * 1.5,
             }}
-            className={`absolute text-electricBlue/60 ${
-              index === 0 ? "top-[25%] left-[2%]" :
-              index === 1 ? "top-[65%] right-[2%]" :
-              "bottom-[25%] left-[2%]"
-            }`}
+            className={`absolute text-electricBlue/60 ${index === 0 ? "top-[25%] left-[2%]" :
+                index === 1 ? "top-[65%] right-[2%]" :
+                  "bottom-[25%] left-[2%]"
+              }`}
           >
             <svg viewBox="0 0 24 24" className="w-8 h-8 md:w-10 md:h-10">
               <path
@@ -310,10 +318,9 @@ const BackgroundPatterns = () => {
               ease: "easeInOut",
               delay: index * 1,
             }}
-            className={`absolute text-brushedAluminum/60 ${
-              index === 0 ? "top-[45%] right-[2%]" :
-              "bottom-[45%] left-[2%]"
-            }`}
+            className={`absolute text-brushedAluminum/60 ${index === 0 ? "top-[45%] right-[2%]" :
+                "bottom-[45%] left-[2%]"
+              }`}
           >
             <svg viewBox="0 0 24 24" className="w-6 h-6 md:w-8 md:h-8">
               <path
@@ -337,10 +344,9 @@ const BackgroundPatterns = () => {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className={`absolute text-brushedAluminum/60 ${
-              index === 0 ? "top-[75%] right-[2%]" :
-              "bottom-[15%] left-[2%]"
-            }`}
+            className={`absolute text-brushedAluminum/60 ${index === 0 ? "top-[75%] right-[2%]" :
+                "bottom-[15%] left-[2%]"
+              }`}
           >
             <svg viewBox="0 0 24 24" className="w-8 h-8 md:w-10 md:h-10">
               <path
@@ -358,7 +364,7 @@ const BackgroundPatterns = () => {
           <motion.div
             key={pos.id}
             initial={{ opacity: 1, scale: 0 }}
-            animate={{ 
+            animate={{
               opacity: [1, 0],
               scale: [0, 2],
             }}
@@ -370,7 +376,7 @@ const BackgroundPatterns = () => {
             {/* Ripple Circle */}
             <motion.div
               initial={{ opacity: 1, scale: 0 }}
-              animate={{ 
+              animate={{
                 opacity: [1, 0],
                 scale: [0, 2],
               }}
@@ -382,43 +388,47 @@ const BackgroundPatterns = () => {
             {[...Array(12)].map((_, i) => {
               const angle = (i / 12) * 360;
               const symbols = [
-                { text: "∑", color: "text-electricBlue/60" },
-                { text: "∫", color: "text-electricBlue/60" },
-                { text: "π", color: "text-brushedAluminum/60" },
-                { text: "∞", color: "text-electricBlue/60" },
-                { text: "∇", color: "text-electricBlue/60" },
-                { text: "λ", color: "text-brushedAluminum/60" },
-                { text: "Ω", color: "text-electricBlue/60" },
-                { text: "Φ", color: "text-electricBlue/60" },
-                { text: "Ψ", color: "text-brushedAluminum/60" },
-                { text: "Δ", color: "text-electricBlue/60" },
-                { text: "Γ", color: "text-electricBlue/60" },
-                { text: "Θ", color: "text-brushedAluminum/60" },
+                { text: "∑", color: "text-electricBlue/80" },
+                { text: "∫", color: "text-electricBlue/80" },
+                { text: "π", color: "text-brushedAluminum/80" },
+                { text: "∞", color: "text-electricBlue/80" },
+                { text: "∇", color: "text-electricBlue/80" },
+                { text: "λ", color: "text-brushedAluminum/80" },
+                { text: "Ω", color: "text-electricBlue/80" },
+                { text: "Φ", color: "text-electricBlue/80" },
+                { text: "Ψ", color: "text-brushedAluminum/80" },
+                { text: "Δ", color: "text-electricBlue/80" },
+                { text: "Γ", color: "text-electricBlue/80" },
+                { text: "Θ", color: "text-brushedAluminum/80" },
               ];
 
               return (
                 <motion.div
                   key={i}
-                  initial={{ 
+                  initial={{
                     x: 0,
                     y: 0,
                     opacity: 1,
                     rotate: 0,
+                    scale: 1,
                   }}
-                  animate={{ 
-                    x: Math.cos(angle * Math.PI / 180) * 100,
-                    y: Math.sin(angle * Math.PI / 180) * 100,
-                    opacity: [1, 0],
+                  animate={{
+                    x: Math.cos(angle * Math.PI / 180) * 150,
+                    y: Math.sin(angle * Math.PI / 180) * 150,
+                    opacity: [1, 1, 0],
                     rotate: [0, 360],
+                    scale: [1, 1.5, 1],
                   }}
                   transition={{
-                    duration: 1.5,
+                    duration: 2.5,
                     ease: "easeOut",
-                    delay: i * 0.05,
+                    delay: i * 0.08,
+                    times: [0, 0.7, 1],
                   }}
-                  className={`absolute font-mono text-xl md:text-2xl ${symbols[i].color}`}
+                  className={`absolute font-mono text-2xl md:text-3xl ${symbols[i].color}`}
                   style={{
                     transformOrigin: "center center",
+                    textShadow: "0 0 10px currentColor",
                   }}
                 >
                   {symbols[i].text}
@@ -429,7 +439,7 @@ const BackgroundPatterns = () => {
             {/* Inner Ring */}
             <motion.div
               initial={{ opacity: 1, scale: 0 }}
-              animate={{ 
+              animate={{
                 opacity: [1, 0],
                 scale: [0, 1.5],
               }}
@@ -440,7 +450,7 @@ const BackgroundPatterns = () => {
             {/* Center Dot */}
             <motion.div
               initial={{ opacity: 1, scale: 1 }}
-              animate={{ 
+              animate={{
                 opacity: [1, 0],
                 scale: [1, 2],
               }}
@@ -499,91 +509,6 @@ const BackgroundPatterns = () => {
               strokeWidth="2"
               strokeDasharray="10 5"
               d="M0 50 L100 50"
-            />
-          </svg>
-        </motion.div>
-
-        {/* Rotating Gears */}
-        <motion.div
-          animate={{
-            rotate: 360,
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute top-[15%] left-[15%] w-20 md:w-32 h-20 md:h-32"
-        >
-          <svg viewBox="0 0 100 100" className="text-electricBlue/40">
-            <path
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              d="M50 10 A40 40 0 1 1 50 90 A40 40 0 1 1 50 10 M50 20 A30 30 0 1 1 50 80 A30 30 0 1 1 50 20 M50 10 L50 5 L55 10 L50 15 L45 10 L50 5 M50 90 L50 95 L55 90 L50 85 L45 90 L50 95 M10 50 L5 50 L10 55 L15 50 L10 45 L5 50 M90 50 L95 50 L90 55 L85 50 L90 45 L95 50"
-            />
-          </svg>
-        </motion.div>
-
-        <motion.div
-          animate={{
-            rotate: -360,
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute top-[25%] right-[15%] w-16 md:w-24 h-16 md:h-24"
-        >
-          <svg viewBox="0 0 100 100" className="text-electricBlue/40">
-            <path
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              d="M50 15 A35 35 0 1 1 50 85 A35 35 0 1 1 50 15 M50 25 A25 25 0 1 1 50 75 A25 25 0 1 1 50 25 M50 15 L50 10 L55 15 L50 20 L45 15 L50 10 M50 85 L50 90 L55 85 L50 80 L45 85 L50 90 M15 50 L10 50 L15 55 L20 50 L15 45 L10 50 M85 50 L90 50 L85 55 L80 50 L85 45 L90 50"
-            />
-          </svg>
-        </motion.div>
-
-        <motion.div
-          animate={{
-            rotate: 360,
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute bottom-[25%] left-[20%] w-24 md:w-36 h-24 md:h-36"
-        >
-          <svg viewBox="0 0 100 100" className="text-brushedAluminum/40">
-            <path
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              d="M50 5 A45 45 0 1 1 50 95 A45 45 0 1 1 50 5 M50 15 A35 35 0 1 1 50 85 A35 35 0 1 1 50 15 M50 5 L50 0 L55 5 L50 10 L45 5 L50 0 M50 95 L50 100 L55 95 L50 90 L45 95 L50 100 M5 50 L0 50 L5 55 L10 50 L5 45 L0 50 M95 50 L100 50 L95 55 L90 50 L95 45 L100 50"
-            />
-          </svg>
-        </motion.div>
-
-        <motion.div
-          animate={{
-            rotate: -360,
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute bottom-[15%] right-[20%] w-20 md:w-28 h-20 md:h-28"
-        >
-          <svg viewBox="0 0 100 100" className="text-electricBlue/40">
-            <path
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              d="M50 10 A40 40 0 1 1 50 90 A40 40 0 1 1 50 10 M50 20 A30 30 0 1 1 50 80 A30 30 0 1 1 50 20 M50 10 L50 5 L55 10 L50 15 L45 10 L50 5 M50 90 L50 95 L55 90 L50 85 L45 90 L50 95 M10 50 L5 50 L10 55 L15 50 L10 45 L5 50 M90 50 L95 50 L90 55 L85 50 L90 45 L95 50"
             />
           </svg>
         </motion.div>
