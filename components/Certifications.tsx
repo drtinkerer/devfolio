@@ -61,13 +61,13 @@ const Certifications = () => {
 
               {/* Certification Info */}
               <div className="text-center space-y-2 mt-4">
-                <h4 className="text-lg font-bold text-white leading-tight tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                <h4 className="text-xl font-bold text-white leading-tight tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
                   {cert.title}
                 </h4>
-                <p className="text-base font-medium text-gray-200 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                <p className="text-base font-semibold text-electricBlue-light drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
                   {cert.issuer}
                 </p>
-                <p className="text-sm font-medium text-gray-300 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
+                <p className="text-sm font-medium text-circuitGreen drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
                   {cert.date}
                 </p>
               </div>
@@ -78,7 +78,7 @@ const Certifications = () => {
                   href={cert.credentialUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-electricBlue-light hover:text-electricBlue text-sm font-semibold transition-colors duration-200 mt-4 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]"
+                  className="text-white hover:text-electricBlue text-sm font-semibold transition-colors duration-200 mt-4 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] bg-electricBlue/20 px-4 py-2 rounded-full hover:bg-electricBlue/30"
                 >
                   Verify on Credly →
                 </a>
