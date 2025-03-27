@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     domains: ['images.credly.com', 'i.pinimg.com'],
     formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 60,
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
@@ -45,6 +46,12 @@ const nextConfig = {
   experimental: {
     optimizeCss: process.env.NODE_ENV === 'production',
   },
+  // Enable compression
+  compress: true,
+  // Disable powered by header
+  poweredByHeader: false,
+  // Disable production source maps
+  productionBrowserSourceMaps: false,
 };
 
 module.exports = nextConfig;
