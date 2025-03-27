@@ -45,13 +45,14 @@ export const metadata: Metadata = {
   ],
   generator: 'Next.js',
   referrer: 'origin',
-  colorScheme: 'dark', // Set to dark as per base theme
   viewport: 'width=device-width, initial-scale=1',
   creator: 'Bhushan Rane',
   publisher: 'The Plum Up', // Consider changing if not applicable
 };
 
 export const viewport = {
-  // Use a color from the new palette
+  width: 'device-width',
+  initialScale: 1,
+  colorScheme: 'dark',
   themeColor: '#4A4F54', // steelGray.dark
 };
