@@ -110,76 +110,24 @@ const ClickEffect = React.memo(({ pos }: { pos: any }) => (
     initial={{ opacity: 1, scale: 0 }}
     animate={{ 
       opacity: [1, 0],
-      scale: [0, 1.2],
+      scale: [0, 2],
     }}
     exit={{ opacity: 0 }}
-    transition={{ 
-      duration: 2,
-      ease: [0.32, 0.72, 0, 1],
-      times: [0, 1]
-    }}
+    transition={{ duration: 1.5, ease: "easeOut" }}
     className="absolute pointer-events-none"
-    style={{ 
-      left: pos.x, 
-      top: pos.y,
-      willChange: 'transform, opacity'
-    }}
+    style={{ left: pos.x, top: pos.y }}
   >
-    {/* Outer glow ring */}
     <motion.div
       initial={{ opacity: 1, scale: 0 }}
       animate={{ 
         opacity: [1, 0],
-        scale: [0, 1.5],
+        scale: [0, 2],
       }}
-      transition={{ 
-        duration: 2,
-        ease: [0.32, 0.72, 0, 1],
-        times: [0, 1]
-      }}
-      className="absolute inset-0 border-2 border-electricBlue/50 rounded-full"
-      style={{ 
-        willChange: 'transform, opacity',
-        boxShadow: '0 0 20px rgba(0, 255, 255, 0.3)'
-      }}
+      transition={{ duration: 1.5, ease: "easeOut" }}
+      className="absolute inset-0 border-2 border-electricBlue/30 rounded-full"
     />
-
-    {/* Inner glow ring */}
-    <motion.div
-      initial={{ opacity: 1, scale: 0 }}
-      animate={{ 
-        opacity: [1, 0],
-        scale: [0, 1.2],
-      }}
-      transition={{ 
-        duration: 1.5,
-        ease: [0.32, 0.72, 0, 1],
-        times: [0, 1]
-      }}
-      className="absolute inset-0 border border-circuitGreen/50 rounded-full"
-      style={{ 
-        willChange: 'transform, opacity',
-        boxShadow: '0 0 20px rgba(0, 255, 0, 0.3)'
-      }}
-    />
-
-    {/* Burst symbols with vibrant colors */}
     {[...Array(12)].map((_, i) => {
       const angle = (i / 12) * 360;
-      const colors = [
-        "text-electricBlue/100",
-        "text-circuitGreen/100",
-        "text-brushedAluminum/100",
-        "text-[#00ffff]/100",
-        "text-[#00ff00]/100",
-        "text-[#ff00ff]/100",
-        "text-electricBlue/100",
-        "text-circuitGreen/100",
-        "text-brushedAluminum/100",
-        "text-[#00ffff]/100",
-        "text-[#00ff00]/100",
-        "text-[#ff00ff]/100",
-      ];
       return (
         <motion.div
           key={i}
@@ -191,66 +139,50 @@ const ClickEffect = React.memo(({ pos }: { pos: any }) => (
             scale: 1,
           }}
           animate={{ 
-            x: Math.cos(angle * Math.PI / 180) * 80,
-            y: Math.sin(angle * Math.PI / 180) * 80,
+            x: Math.cos(angle * Math.PI / 180) * 150,
+            y: Math.sin(angle * Math.PI / 180) * 150,
             opacity: [1, 1, 0],
             rotate: [0, 360],
-            scale: [1, 1.2, 1],
+            scale: [1, 1.5, 1],
           }}
           transition={{
             duration: 2.5,
-            ease: [0.32, 0.72, 0, 1],
-            delay: i * 0.05,
+            ease: "easeOut",
+            delay: i * 0.08,
             times: [0, 0.7, 1],
           }}
-          className={`absolute font-mono text-xl md:text-2xl ${colors[i]}`}
+          className={`absolute font-mono text-2xl md:text-3xl ${SYMBOLS[i].color}`}
           style={{
             transformOrigin: "center center",
-            textShadow: "0 0 20px currentColor, 0 0 40px currentColor",
-            willChange: 'transform, opacity'
+            textShadow: "0 0 10px currentColor",
           }}
         >
           {SYMBOLS[i].text}
         </motion.div>
       );
     })}
-
-    {/* Center dot with enhanced glow */}
-    <motion.div
-      initial={{ opacity: 1, scale: 1 }}
-      animate={{ 
-        opacity: [1, 0],
-        scale: [1, 1.5],
-      }}
-      transition={{ 
-        duration: 0.8,
-        ease: [0.32, 0.72, 0, 1],
-        times: [0, 1]
-      }}
-      className="absolute w-2 h-2 bg-electricBlue/80 rounded-full"
-      style={{
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-        willChange: 'transform, opacity',
-        boxShadow: "0 0 20px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.4)",
-      }}
-    />
-
-    {/* Enhanced gradient glow effect */}
     <motion.div
       initial={{ opacity: 1, scale: 0 }}
       animate={{ 
         opacity: [1, 0],
-        scale: [0, 1.2],
+        scale: [0, 1.5],
       }}
-      transition={{ 
-        duration: 1.5,
-        ease: [0.32, 0.72, 0, 1],
-        times: [0, 1]
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="absolute inset-0 border border-electricBlue/20 rounded-full"
+    />
+    <motion.div
+      initial={{ opacity: 1, scale: 1 }}
+      animate={{ 
+        opacity: [1, 0],
+        scale: [1, 2],
       }}
-      className="absolute inset-0 bg-gradient-to-r from-electricBlue/30 via-circuitGreen/30 to-[#ff00ff]/30 rounded-full blur-md"
-      style={{ willChange: 'transform, opacity' }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="absolute w-2 h-2 bg-electricBlue/60 rounded-full"
+      style={{
+        left: "50%",
+        top: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
     />
   </motion.div>
 ));
@@ -393,19 +325,17 @@ const BackgroundPatterns = () => {
         setClickedPositions(prev => [...prev, newPosition]);
         setIsAnimating(true);
         
-        requestAnimationFrame(() => {
-          setTimeout(() => {
-            setClickedPositions(prev => prev.filter(pos => pos.id !== newPosition.id));
-          }, 2500);
-          
-          setTimeout(() => {
-            setIsAnimating(false);
-          }, 500);
-        });
+        setTimeout(() => {
+          setClickedPositions(prev => prev.filter(pos => pos.id !== newPosition.id));
+        }, 2000);
+        
+        setTimeout(() => {
+          setIsAnimating(false);
+        }, 500);
       }
     };
 
-    window.addEventListener('click', handleClick, { passive: true });
+    window.addEventListener('click', handleClick);
     return () => window.removeEventListener('click', handleClick);
   }, []);
 

@@ -1,87 +1,158 @@
 "use client";
 
-import React, { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 
 const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
-  const rafRef = useRef<number>();
+  const [isHovering, setIsHovering] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
+  // Spring animation values
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
+  const cursorScale = useMotionValue(1);
+  const cursorOpacity = useMotionValue(1);
+
+  // Smooth spring animations
+  const springConfig = { damping: 25, stiffness: 300 };
+  const smoothX = useSpring(cursorX, springConfig);
+  const smoothY = useSpring(cursorY, springConfig);
+  const smoothScale = useSpring(cursorScale, springConfig);
+  const smoothOpacity = useSpring(cursorOpacity, springConfig);
+
+  // Update cursor position
   const updateCursor = useCallback((e: MouseEvent) => {
-    if (rafRef.current) {
-      cancelAnimationFrame(rafRef.current);
-    }
-    
-    rafRef.current = requestAnimationFrame(() => {
-      // Update cursor position
-      setPosition({ x: e.clientX, y: e.clientY });
-      
-      // Check if cursor is over a clickable element
-      const target = document.elementFromPoint(e.clientX, e.clientY);
-      if (target) {
-        const isClickable = 
-          target.tagName.toLowerCase() === 'a' ||
-          target.tagName.toLowerCase() === 'button' ||
-          target.closest('a') !== null ||
-          target.closest('button') !== null ||
-          window.getComputedStyle(target).cursor === 'pointer';
-        
-        setIsHovered(Boolean(isClickable));
-      } else {
-        setIsHovered(false);
-      }
-    });
-  }, []);
+    setMousePosition({ x: e.clientX, y: e.clientY });
+    cursorX.set(e.clientX);
+    cursorY.set(e.clientY);
+  }, [cursorX, cursorY]);
+
+  // Handle hover effects
+  const handleMouseEnter = useCallback(() => {
+    setIsHovering(true);
+    cursorScale.set(1.5);
+    cursorOpacity.set(0.8);
+  }, [cursorScale, cursorOpacity]);
+
+  const handleMouseLeave = useCallback(() => {
+    setIsHovering(false);
+    cursorScale.set(1);
+    cursorOpacity.set(1);
+  }, [cursorScale, cursorOpacity]);
+
+  // Handle visibility
+  const handleVisibilityChange = useCallback(() => {
+    setIsVisible(document.visibilityState === "visible");
+    cursorOpacity.set(document.visibilityState === "visible" ? 1 : 0);
+  }, [cursorOpacity]);
+
+  // Handle scroll
+  const handleScroll = useCallback(() => {
+    cursorScale.set(1.2);
+    setTimeout(() => cursorScale.set(1), 100);
+  }, [cursorScale]);
 
   useEffect(() => {
-    document.documentElement.style.cursor = 'none';
-    window.addEventListener('mousemove', updateCursor);
-    
+    // Add event listeners
+    window.addEventListener("mousemove", updateCursor);
+    window.addEventListener("mouseenter", handleMouseEnter);
+    window.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("scroll", handleScroll);
+
+    // Add hover listeners to interactive elements
+    const interactiveElements = document.querySelectorAll("a, button, input, textarea, [role='button']");
+    interactiveElements.forEach((el) => {
+      el.addEventListener("mouseenter", handleMouseEnter);
+      el.addEventListener("mouseleave", handleMouseLeave);
+    });
+
+    // Cleanup
     return () => {
-      document.documentElement.style.cursor = 'auto';
-      window.removeEventListener('mousemove', updateCursor);
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
+      window.removeEventListener("mousemove", updateCursor);
+      window.removeEventListener("mouseenter", handleMouseEnter);
+      window.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("scroll", handleScroll);
+      interactiveElements.forEach((el) => {
+        el.removeEventListener("mouseenter", handleMouseEnter);
+        el.removeEventListener("mouseleave", handleMouseLeave);
+      });
     };
-  }, [updateCursor]);
+  }, [updateCursor, handleMouseEnter, handleMouseLeave, handleVisibilityChange, handleScroll]);
 
   return (
     <>
-      {/* Main cursor dot */}
-      <div
-        className={`fixed w-4 h-4 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-150 ease-out ${
-          isHovered ? 'scale-150' : 'scale-100'
-        }`}
+      {/* Main cursor */}
+      <motion.div
+        className="fixed top-0 left-0 w-4 h-4 pointer-events-none z-50 mix-blend-difference"
         style={{
-          transform: `translate(${position.x - 8}px, ${position.y - 8}px)`,
-          opacity: position.x === 0 && position.y === 0 ? 0 : 1,
+          x: smoothX,
+          y: smoothY,
+          scale: smoothScale,
+          opacity: smoothOpacity,
         }}
-      />
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [1, 0.8, 1],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      >
+        <div className="w-full h-full bg-white rounded-full" />
+      </motion.div>
 
       {/* Cursor ring */}
-      <div
-        className={`fixed w-8 h-8 border border-white rounded-full pointer-events-none z-[9999] mix-blend-difference transition-all duration-300 ease-out ${
-          isHovered ? 'scale-150 opacity-50' : 'scale-100 opacity-100'
-        }`}
+      <motion.div
+        className="fixed top-0 left-0 w-8 h-8 pointer-events-none z-50 mix-blend-difference"
         style={{
-          transform: `translate(${position.x - 16}px, ${position.y - 16}px)`,
-          opacity: position.x === 0 && position.y === 0 ? 0 : 1,
+          x: smoothX,
+          y: smoothY,
+          scale: smoothScale,
+          opacity: smoothOpacity,
         }}
-      />
+        animate={{
+          scale: [1, 1.5, 1],
+          opacity: [0.5, 0.8, 0.5],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 0.5,
+        }}
+      >
+        <div className="w-full h-full border-2 border-white rounded-full" />
+      </motion.div>
 
-      {/* Cursor glow effect */}
-      <div
-        className={`fixed w-12 h-12 bg-white/20 rounded-full pointer-events-none z-[9998] blur-sm transition-all duration-300 ease-out ${
-          isHovered ? 'scale-150 opacity-75' : 'scale-100 opacity-50'
-        }`}
+      {/* Cursor trail */}
+      <motion.div
+        className="fixed top-0 left-0 w-2 h-2 pointer-events-none z-50 mix-blend-difference"
         style={{
-          transform: `translate(${position.x - 24}px, ${position.y - 24}px)`,
-          opacity: position.x === 0 && position.y === 0 ? 0 : 1,
+          x: smoothX,
+          y: smoothY,
+          scale: smoothScale,
+          opacity: smoothOpacity,
         }}
-      />
+        animate={{
+          scale: [1, 2, 1],
+          opacity: [0.3, 0.6, 0.3],
+        }}
+        transition={{
+          duration: 1.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        }}
+      >
+        <div className="w-full h-full bg-white rounded-full" />
+      </motion.div>
     </>
   );
 };
 
-export default React.memo(CustomCursor);
+export default CustomCursor;
