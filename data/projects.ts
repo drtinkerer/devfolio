@@ -32,16 +32,5 @@ export const projects: Project[] = [
     github: "https://github.com/drtinkerer",
     link: "https://www.threads.net/@atzinescandia",
     techs: ["JavaScript", "React", "NodeJS", "AWS", "GitHub", "Jira"]
-  },
-  {
-    id: 3,
-    title: "CloudOps Dashboard",
-    description: "A comprehensive dashboard for monitoring and managing cloud resources across multiple providers. Built with real-time updates and intuitive controls.",
-    className: "md:col-span-1",
-    titleClassName: "justify-start",
-    img: "https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif",
-    github: "https://github.com/drtinkerer",
-    link: "https://github.com/drtinkerer",
-    techs: ["React", "TypeScript", "AWS", "GraphQL", "D3.js"]
   }
 ]; 
