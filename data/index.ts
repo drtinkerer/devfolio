@@ -1,3 +1,10 @@
+// Re-export all data from separate files
+export * from './navigation';
+export * from './projects';
+export * from './certifications';
+export * from './experience';
+export * from './tech-stack';
+
 export const navItems = [
   { name: "About", link: "#about" },
   { name: "Projects", link: "#projects" },
@@ -36,7 +43,7 @@ export const projects = [
     className: "md:col-span-1",
     titleClassName: "justify-start",
     img: "https://i.pinimg.com/originals/84/f6/d1/84f6d14f1f88d34d3956150d19060d3a.gif",
-    github: "https://github.com/atzin-escandia",
+    github: "https://github.com/drtinkerer",
     link: "https://www.threads.net/@atzinescandia",
     techs: ["JavaScript", "React", "NodeJS", "AWS", "GitHub", "Jira"]
   },
@@ -47,7 +54,7 @@ export const projects = [
     className: "md:col-span-1",
     titleClassName: "justify-start",
     img: "https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif",
-    github: "https://github.com/atzin-escandia",
+    github: "https://github.com/drtinkerer",
     link: "https://www.threads.net/@atzinescandia",
     techs: ["TypeScript", "React", "AWS", "Kubernetes", "Docker", "Grafana"]
   },
@@ -58,7 +65,7 @@ export const projects = [
     className: "md:col-span-1",
     titleClassName: "justify-start",
     img: "https://i.pinimg.com/originals/84/f6/d1/84f6d14f1f88d34d3956150d19060d3a.gif",
-    github: "https://github.com/atzin-escandia",
+    github: "https://github.com/drtinkerer",
     link: "https://www.threads.net/@atzinescandia",
     techs: ["Python", "TensorFlow", "React", "FastAPI", "PostgreSQL", "Docker"]
   }

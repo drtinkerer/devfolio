@@ -6,13 +6,11 @@ const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
 
-const config = {
+const config: Config = {
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-    "./data/**/*.{ts,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   prefix: "",
   theme: {
@@ -66,16 +64,10 @@ const config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))", // Will be overridden by base styles
-        foreground: "hsl(var(--foreground))", // Will be overridden by base styles
-        primary: {
-          DEFAULT: "hsl(var(--primary))", // Map to new palette, e.g., electricBlue.dark
-          foreground: "hsl(var(--primary-foreground))", // e.g., black.DEFAULT
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))", // Map to new palette, e.g., steelGray.light
-          foreground: "hsl(var(--secondary-foreground))", // e.g., black.100
-        },
+        background: "#000000",
+        foreground: "#FFFFFF",
+        primary: "#007AFF",
+        secondary: "#5856D6",
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
@@ -96,6 +88,7 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        "muted-foreground": "rgba(255, 255, 255, 0.7)",
       },
       keyframes: {
         spotlight: {
@@ -127,6 +120,14 @@ const config = {
             transform: "translate(0px, 0px) scale(1)",
           },
         },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "slide-up": {
+          "0%": { transform: "translateY(20px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -135,6 +136,8 @@ const config = {
         scroll:
           "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
         blob: "blob 7s infinite",
+        "fade-in": "fade-in 0.5s ease-in-out",
+        "slide-up": "slide-up 0.5s ease-in-out",
       },
     },
   },
@@ -164,6 +167,21 @@ const config = {
       );
     },
   ],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
+  // Reduce unused CSS in production
+  purge: {
+    enabled: process.env.NODE_ENV === "production",
+    content: [
+      "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+      "./components/**/*.{js,ts,jsx,tsx,mdx}",
+      "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    ],
+    options: {
+      safelist: [],
+    },
+  },
 } satisfies Config;
 
 // Helper function to expose colors as CSS variables

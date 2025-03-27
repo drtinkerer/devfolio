@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import Image from "next/image";
 
 const BackgroundPatterns = () => {
@@ -12,63 +12,51 @@ const BackgroundPatterns = () => {
   const [techIcons, setTechIcons] = useState<Array<{ src: string; alt: string; rotate?: boolean }>>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
 
-  // Handle infinite scroll
-  useEffect(() => {
+  // Memoize scroll handler
+  const handleScroll = useCallback(() => {
     const container = containerRef.current;
     const content = contentRef.current;
     if (!container || !content) return;
 
-    const handleScroll = () => {
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+
+    scrollTimeoutRef.current = setTimeout(() => {
       const scrollLeft = container.scrollLeft;
       const scrollWidth = container.scrollWidth;
       const clientWidth = container.clientWidth;
 
-      // If we're near the left edge
       if (scrollLeft < clientWidth) {
         content.style.transform = `translateX(${scrollWidth}px)`;
         container.scrollLeft = scrollWidth;
-      }
-      // If we're near the right edge
-      else if (scrollLeft > scrollWidth - clientWidth * 2) {
+      } else if (scrollLeft > scrollWidth - clientWidth * 2) {
         content.style.transform = `translateX(0)`;
         container.scrollLeft = clientWidth;
       }
-    };
+    }, 100);
+  }, []);
+
+  // Handle infinite scroll
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
 
     container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Initialize intersection observer
-  useEffect(() => {
-    const observerRef = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            loadMoreContent(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    // Observe edge elements
-    const leftEdgeRef = document.querySelector('.left-edge');
-    const rightEdgeRef = document.querySelector('.right-edge');
-    if (leftEdgeRef) {
-      observerRef.observe(leftEdgeRef);
-    }
-    if (rightEdgeRef) {
-      observerRef.observe(rightEdgeRef);
-    }
-
     return () => {
-      observerRef.disconnect();
+      container.removeEventListener('scroll', handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
     };
-  }, []);
+  }, [handleScroll]);
 
-  // Load more content when reaching edges
+  // Memoize tech icons
+  const memoizedTechIcons = useMemo(() => techIcons, [techIcons]);
+
+  // Initialize intersection observer with memoized callback
   const loadMoreContent = useCallback((target: Element) => {
     const container = containerRef.current;
     if (!container) return;
@@ -92,6 +80,33 @@ const BackgroundPatterns = () => {
       newContent.innerHTML = container.innerHTML;
       container.appendChild(newContent);
     }
+  }, []);
+
+  useEffect(() => {
+    const observerRef = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            loadMoreContent(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const elements = document.querySelectorAll('.tech-icon');
+    elements.forEach((el) => observerRef.observe(el));
+
+    return () => observerRef.disconnect();
+  }, [loadMoreContent]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
   }, []);
 
   // Fetch SVG icons when component mounts

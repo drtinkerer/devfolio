@@ -11,7 +11,7 @@ const Footer = () => {
               ✷ Link to the  <a
                 className="text-purple font-extrabold hover:scale-105 inline-block transition-transform duration-200"
                 target="_blank"
-                href="https://github.com/atzin-escandia/devfolio"
+                href="https://github.com/drtinkerer/devfolio"
               >
                 github
               </a> repository ✷
