@@ -43,7 +43,7 @@ export const BentoGridItem: React.FC<BentoGridItemProps> = ({
 }) => (
   <div
     className={cn(
-      "row-span-1 relative overflow-hidden rounded-3xl border border-white/10 group/bento hover:shadow-xl transition duration-200 flex flex-col space-y-4",
+      "row-span-1 relative overflow-hidden rounded-3xl border border-white/10 group/bento hover:shadow-xl transition duration-200 flex flex-col space-y-4 bg-black/40 backdrop-blur-sm",
       className
     )}
   >
@@ -53,12 +53,12 @@ export const BentoGridItem: React.FC<BentoGridItemProps> = ({
           <img
             src={img}
             alt={`Image for ${title}`}
-            className="object-cover object-center opacity-20 w-full h-full transition-opacity duration-300 group-hover/bento:opacity-30"
+            className="object-cover object-center opacity-10 w-full h-full transition-opacity duration-300 group-hover/bento:opacity-20"
           />
         </div>
       )}
 
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20 opacity-0 group-hover/bento:opacity-100 transition-opacity duration-300" />
+      <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-b from-transparent to-black/40 opacity-0 group-hover/bento:opacity-100 transition-opacity duration-300" />
 
       <div
         className={cn(
@@ -100,8 +100,8 @@ export const BentoGridItem: React.FC<BentoGridItemProps> = ({
           </div>
 
           <div className="space-y-6">
-            <p className="text-lg lg:text-3xl max-w-96 font-bold z-10">{title}</p>
-            <p className="font-extralight md:max-w-[80%] md:text-xs lg:text-base text-sm z-10 opacity-70">
+            <p className="text-lg lg:text-3xl max-w-96 font-bold text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] z-10">{title}</p>
+            <p className="font-medium md:max-w-[80%] md:text-xs lg:text-base text-sm text-gray-200 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] z-10">
               {description}
             </p>
 
@@ -109,7 +109,7 @@ export const BentoGridItem: React.FC<BentoGridItemProps> = ({
               {techs?.map((tech) => (
                 <div
                   key={tech}
-                  className="bg-white/10 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-lg hover:bg-white/20 transition duration-200 ease-in-out"
+                  className="bg-electricBlue/20 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-lg hover:bg-electricBlue/30 transition duration-200 ease-in-out drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]"
                 >
                   {tech}
                 </div>

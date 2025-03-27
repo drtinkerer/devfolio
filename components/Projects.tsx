@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { projects } from "@/data";
 import { BentoGrid, BentoGridItem } from "./ui/BentoGrid";
 import Reveal from "./ui/Reveal";
@@ -10,8 +11,9 @@ const Projects = () => {
       <Reveal>
          <h3>
           Recent{" "}
-          <span className="bg-gradient-to-r from-purple to-red-700 bg-clip-text text-transparent">
-            projects.</span>
+          <span className="bg-gradient-to-r from-circuitGreen to-electricBlue bg-clip-text text-transparent">
+            projects.
+          </span>
         </h3>
       </Reveal>
       <BentoGrid className="w-full py-20">
