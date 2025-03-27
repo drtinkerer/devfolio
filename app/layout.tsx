@@ -14,7 +14,7 @@ export default function RootLayout({
     // Consider adding 'dark' class if implementing theme switching later
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicom.ico" sizes="any" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       {/* Apply base background and font */}
       <body className={`${poppins.className} bg-black-100`}>
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   description:
     'Bhushan Rane Portfolio showcasing expertise in DevOps, Cloud, AI, and Mechanical Engineering.', // Updated description
   icons: {
-    icon: '/favicom.ico', // Updated path to match the actual file
+    icon: '/favicon.ico', // Updated path to match the actual file
   },
   applicationName: 'Bhushan Rane Portfolio',
   authors: [
