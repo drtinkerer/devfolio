@@ -1,6 +1,5 @@
 import React from "react";
 import Script from "next/script"; // Import the Script component
-import { Sparkle } from "./ui/Sparkle";
 import Reveal from "./ui/Reveal";
 import { certifications } from "@/data";
 
@@ -8,15 +7,13 @@ const Certifications = () => {
   // Removed the useEffect hook
 
   return (
-    <section id="certifications" className="py-20 w-full">
-      {/* Load the Credly embed script using next/script */}
+    <section id="certifications" className="py-20">
+      {/* Load the Credly embed script */}
       <Script
         src="//cdn.credly.com/assets/utilities/embed.js"
-        strategy="lazyOnload" // Load after other resources, when browser is idle
+        strategy="afterInteractive"
         onLoad={() => {
           console.log("Credly script loaded successfully.");
-          // You could potentially add logic here if needed after load,
-          // but the script should automatically find and process the divs.
         }}
         onError={(e) => {
           console.error("Error loading Credly script:", e);
@@ -32,45 +29,56 @@ const Certifications = () => {
         </h3>
       </Reveal>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-20">
         {certifications.map((cert) => (
-          <Sparkle key={cert.id} duration={Math.floor(Math.random() * 5000) + 5000}> {/* Adjusted duration */}
-            <div className="p-6 rounded-3xl bg-black-100 border border-steelGray-dark transition duration-300 hover:bg-steelGray-dark/50 hover:border-steelGray-light h-full flex flex-col items-center justify-start"> {/* Adjusted background, border, hover, and alignment */}
-              <div className="flex flex-col items-center text-center space-y-4 w-full h-full"> {/* Ensure inner div takes full height */}
-                {/* This div is targeted by the Credly script */}
-                <div
-                  data-iframe-width="150"
-                  data-iframe-height="270" // Standard height for Credly badges
-                  data-share-badge-id={cert.credlyBadgeId}
-                  data-share-badge-host={cert.credlyBadgeHost || "https://www.credly.com"} // Default host if not provided
-                  className="w-full flex justify-center mb-4 flex-shrink-0" // Added margin bottom, prevent shrinking
-                >
-                  {/* The Credly script will replace this content or embed an iframe here */}
-                  {/* Optional: Add a placeholder while loading */}
-                  <div style={{ width: 150, height: 270, backgroundColor: '#222', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#666', fontSize: '12px' }}>Loading Badge...</div>
-                </div>
+          <div 
+            key={cert.id} 
+            className="group relative bg-black/20 rounded-3xl border border-white/10 p-4 hover:border-white/20 transition-all duration-300 overflow-hidden"
+          >
+            {/* Background Image with Animation */}
+            <div className="absolute inset-0 w-full h-full">
+              <img
+                src="https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif"
+                alt="Background"
+                className="object-cover object-center opacity-20 w-full h-full transition-opacity duration-300 group-hover:opacity-30"
+              />
+            </div>
 
-                {/* Fallback/Display Info - Pushed to the bottom */}
-                <div className="space-y-1 w-full mt-auto pt-4 border-t border-steelGray-dark/50"> {/* Added top border, margin-top auto pushes to bottom */}
-                  <h4 className="text-lg font-semibold text-white">{cert.title}</h4>
-                  <p className="text-brushedAluminum-light text-sm">{cert.issuer}</p>
-                  <p className="text-steelGray-light text-xs">{cert.date}</p>
-                  {/* Optional: Link to credential if badge doesn't load AND no credly ID */}
-                  {!cert.credlyBadgeId && cert.credentialUrl && (
-                     <a href={cert.credentialUrl} target="_blank" rel="noopener noreferrer" className="text-electricBlue-light text-xs hover:underline pt-2 block">
-                       View Credential
-                     </a>
-                  )}
-                   {/* Link to Credly profile/verification if badge ID exists */}
-                   {cert.credlyBadgeId && cert.credentialUrl && (
-                     <a href={cert.credentialUrl} target="_blank" rel="noopener noreferrer" className="text-electricBlue-light text-xs hover:underline pt-2 block">
-                       Verify on Credly
+            {/* Gradient Overlay */}
+            <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-b from-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+            {/* Content */}
+            <div className="relative flex flex-col items-center space-y-2">
+              {/* Badge Container */}
+              <div className="w-[250px] h-[250px] flex items-center justify-center">
+                <div
+                  data-iframe-width="250"
+                  data-iframe-height="250"
+                  data-share-badge-id={cert.credlyBadgeId}
+                  data-share-badge-host={cert.credlyBadgeHost || "https://www.credly.com"}
+                />
+              </div>
+
+              {/* Certification Info */}
+              <div className="text-center space-y-1 mt-2">
+                <h4 className="text-base font-semibold text-white leading-tight">{cert.title}</h4>
+                <p className="text-sm text-gray-400">{cert.issuer}</p>
+                <p className="text-xs text-gray-500">{cert.date}</p>
+              </div>
+
+              {/* Verification Link */}
+              {cert.credentialUrl && (
+                <a
+                  href={cert.credentialUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-electricBlue-light hover:text-electricBlue text-sm transition-colors duration-200 mt-2"
+                >
+                  Verify on Credly →
                      </a>
                    )}
                 </div>
               </div>
-            </div>
-          </Sparkle>
         ))}
       </div>
     </section>
