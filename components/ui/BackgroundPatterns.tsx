@@ -177,12 +177,6 @@ const BackgroundPatterns = () => {
             {/* Base Gradient Background */}
             <div className="absolute inset-0 bg-gradient-to-b from-steelGray-dark via-black to-steelGray-dark"></div>
 
-            {/* Circuit Pattern */}
-            <div className="absolute inset-0">
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.15)_1px,transparent_1px)] bg-[size:2rem_2rem] opacity-30"></div>
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.05)_1px,transparent_1px)] bg-[size:1rem_1rem] opacity-20"></div>
-            </div>
-
             {/* Floating Tech Icons */}
             <div className="absolute inset-0 pointer-events-none">
               {techIcons.map((icon, index) => (
@@ -487,12 +481,6 @@ const BackgroundPatterns = () => {
             {/* Base Gradient Background */}
             <div className="absolute inset-0 bg-gradient-to-b from-steelGray-dark via-black to-steelGray-dark"></div>
 
-            {/* Circuit Pattern */}
-            <div className="absolute inset-0">
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.15)_1px,transparent_1px)] bg-[size:2rem_2rem] opacity-30"></div>
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.05)_1px,transparent_1px)] bg-[size:1rem_1rem] opacity-20"></div>
-            </div>
-
             {/* Floating Tech Icons */}
             <div className="absolute inset-0 pointer-events-none">
               {techIcons.map((icon, index) => (
@@ -796,12 +784,6 @@ const BackgroundPatterns = () => {
           <div className="w-screen h-full relative">
             {/* Base Gradient Background */}
             <div className="absolute inset-0 bg-gradient-to-b from-steelGray-dark via-black to-steelGray-dark"></div>
-
-            {/* Circuit Pattern */}
-            <div className="absolute inset-0">
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.15)_1px,transparent_1px)] bg-[size:2rem_2rem] opacity-30"></div>
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.05)_1px,transparent_1px)] bg-[size:1rem_1rem] opacity-20"></div>
-            </div>
 
             {/* Floating Tech Icons */}
             <div className="absolute inset-0 pointer-events-none">
