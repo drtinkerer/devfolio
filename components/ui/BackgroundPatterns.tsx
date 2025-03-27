@@ -115,6 +115,7 @@ const BackgroundPatterns = () => {
       try {
         const response = await fetch('/api/get-floating-icons');
         const icons = await response.json();
+        console.log('Fetched icons:', icons); // Debug log
         setTechIcons(icons.map((icon: string) => ({
           src: `/floating-icons/${icon}`,
           alt: icon.replace('.svg', ''),
@@ -159,6 +160,8 @@ const BackgroundPatterns = () => {
     return null;
   }
 
+  console.log('Current techIcons state:', techIcons); // Debug log
+
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden">
       {/* Scrollable Container */}
@@ -178,19 +181,19 @@ const BackgroundPatterns = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-steelGray-dark via-black to-steelGray-dark"></div>
 
             {/* Floating Tech Icons */}
-            <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute inset-0 pointer-events-none z-10">
               {techIcons.map((icon, index) => (
                 <motion.div
                   key={icon.src}
                   initial={{
-                    x: `${Math.random() * 80 + 10}vw`,
-                    y: `${Math.random() * 80 + 10}vh`,
+                    x: `${Math.random() * 100}vw`,
+                    y: `${Math.random() * 100}vh`,
                   }}
                   animate={{
                     rotate: icon.rotate ? 360 : 0,
                     scale: isAnimating ? [1, 1.3, 0.9, 1.1, 1] : 1,
-                    x: `${Math.random() * 80 + 10}vw`,
-                    y: `${Math.random() * 80 + 10}vh`,
+                    x: `${Math.random() * 100}vw`,
+                    y: `${Math.random() * 100}vh`,
                   }}
                   transition={{
                     rotate: {
@@ -204,28 +207,28 @@ const BackgroundPatterns = () => {
                       ease: "easeInOut",
                     },
                     x: {
-                      duration: 30 + index * 7,
+                      duration: 15 + index * 3,
                       repeat: Infinity,
                       yoyo: true,
                       ease: "easeInOut",
                       repeatDelay: isAnimating ? 0.5 : 0,
                     },
                     y: {
-                      duration: 25 + index * 7,
+                      duration: 12 + index * 3,
                       repeat: Infinity,
                       yoyo: true,
                       ease: "easeInOut",
                       repeatDelay: isAnimating ? 0.5 : 0,
                     },
                   }}
-                  className="absolute w-8 h-8 md:w-12 md:h-12 opacity-10 hover:opacity-30 transition-opacity"
+                  className="absolute w-8 h-8 md:w-12 md:h-12 opacity-20 hover:opacity-40 transition-opacity"
                 >
                   <Image
                     src={icon.src}
                     alt={icon.alt}
                     width={48}
                     height={48}
-                    className="w-full h-full"
+                    className="w-full h-full drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
                   />
                 </motion.div>
               ))}
@@ -487,14 +490,14 @@ const BackgroundPatterns = () => {
                 <motion.div
                   key={`center-${icon.src}`}
                   initial={{
-                    x: `${Math.random() * 80 + 10}vw`,
-                    y: `${Math.random() * 80 + 10}vh`,
+                    x: `${Math.random() * 100}vw`,
+                    y: `${Math.random() * 100}vh`,
                   }}
                   animate={{
                     rotate: icon.rotate ? 360 : 0,
                     scale: isAnimating ? [1, 1.3, 0.9, 1.1, 1] : 1,
-                    x: `${Math.random() * 80 + 10}vw`,
-                    y: `${Math.random() * 80 + 10}vh`,
+                    x: `${Math.random() * 100}vw`,
+                    y: `${Math.random() * 100}vh`,
                   }}
                   transition={{
                     rotate: {
@@ -508,28 +511,28 @@ const BackgroundPatterns = () => {
                       ease: "easeInOut",
                     },
                     x: {
-                      duration: 30 + index * 7,
+                      duration: 15 + index * 3,
                       repeat: Infinity,
                       yoyo: true,
                       ease: "easeInOut",
                       repeatDelay: isAnimating ? 0.5 : 0,
                     },
                     y: {
-                      duration: 25 + index * 7,
+                      duration: 12 + index * 3,
                       repeat: Infinity,
                       yoyo: true,
                       ease: "easeInOut",
                       repeatDelay: isAnimating ? 0.5 : 0,
                     },
                   }}
-                  className="absolute w-8 h-8 md:w-12 md:h-12 opacity-10 hover:opacity-30 transition-opacity"
+                  className="absolute w-8 h-8 md:w-12 md:h-12 opacity-20 hover:opacity-40 transition-opacity"
                 >
                   <Image
                     src={icon.src}
                     alt={icon.alt}
                     width={48}
                     height={48}
-                    className="w-full h-full"
+                    className="w-full h-full drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
                   />
                 </motion.div>
               ))}
@@ -791,14 +794,14 @@ const BackgroundPatterns = () => {
                 <motion.div
                   key={`right-${icon.src}`}
                   initial={{
-                    x: `${Math.random() * 80 + 10}vw`,
-                    y: `${Math.random() * 80 + 10}vh`,
+                    x: `${Math.random() * 100}vw`,
+                    y: `${Math.random() * 100}vh`,
                   }}
                   animate={{
                     rotate: icon.rotate ? 360 : 0,
                     scale: isAnimating ? [1, 1.3, 0.9, 1.1, 1] : 1,
-                    x: `${Math.random() * 80 + 10}vw`,
-                    y: `${Math.random() * 80 + 10}vh`,
+                    x: `${Math.random() * 100}vw`,
+                    y: `${Math.random() * 100}vh`,
                   }}
                   transition={{
                     rotate: {
@@ -812,28 +815,28 @@ const BackgroundPatterns = () => {
                       ease: "easeInOut",
                     },
                     x: {
-                      duration: 30 + index * 7,
+                      duration: 15 + index * 3,
                       repeat: Infinity,
                       yoyo: true,
                       ease: "easeInOut",
                       repeatDelay: isAnimating ? 0.5 : 0,
                     },
                     y: {
-                      duration: 25 + index * 7,
+                      duration: 12 + index * 3,
                       repeat: Infinity,
                       yoyo: true,
                       ease: "easeInOut",
                       repeatDelay: isAnimating ? 0.5 : 0,
                     },
                   }}
-                  className="absolute w-8 h-8 md:w-12 md:h-12 opacity-10 hover:opacity-30 transition-opacity"
+                  className="absolute w-8 h-8 md:w-12 md:h-12 opacity-20 hover:opacity-40 transition-opacity"
                 >
                   <Image
                     src={icon.src}
                     alt={icon.alt}
                     width={48}
                     height={48}
-                    className="w-full h-full"
+                    className="w-full h-full drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
                   />
                 </motion.div>
               ))}
