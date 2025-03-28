@@ -30,12 +30,6 @@ const socialLinks = [
     color: "hover:text-blue-500"
   },
   {
-    name: "Instagram",
-    icon: Instagram,
-    href: "https://instagram.com/drtinkerer",
-    color: "hover:text-pink-500"
-  },
-  {
     name: "Medium",
     icon: BookOpen,
     href: "https://medium.com/@drtinkerer",
