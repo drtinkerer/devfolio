@@ -1,0 +1,42 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Testing
+coverage
+
+# Next.js
+.next
+out
+
+# Production
+build
+
+# Misc
+.DS_Store
+*.pem
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files
+.env*.local
+.env
+
+# Git related
+.git
+.github
+
+# IDE specific files
+.idea
+.vscode
+*.swp
+*.swo
+
+# Allow these directories to be copied into the Docker image
+!.next
+!node_modules
+!public
