@@ -20,7 +20,7 @@ const EQUATIONS = [
   // Engineering Equations
   { eq: "P = VI", top: "80%", right: "2%", type: "engineering" },
   { eq: "η = W/Q", top: "90%", left: "2%", type: "engineering" },
-  { eq: "η = 1 - T₁/T₂", top: "50%", left: "45%", type: "thermodynamics" },
+  { eq: "η = 1 - T₁/T₂", top: "45%", left: "55%", type: "thermodynamics" },
   
   // Materials Science - Iron Carbon Diagram
   { eq: "Fe-C (γ→α+Fe₃C)", top: "8%", left: "47%", type: "materials" },
@@ -45,6 +45,18 @@ const SYMBOLS = [
   { text: "Δ", color: "text-electricBlue/80" },
   { text: "Γ", color: "text-electricBlue/80" },
   { text: "Θ", color: "text-brushedAluminum/80" },
+  { text: "♪", color: "text-electricBlue/80" },
+  { text: "♫", color: "text-brushedAluminum/80" },
+  { text: "♬", color: "text-electricBlue/80" },
+  { text: "𝄞", color: "text-brushedAluminum/80" },
+];
+
+// Musical notes configuration
+const MUSICAL_NOTES = [
+  { symbol: "♪", position: { top: "25%", left: "15%" } },
+  { symbol: "♫", position: { top: "45%", right: "20%" } },
+  { symbol: "♬", position: { bottom: "35%", left: "25%" } },
+  { symbol: "𝄞", position: { top: "30%", right: "25%" } },
 ];
 
 // Memoized components
@@ -504,6 +516,30 @@ const BackgroundPatterns = () => {
               ))}
             </div>
 
+            {/* Musical Notes */}
+            <div className="absolute inset-0">
+              {MUSICAL_NOTES.map((note, index) => (
+                <motion.div
+                  key={note.symbol}
+                  animate={{
+                    y: [0, -10, 0],
+                    opacity: [0.3, 0.6, 0.3],
+                    scale: [1, 1.2, 1],
+                  }}
+                  transition={{
+                    duration: 4 + index,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.5,
+                  }}
+                  className="absolute text-2xl md:text-3xl text-electricBlue/50"
+                  style={note.position}
+                >
+                  {note.symbol}
+                </motion.div>
+              ))}
+            </div>
+
             {/* Iron-Carbon Phase Diagram representation */}
             <motion.div
               animate={{
@@ -598,24 +634,6 @@ const BackgroundPatterns = () => {
                 <text x="10" y="20" fontSize="10" fill="currentColor">P</text>
                 <text x="165" y="125" fontSize="10" fill="currentColor">V</text>
               </svg>
-            </motion.div>
-
-            {/* Euler's Identity */}
-            <motion.div
-              animate={{
-                y: [0, -20, 0],
-                opacity: [0.2, 0.4, 0.2],
-                scale: [1, 1.2, 1],
-                rotate: [0, 2, -2, 0],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute top-[15%] right-[2%] text-xl md:text-3xl font-mono text-electricBlue/30 blur-[0.5px]"
-            >
-              e<sup>iπ</sup> + 1 = 0
             </motion.div>
 
             {/* Click Effects */}
@@ -776,23 +794,29 @@ const BackgroundPatterns = () => {
               ))}
             </div>
 
-            {/* Euler's Identity */}
-            <motion.div
-              animate={{
-                y: [0, -20, 0],
-                opacity: [0.2, 0.4, 0.2],
-                scale: [1, 1.2, 1],
-                rotate: [0, 2, -2, 0],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute top-[15%] right-[2%] text-xl md:text-3xl font-mono text-electricBlue/30 blur-[0.5px]"
-            >
-              e<sup>iπ</sup> + 1 = 0
-            </motion.div>
+            {/* Musical Notes */}
+            <div className="absolute inset-0">
+              {MUSICAL_NOTES.map((note, index) => (
+                <motion.div
+                  key={note.symbol}
+                  animate={{
+                    y: [0, -10, 0],
+                    opacity: [0.3, 0.6, 0.3],
+                    scale: [1, 1.2, 1],
+                  }}
+                  transition={{
+                    duration: 4 + index,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.5,
+                  }}
+                  className="absolute text-2xl md:text-3xl text-electricBlue/50"
+                  style={note.position}
+                >
+                  {note.symbol}
+                </motion.div>
+              ))}
+            </div>
 
             {/* Click Effects */}
             <AnimatePresence>
@@ -952,23 +976,29 @@ const BackgroundPatterns = () => {
               ))}
             </div>
 
-            {/* Euler's Identity */}
-            <motion.div
-              animate={{
-                y: [0, -20, 0],
-                opacity: [0.2, 0.4, 0.2],
-                scale: [1, 1.2, 1],
-                rotate: [0, 2, -2, 0],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute top-[15%] right-[2%] text-xl md:text-3xl font-mono text-electricBlue/30 blur-[0.5px]"
-            >
-              e<sup>iπ</sup> + 1 = 0
-            </motion.div>
+            {/* Musical Notes */}
+            <div className="absolute inset-0">
+              {MUSICAL_NOTES.map((note, index) => (
+                <motion.div
+                  key={note.symbol}
+                  animate={{
+                    y: [0, -10, 0],
+                    opacity: [0.3, 0.6, 0.3],
+                    scale: [1, 1.2, 1],
+                  }}
+                  transition={{
+                    duration: 4 + index,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.5,
+                  }}
+                  className="absolute text-2xl md:text-3xl text-electricBlue/50"
+                  style={note.position}
+                >
+                  {note.symbol}
+                </motion.div>
+              ))}
+            </div>
 
             {/* Click Effects */}
             <AnimatePresence>
