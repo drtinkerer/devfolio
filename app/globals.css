@@ -55,3 +55,79 @@
 .animation-delay-4000 {
   animation-delay: 4s;
 }
+
+/* Zen Mode Styles */
+.zen-mode section,
+.zen-mode footer,
+.zen-mode .content-section {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* Specifically target Hero section content */
+.zen-mode h1,
+.zen-mode h2,
+.zen-mode p,
+.zen-mode a:not(.zen-mode-toggle),
+.zen-mode .title,
+.zen-mode [class*="text-"] {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* Hide-content class for main content container */
+.hide-content {
+  position: relative;
+}
+
+.hide-content * {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* Specific targeting for the Hero section gradient text */
+.zen-mode h1, 
+.zen-mode h1 span, 
+.zen-mode h2, 
+.zen-mode [class*="gradient"],
+.zen-mode [class*="from-"],
+.zen-mode [class*="via-"],
+.zen-mode [class*="to-"],
+.zen-mode [class*="text-transparent"],
+.zen-mode [class*="bg-clip-text"] {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.zen-mode nav {
+  opacity: 1;
+  visibility: visible;
+}
+
+.zen-mode nav a,
+.zen-mode nav button:not(.zen-mode-toggle) {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.zen-mode nav .zen-mode-toggle {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Keep background elements visible */
+.zen-mode .fixed,
+.zen-mode [class*="background"],
+.zen-mode [class*="bg-"],
+.zen-mode .gradient-bg,
+.zen-mode .spotlight,
+.zen-mode .background-glow,
+.zen-mode .background-animate,
+.zen-mode .absolute {
+  opacity: 1 !important;
+  visibility: visible !important;
+}

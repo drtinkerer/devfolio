@@ -11,11 +11,14 @@ import Certifications from "@/components/Certifications";
 import CustomCursor from "@/components/ui/CustomCursor";
 import BackgroundPatterns from "@/components/ui/BackgroundPatterns";
 import { motion } from "framer-motion";
+import { useZenMode } from "@/lib/ZenModeContext";
 
 const Home = () => {
+  const { zenMode } = useZenMode();
+
   return (
     // Add overflow-x-hidden to prevent horizontal scrollbar
-    <main className="min-h-screen relative bg-black overflow-x-hidden">
+    <main className={`min-h-screen relative bg-black overflow-x-hidden ${zenMode ? 'zen-mode' : ''}`}>
       <CustomCursor />
       <BackgroundPatterns />
 
@@ -24,7 +27,7 @@ const Home = () => {
         <NavBar />
         {/* Apply max-width and mx-auto to center the content block */}
         {/* Retain padding for spacing within the centered block */}
-        <div className="w-full max-w-7xl mx-auto">
+        <div className={`w-full max-w-7xl mx-auto ${zenMode ? 'hide-content' : ''}`}>
           <div className="px-5 sm:px-10 md:px-20 lg:px-40"> {/* Adjusted padding slightly for responsiveness */}
             <Hero />
             <About />

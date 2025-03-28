@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { ZenModeProvider } from "@/lib/ZenModeContext";
 
 // Adjust weights for balance: lighter for body, bolder for headings
 const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "600", "700", '800'] });
@@ -18,7 +19,9 @@ export default function RootLayout({
       </head>
       {/* Apply base background and font */}
       <body className={`${poppins.className} bg-black-100`}>
-        {children}
+        <ZenModeProvider>
+          {children}
+        </ZenModeProvider>
       </body>
     </html>
   );

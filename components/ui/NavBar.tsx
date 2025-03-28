@@ -4,7 +4,8 @@ import React, { useEffect, useState, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { navItems, socialMedia } from "@/data";
-import { User, Briefcase, Code2, Award, Mail, Download, Github, Linkedin, Instagram, BookOpen } from "lucide-react";
+import { User, Briefcase, Code2, Award, Mail, Download, Github, Linkedin, Instagram, BookOpen, Eye, EyeOff } from "lucide-react";
+import { useZenMode } from "@/lib/ZenModeContext";
 
 const iconMap = {
   About: User,
@@ -44,6 +45,8 @@ const socialLinks = [
 const NavBar = (): JSX.Element => {
   const [activeSection, setActiveSection] = useState<string>("");
   const [isButtonHovered, setIsButtonHovered] = useState(false);
+  const [isZenButtonHovered, setIsZenButtonHovered] = useState(false);
+  const { zenMode, toggleZenMode } = useZenMode();
 
   // Memoize observer options
   const observerOptions = useMemo(() => ({
@@ -122,6 +125,33 @@ const NavBar = (): JSX.Element => {
             })}
           </div>
           <div className="flex items-center space-x-4">
+            <button
+              onClick={toggleZenMode}
+              onMouseEnter={() => setIsZenButtonHovered(true)}
+              onMouseLeave={() => setIsZenButtonHovered(false)}
+              className={cn(
+                "flex items-center space-x-2 text-sm font-medium transition-all duration-300 rounded-full px-4 py-2 zen-mode-toggle",
+                zenMode 
+                  ? "bg-primary text-white shadow-lg shadow-primary/20" 
+                  : "text-muted-foreground hover:text-primary",
+                isZenButtonHovered && !zenMode
+                  ? "bg-primary/10 text-primary"
+                  : ""
+              )}
+              aria-label="Toggle Zen Mode"
+            >
+              {zenMode ? (
+                <>
+                  <EyeOff className="h-4 w-4" />
+                  <span>Exit Zen Mode</span>
+                </>
+              ) : (
+                <>
+                  <Eye className="h-4 w-4" />
+                  <span>Zen Mode</span>
+                </>
+              )}
+            </button>
             {socialLinks.map((social) => (
               <a
                 key={social.name}
