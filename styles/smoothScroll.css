@@ -1,0 +1,40 @@
+/**
+ * Optimizations for smooth scrolling and animations
+ */
+
+/* Optimize rendering during scroll */
+.is-scrolling * {
+  pointer-events: none !important;
+}
+
+/* Enable hardware acceleration for all animations */
+.animate-in,
+.animate-out,
+.transition-all,
+.transform,
+.opacity-transition {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+  perspective: 1000px;
+}
+
+/* Optimize animations on non-hover devices */
+@media (hover: none) {
+  * {
+    transition-duration: 0.5s !important;
+  }
+}
+
+/* Disable animations when user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

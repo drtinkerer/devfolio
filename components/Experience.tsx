@@ -8,7 +8,12 @@ const Experience = () => {
     <section id="experience" className="w-full py-20">
       <div className="container mx-auto px-4">
         <Reveal>
-          <h2 className="text-4xl font-bold text-center mb-12 text-white">Experience</h2>
+          <h3 className="mb-10 text-center text-3xl sm:text-4xl md:text-5xl font-semibold">
+            My{" "}
+            <span className="bg-gradient-to-r from-circuitGreen to-electricBlue bg-clip-text text-transparent">
+              Experience
+            </span>
+          </h3>
         </Reveal>
 
         <BentoGrid className="w-full py-20">

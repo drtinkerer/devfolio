@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { navItems, socialMedia } from "@/data";
 import { User, Briefcase, Code2, Award, Mail, Download, Github, Linkedin, Instagram, BookOpen, Eye, EyeOff } from "lucide-react";
 import { useZenMode } from "@/lib/ZenModeContext";
+import { smoothScrollTo } from "@/utils/smoothScroll";
 
 const iconMap = {
   About: User,
@@ -99,7 +100,7 @@ const NavBar = (): JSX.Element => {
     e.preventDefault();
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+      smoothScrollTo(section, 800, 'easeInOutCubic', 60); 
       setActiveSection(sectionId);
     }
   }, []);

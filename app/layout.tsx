@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ZenModeProvider } from "@/lib/ZenModeContext";
+import { SmoothScrollProvider } from "./SmoothScrollProvider";
 
 // Adjust weights for balance: lighter for body, bolder for headings
 const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "600", "700", '800'] });
@@ -13,14 +14,16 @@ export default function RootLayout({
 }>) {
   return (
     // Consider adding 'dark' class if implementing theme switching later
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       {/* Apply base background and font */}
       <body className={`${poppins.className} bg-black-100`}>
         <ZenModeProvider>
-          {children}
+          <SmoothScrollProvider>
+            {children}
+          </SmoothScrollProvider>
         </ZenModeProvider>
       </body>
     </html>
@@ -48,7 +51,6 @@ export const metadata: Metadata = {
   ],
   generator: 'Next.js',
   referrer: 'origin',
-  viewport: 'width=device-width, initial-scale=1',
   creator: 'Bhushan Rane',
   publisher: 'The Plum Up', // Consider changing if not applicable
 };
