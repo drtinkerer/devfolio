@@ -222,12 +222,12 @@ const NavBar = (): JSX.Element => {
               {zenMode ? (
                 <>
                   <EyeOff className="h-4 w-4" />
-                  <span className="hidden sm:inline">Exit Zen</span>
+                  <span className="hidden sm:inline">Exit Zen Mode</span>
                 </>
               ) : (
                 <>
                   <Eye className="h-4 w-4" />
-                  <span className="hidden sm:inline">Zen</span>
+                  <span className="hidden sm:inline">Zen Mode</span>
                 </>
               )}
             </button>
