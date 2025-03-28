@@ -160,6 +160,24 @@ theme: {
 }
 ```
 
+## 🛠️ Technologies & Tools
+
+### Frontend Framework
+- [Next.js](https://nextjs.org/) - React framework for production-grade applications
+
+### Styling
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Framer Motion](https://www.framer.com/motion/) - Animation library for React
+
+### Vibe Coding Stack
+- [Windsurf](https://windsurf.ai) - Agentic AI IDE
+- [Cursor](https://cursor.sh) - AI-powered code editor
+- [Bolt.DIY](https://bolt.diy) - AI coding assistant
+- [Gemini 2.5](https://deepmind.google/technologies/gemini/) - Advanced AI thinking model
+
+### Deployment
+- [Vercel](https://vercel.com/) - Cloud platform for static and serverless deployment
+
 ## 📝 License
 
 This project is open source and available under the [MIT License](LICENSE).
