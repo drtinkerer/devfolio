@@ -543,6 +543,54 @@ const BackgroundPatterns = () => {
               ))}
             </div>
 
+            {/* Physics Problem - Inclined Plane with Forces */}
+            <motion.div
+              animate={{
+                opacity: [0.3, 0.5, 0.3],
+                scale: [1, 1.05, 1],
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute top-[10%] left-[20%] w-44 h-40 opacity-40"
+            >
+              <svg viewBox="0 0 180 160" className="text-amber-500/60">
+                {/* Coordinate System */}
+                <line x1="30" y1="130" x2="150" y2="130" stroke="currentColor" strokeWidth="1" />
+                <line x1="30" y1="130" x2="30" y2="30" stroke="currentColor" strokeWidth="1" />
+                <text x="155" y="135" fontSize="10" fill="currentColor">x</text>
+                <text x="25" y="25" fontSize="10" fill="currentColor">y</text>
+                
+                {/* Inclined Plane */}
+                <line x1="30" y1="130" x2="130" y2="70" stroke="currentColor" strokeWidth="1.5" />
+                
+                {/* Block on Inclined Plane */}
+                <rect x="70" y="90" width="20" height="20" transform="rotate(-30, 70, 90)" fill="none" stroke="currentColor" strokeWidth="1" />
+                
+                {/* Angle Label */}
+                <path d="M30,130 A20,20 0 0,0 45,115" fill="none" stroke="currentColor" strokeWidth="0.8" />
+                <text x="42" y="120" fontSize="8" fill="currentColor">θ</text>
+                
+                {/* Force Vectors */}
+                <line x1="80" y1="90" x2="80" y2="60" stroke="currentColor" strokeWidth="1" strokeDasharray="2,2" />
+                <polygon points="80,60 77,65 83,65" fill="currentColor" />
+                <text x="85" y="70" fontSize="8" fill="currentColor">F₁</text>
+                
+                <line x1="80" y1="90" x2="110" y2="90" stroke="currentColor" strokeWidth="1" />
+                <polygon points="110,90 105,87 105,93" fill="currentColor" />
+                <text x="100" y="85" fontSize="8" fill="currentColor">F₂</text>
+                
+                <line x1="80" y1="90" x2="65" y1="105" stroke="currentColor" strokeWidth="1" />
+                <polygon points="65,105 70,102 68,96" fill="currentColor" />
+                <text x="60" y="105" fontSize="8" fill="currentColor">mg</text>
+                
+                {/* Physics Equation */}
+                <text x="40" y="150" fontSize="8" fill="currentColor">F₂ = μ × N - mg·sin(θ)</text>
+              </svg>
+            </motion.div>
+            
             {/* Iron-Carbon Phase Diagram representation */}
             <motion.div
               animate={{

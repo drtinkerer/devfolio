@@ -64,31 +64,39 @@ const Certifications = () => {
 
             {/* Content */}
             <div className="relative flex flex-col items-center space-y-2">
-              {/* Badge Container */}
-              <div className="w-[250px] h-[250px] flex items-center justify-center bg-black/15 rounded-lg">
-                <div className="relative w-[200px] h-[200px]">
-                  {imageErrors[cert.id] ? (
-                    <Image
-                      src={getFallbackBadgeUrl()}
-                      alt={`${cert.title} Badge`}
-                      className="object-contain"
-                      fill
-                      sizes="200px"
-                      priority={false}
-                    />
-                  ) : (
-                    <Image
-                      src={getBadgeUrl(cert.credlyBadgeId)}
-                      alt={`${cert.title} Badge`}
-                      className="object-contain"
-                      fill
-                      sizes="200px"
-                      priority={false}
-                      onError={() => handleImageError(cert.id)}
-                    />
-                  )}
+              {/* Badge Container - Now Clickable */}
+              <a 
+                href={getCredentialUrl(cert.credlyBadgeId)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-pointer transition-transform duration-300 hover:scale-105"
+                aria-label={`${cert.title} - Click to verify on Credly`}
+              >
+                <div className="w-[250px] h-[250px] flex items-center justify-center bg-black/15 rounded-lg">
+                  <div className="relative w-[200px] h-[200px]">
+                    {imageErrors[cert.id] ? (
+                      <Image
+                        src={getFallbackBadgeUrl()}
+                        alt={`${cert.title} Badge`}
+                        className="object-contain"
+                        fill
+                        sizes="200px"
+                        priority={false}
+                      />
+                    ) : (
+                      <Image
+                        src={getBadgeUrl(cert.credlyBadgeId)}
+                        alt={`${cert.title} Badge`}
+                        className="object-contain"
+                        fill
+                        sizes="200px"
+                        priority={false}
+                        onError={() => handleImageError(cert.id)}
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
+              </a>
 
               {/* Certification Info */}
               <div className="text-center space-y-2 mt-4">
