@@ -1,25 +1,13 @@
-export interface TechStack {
-  category: string;
-  technologies: string[];
-}
-
-export const techStack: TechStack[] = [
-  {
-    category: "Cloud & DevOps",
-    technologies: [
-      "Cloud Computing",
-      "DevSecOps",
-      "CI/CD",
-      "Infrastructure as Code",
-      "Container Orchestration",
-      "Cloud Security"
-    ]
-  },
-  {
-    category: "Data & AI",
-    technologies: [
-      "Big Data Analytics",
-      "Generative AI"
-    ]
-  }
-]; 
+// Core expertise items for the About section
+export const coreExpertise = [
+  "Cloud Computing",
+  "DevSecOps",
+  "CI/CD",
+  "Solutions Architecture",
+  "Generative AI",
+  "Container Orchestration",
+  "Infrastructure as Code", 
+  "Cloud Security",
+  "Microservices",
+  "Zero Trust Network Architecture"
+];

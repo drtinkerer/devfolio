@@ -25,7 +25,7 @@ const Contact = () => {
           </a>
         </p>
 
-        <a className="mt-10" href="mailto:hello@theplumup.com">
+        <a className="mt-10" href="mailto:eulersidentity2718@gmail.com">
           <Button
             title="Let's connect"
             icon={

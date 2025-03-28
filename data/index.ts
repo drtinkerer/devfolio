@@ -13,18 +13,6 @@ export const navItems = [
   { name: "Contact", link: "#contact" },
 ];
 
-export const myTechStack = [
-  "Cloud and Platform Engineering",
-  "DevSecOps and Security",
-  "Zero Trust Network Architecture",
-  "Big Data Analytics and AI",
-  "CI/CD",
-  "Solutions Architecture",
-  "Generative AI",
-  "Platform Engineering",
-  "Container Orchestration"
-];
-
 export const socialMedia = [
   {
     id: 1,

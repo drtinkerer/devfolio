@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { myTechStack } from "@/data";
+import { coreExpertise } from "@/data/tech-stack";
 import Reveal from "./ui/Reveal";
 
 const About = () => (
@@ -72,7 +72,7 @@ const About = () => (
           </h4>
           
           <div className="flex flex-wrap gap-3">
-            {myTechStack.map((skill) => (
+            {coreExpertise.map((skill) => (
               <div
                 key={skill}
                 className="bg-[#16463e]/60 text-white text-sm font-medium px-4 py-2 rounded-full border border-[#00ff66]/20"
