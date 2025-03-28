@@ -7,6 +7,7 @@ A sleek, interactive, and modern portfolio website built with Next.js, Tailwind 
 This is an enhanced version of the original portfolio template. New features include:
 
 - Dynamic floating icons with interactive animations and icons to be updated as per your personality that you want to show off
+- Zen mode to hide text and show only background
 - Support for Credly badges iframe embedding 
 - Smooth animations and transitions throughout
 - Auto-loading SVG icons from floating-icons directory
