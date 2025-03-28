@@ -1,14 +1,23 @@
-# Modern Developer Portfolio
-
 <div align="center">
 
-[![Portfolio Demo](https://img.shields.io/badge/LIVE%20DEMO-Visit%20My%20Portfolio-2563EB?style=for-the-badge&logo=vercel)](https://devfolio-ten-plum.vercel.app/)
-[![GitHub Repo](https://img.shields.io/badge/Source%20Code-GitHub%20Repo-181717?style=for-the-badge&logo=github)](https://github.com/drtinkerer/devfolio)
+# DevFolio
+
+### A sleek, modern developer portfolio with dark theme & smooth animations
+
+[![Next.js](https://img.shields.io/badge/Built%20with-Next.js-000000?style=for-the-badge&logo=nextdotjs)](https://nextjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Styled%20with-Tailwind%20CSS-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Framer Motion](https://img.shields.io/badge/Animated%20with-Framer%20Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+
+**[✨ Live Demo](https://devfolio-ten-plum.vercel.app/) • [🔍 Source Code](https://github.com/drtinkerer/devfolio) • [📚 Documentation](#customization) • [🚀 Deploy](#deployment)**
 
 </div>
 
+<hr>
 
-A sleek, interactive, and modern portfolio website built with Next.js, Tailwind CSS, and Framer Motion. Perfect for developers, designers, and other tech professionals looking to showcase their work in a visually appealing way.
+<div align="center">
+<p>A developer portfolio featuring floating interactive icons, transparent certification badges, and zen mode — all with a touch-optimized mobile experience.</p>
+</div>
+
 
 ## 🌟 Features
 

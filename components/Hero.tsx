@@ -80,9 +80,6 @@ const Hero = () => {
           <p className="leading-relaxed">
             {professionalDescription.paragraph2}
           </p>
-          <p className="leading-relaxed">
-            {professionalDescription.paragraph3}
-          </p>
         </div>
       </div>
     </div>
