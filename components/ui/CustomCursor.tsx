@@ -7,6 +7,7 @@ const CustomCursor = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   // Spring animation values
   const cursorX = useMotionValue(0);
@@ -54,34 +55,60 @@ const CustomCursor = () => {
   }, [cursorScale]);
 
   useEffect(() => {
-    // Add event listeners
-    window.addEventListener("mousemove", updateCursor);
-    window.addEventListener("mouseenter", handleMouseEnter);
-    window.addEventListener("mouseleave", handleMouseLeave);
-    window.addEventListener("visibilitychange", handleVisibilityChange);
-    window.addEventListener("scroll", handleScroll);
+    // Check if device is touch-enabled
+    const checkTouchDevice = () => {
+      setIsTouchDevice(
+        'ontouchstart' in window ||
+        navigator.maxTouchPoints > 0 ||
+        (navigator as any).msMaxTouchPoints > 0
+      );
+    };
+    
+    checkTouchDevice();
+    
+    // Define interactiveElements outside the if block so it's accessible in cleanup
+    let interactiveElements: NodeListOf<Element> | null = null;
+    
+    // Only add mouse-related event listeners if not a touch device
+    if (!isTouchDevice) {
+      // Add event listeners
+      window.addEventListener("mousemove", updateCursor);
+      window.addEventListener("mouseenter", handleMouseEnter);
+      window.addEventListener("mouseleave", handleMouseLeave);
+      window.addEventListener("visibilitychange", handleVisibilityChange);
+      window.addEventListener("scroll", handleScroll);
 
-    // Add hover listeners to interactive elements
-    const interactiveElements = document.querySelectorAll("a, button, input, textarea, [role='button']");
-    interactiveElements.forEach((el) => {
-      el.addEventListener("mouseenter", handleMouseEnter);
-      el.addEventListener("mouseleave", handleMouseLeave);
-    });
+      // Add hover listeners to interactive elements
+      interactiveElements = document.querySelectorAll("a, button, input, textarea, [role='button']");
+      interactiveElements.forEach((el: Element) => {
+        el.addEventListener("mouseenter", handleMouseEnter);
+        el.addEventListener("mouseleave", handleMouseLeave);
+      });
+    }
 
     // Cleanup
     return () => {
-      window.removeEventListener("mousemove", updateCursor);
-      window.removeEventListener("mouseenter", handleMouseEnter);
-      window.removeEventListener("mouseleave", handleMouseLeave);
-      window.removeEventListener("visibilitychange", handleVisibilityChange);
-      window.removeEventListener("scroll", handleScroll);
-      interactiveElements.forEach((el) => {
-        el.removeEventListener("mouseenter", handleMouseEnter);
-        el.removeEventListener("mouseleave", handleMouseLeave);
-      });
+      if (!isTouchDevice) {
+        window.removeEventListener("mousemove", updateCursor);
+        window.removeEventListener("mouseenter", handleMouseEnter);
+        window.removeEventListener("mouseleave", handleMouseLeave);
+        window.removeEventListener("visibilitychange", handleVisibilityChange);
+        window.removeEventListener("scroll", handleScroll);
+        if (interactiveElements) {
+          interactiveElements.forEach((el: Element) => {
+            el.removeEventListener("mouseenter", handleMouseEnter);
+            el.removeEventListener("mouseleave", handleMouseLeave);
+          });
+        }
+      }
     };
   }, [updateCursor, handleMouseEnter, handleMouseLeave, handleVisibilityChange, handleScroll]);
 
+  // Don't render cursor on touch devices
+  if (isTouchDevice) {
+    return null;
+  }
+  
   return (
     <>
       {/* Main cursor */}

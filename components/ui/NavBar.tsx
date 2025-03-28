@@ -90,8 +90,8 @@ const NavBar = (): JSX.Element => {
     };
   }, [observerCallback, observerOptions]);
 
-  // Handle navigation click
-  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+  // Handle navigation click - works for both mouse and touch events
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement> | React.TouchEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
     const section = document.getElementById(sectionId);
     if (section) {
@@ -120,6 +120,10 @@ const NavBar = (): JSX.Element => {
           {/* Mobile menu button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onTouchStart={(e) => {
+              e.preventDefault();
+              setMobileMenuOpen(!mobileMenuOpen);
+            }}
             className="md:hidden text-white focus:outline-none"
             aria-label="Toggle mobile menu"
           >
@@ -136,14 +140,15 @@ const NavBar = (): JSX.Element => {
                   key={item.name}
                   href={item.link}
                   onClick={(e) => handleNavClick(e, sectionId)}
+                  onTouchStart={(e) => handleNavClick(e, sectionId)}
                   className={cn(
-                    "flex items-center space-x-2 text-sm font-medium transition-colors",
+                    "flex items-center space-x-2 text-sm font-medium transition-colors px-3 py-2", /* Added padding for larger touch target */
                     activeSection === sectionId
                       ? "text-primary"
                       : "text-muted-foreground hover:text-primary"
                   )}
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon className="h-5 w-5" />
                   <span>{item.name}</span>
                 </Link>
               );
@@ -161,14 +166,15 @@ const NavBar = (): JSX.Element => {
                     key={item.name}
                     href={item.link}
                     onClick={(e) => handleNavClick(e, sectionId)}
+                  onTouchStart={(e) => handleNavClick(e, sectionId)}
                     className={cn(
-                      "flex items-center space-x-2 text-sm font-medium transition-colors p-2 rounded-md",
+                      "flex items-center space-x-2 text-sm font-medium transition-colors p-4 rounded-md", /* Increased padding for mobile */
                       activeSection === sectionId
                         ? "text-primary bg-primary/10"
                         : "text-muted-foreground hover:text-primary hover:bg-primary/5"
                     )}
                   >
-                    <Icon className="h-5 w-5" />
+                    <Icon className="h-6 w-6" />
                     <span>{item.name}</span>
                   </Link>
                 );
@@ -183,12 +189,12 @@ const NavBar = (): JSX.Element => {
                     target="_blank" 
                     rel="noopener noreferrer"
                     className={cn(
-                      "text-muted-foreground transition-colors duration-200 p-2",
+                      "text-muted-foreground transition-colors duration-200 p-4", /* Increased padding for mobile */
                       social.color
                     )}
                     aria-label={social.name}
                   >
-                    <social.icon className="h-5 w-5" />
+                    <social.icon className="h-6 w-6" />
                   </a>
                 ))}
               </div>
@@ -200,10 +206,14 @@ const NavBar = (): JSX.Element => {
             {/* Only show zen mode toggle all the time */}
             <button
               onClick={toggleZenMode}
+              onTouchStart={(e) => {
+                e.preventDefault();
+                toggleZenMode();
+              }}
               onMouseEnter={() => setIsZenButtonHovered(true)}
               onMouseLeave={() => setIsZenButtonHovered(false)}
               className={cn(
-                "flex items-center space-x-2 text-sm font-medium transition-all duration-300 rounded-full px-3 py-2 zen-mode-toggle",
+                "flex items-center space-x-2 text-sm font-medium transition-all duration-300 rounded-full px-4 py-3 zen-mode-toggle", /* Increased padding for better touch target */
                 zenMode 
                   ? "bg-primary text-white shadow-lg shadow-primary/20" 
                   : "text-muted-foreground hover:text-primary",
@@ -215,12 +225,12 @@ const NavBar = (): JSX.Element => {
             >
               {zenMode ? (
                 <>
-                  <EyeOff className="h-4 w-4" />
+                  <EyeOff className="h-5 w-5" />
                   <span className="hidden sm:inline">Exit Zen Mode</span>
                 </>
               ) : (
                 <>
-                  <Eye className="h-4 w-4" />
+                  <Eye className="h-5 w-5" />
                   <span className="hidden sm:inline">Zen Mode</span>
                 </>
               )}
