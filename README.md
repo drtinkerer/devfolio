@@ -1,5 +1,13 @@
 # Modern Developer Portfolio
 
+<div align="center">
+
+[![Portfolio Demo](https://img.shields.io/badge/LIVE%20DEMO-Visit%20My%20Portfolio-2563EB?style=for-the-badge&logo=vercel)](https://devfolio-ten-plum.vercel.app/)
+[![GitHub Repo](https://img.shields.io/badge/Source%20Code-GitHub%20Repo-181717?style=for-the-badge&logo=github)](https://github.com/drtinkerer/devfolio)
+
+</div>
+
+
 A sleek, interactive, and modern portfolio website built with Next.js, Tailwind CSS, and Framer Motion. Perfect for developers, designers, and other tech professionals looking to showcase their work in a visually appealing way.
 
 ## 🌟 Features
@@ -21,7 +29,7 @@ This project is based on the excellent work by [Atzin Escandia](https://github.c
 
 1. Clone this repository
 ```bash
-git clone https://github.com/yourusername/devfolio.git
+git clone https://github.com/drtinkerer/devfolio.git
 ```
 
 2. Navigate to the project directory
@@ -32,15 +40,11 @@ cd devfolio
 3. Install dependencies
 ```bash
 yarn install
-# or
-npm install
 ```
 
 4. Run the development server
 ```bash
 yarn dev
-# or
-npm run dev
 ```
 
 5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -117,8 +121,8 @@ This portfolio uses local PNG images instead of iFrames for Credly badges:
 
 2. **Download badge images**: 
    - Go to your Credly badge page
-   - Right-click on the badge image and save it
-   - Remove the white background (using tools like remove.bg or Photoshop)
+   - Click on "Share" and then "Download" to get the badge in OpenBadge 3.0 format
+   - OpenBadge 3.0 is an open standard for verifiable digital credentials that includes transparent PNGs with embedded metadata about the achievement.
    - Save the transparent PNG with your badge ID as the filename (e.g., `1a2b3c4d-5e6f-7g8h-9i0j.png`)
 
 3. **Add badges to your project**:
@@ -166,21 +170,6 @@ This portfolio can be easily deployed to various platforms:
 1. Create an account on [Netlify](https://netlify.com)
 2. Click 'New site from Git'
 3. Connect your GitHub repository
-4. Use the build command: `next build && next export`
-5. Set the publish directory to `out`
-
-### GitHub Pages
-
-1. Add homepage to package.json: `"homepage": "https://yourusername.github.io/devfolio"`
-2. Install gh-pages: `yarn add --dev gh-pages`
-3. Add deploy scripts to package.json:
-   ```json
-   "scripts": {
-     "predeploy": "npm run build",
-     "deploy": "gh-pages -d out"
-   }
-   ```
-4. Run `yarn deploy` or `npm run deploy`
 
 ## 📱 Mobile Optimization
 
