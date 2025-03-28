@@ -1,5 +1,6 @@
 import Button from "./Button";
 import Reveal from "./ui/Reveal";
+import Image from "next/image";
 
 const Contact = () => {
   return (
@@ -27,7 +28,16 @@ const Contact = () => {
         <a className="mt-10" href="mailto:hello@theplumup.com">
           <Button
             title="Let's connect"
-            icon={<img src="assets/send.svg" />}
+            icon={
+              <div className="relative w-6 h-6">
+                <Image 
+                  src="/assets/send.svg" 
+                  alt="Send email" 
+                  fill
+                  priority={true}
+                />
+              </div>
+            }
             position="right"
           />
         </a>

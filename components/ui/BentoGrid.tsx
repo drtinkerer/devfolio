@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 interface BentoGridProps {
   className?: string;
@@ -52,11 +53,16 @@ export const BentoGridItem: React.FC<BentoGridItemProps> = ({
     <div className="h-full relative">
       {img && (
         <div className="absolute inset-0 w-full h-full">
-          <img
-            src={img}
-            alt={`Image for ${title}`}
-            className="object-cover object-center opacity-15 w-full h-full transition-opacity duration-300 group-hover/bento:opacity-25"
-          />
+          <div className="relative w-full h-full">
+            <Image
+              src={img}
+              alt={`Image for ${title}`}
+              className="object-cover object-center opacity-15 transition-opacity duration-300 group-hover/bento:opacity-25"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority={false}
+            />
+          </div>
         </div>
       )}
 
@@ -78,11 +84,16 @@ export const BentoGridItem: React.FC<BentoGridItemProps> = ({
                   rel="noopener noreferrer"
                   className="cursor-pointer"
                 >
-                  <img
-                    src="assets/git.svg"
-                    alt="GitHub"
-                    className="min-w-8 transform transition-all duration-300 ease-in-out hover:scale-110 hover:fill-red-600 mb-2"
-                  />
+                  <div className="relative w-8 h-8">
+                    <Image
+                      src="/assets/git.svg"
+                      alt="GitHub"
+                      className="transform transition-all duration-300 ease-in-out hover:scale-110 hover:fill-red-600 mb-2"
+                      fill
+                      sizes="32px"
+                      priority={false}
+                    />
+                  </div>
                 </a>
               )}
 
@@ -93,11 +104,16 @@ export const BentoGridItem: React.FC<BentoGridItemProps> = ({
                   rel="noopener noreferrer"
                   className="cursor-pointer"
                 >
-                  <img
-                    src="assets/link.svg"
-                    alt="External link"
-                    className="min-w-8 transform transition-all duration-300 ease-in-out hover:scale-110 hover:fill-red-600 mb-2"
-                  />
+                  <div className="relative w-8 h-8">
+                    <Image
+                      src="/assets/link.svg"
+                      alt="External link"
+                      className="transform transition-all duration-300 ease-in-out hover:scale-110 hover:fill-red-600 mb-2"
+                      fill
+                      sizes="32px"
+                      priority={false}
+                    />
+                  </div>
                 </a>
               )}
             </div>
@@ -130,11 +146,16 @@ export const BentoGridItem: React.FC<BentoGridItemProps> = ({
                   rel="noopener noreferrer"
                   className="block w-20 h-20 rounded-lg overflow-hidden border border-white/10 hover:border-white/20 transition-colors duration-200"
                 >
-                  <img
-                    src={companyLogo}
-                    alt="Company Logo"
-                    className="w-full h-full object-contain bg-white/5 hover:bg-white/10 transition-colors duration-200"
-                  />
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={companyLogo}
+                      alt="Company Logo"
+                      className="object-contain bg-white/5 hover:bg-white/10 transition-colors duration-200"
+                      fill
+                      sizes="80px"
+                      priority={false}
+                    />
+                  </div>
                 </a>
               </div>
             )}

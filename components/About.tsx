@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { myTechStack } from "@/data";
 import Reveal from "./ui/Reveal";
 
@@ -18,11 +19,17 @@ const About = () => (
       <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/30 backdrop-blur-sm p-8 flex flex-col">
         {/* Background GIF */}
         <div className="absolute inset-0 -z-10">
-          <img 
-            src="https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif" 
-            alt="Background animation"
-            className="w-full h-full object-cover opacity-30"
-          />
+          <div className="relative w-full h-full">
+            <Image 
+              src="https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif" 
+              alt="Background animation"
+              className="object-cover opacity-30"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority={false}
+              unoptimized={true}
+            />
+          </div>
           <div className="absolute inset-0 bg-black/50"></div>
         </div>
         
@@ -44,11 +51,17 @@ const About = () => (
       <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/30 backdrop-blur-sm p-8">
         {/* Background GIF */}
         <div className="absolute inset-0 -z-10">
-          <img 
-            src="https://i.pinimg.com/originals/84/f6/d1/84f6d14f1f88d34d3956150d19060d3a.gif" 
-            alt="Background animation"
-            className="w-full h-full object-cover opacity-30"
-          />
+          <div className="relative w-full h-full">
+            <Image 
+              src="https://i.pinimg.com/originals/84/f6/d1/84f6d14f1f88d34d3956150d19060d3a.gif" 
+              alt="Background animation"
+              className="object-cover opacity-30"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority={false}
+              unoptimized={true}
+            />
+          </div>
           <div className="absolute inset-0 bg-black/50"></div>
         </div>
         

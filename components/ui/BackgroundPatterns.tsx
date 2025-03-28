@@ -95,6 +95,7 @@ const TechIcon = React.memo(({ icon, isAnimating }: { icon: any; isAnimating: bo
     />
   </motion.div>
 ));
+TechIcon.displayName = 'TechIcon';
 
 const Equation = React.memo(({ equation, index }: { equation: any; index: number }) => (
   <motion.div
@@ -130,6 +131,7 @@ const Equation = React.memo(({ equation, index }: { equation: any; index: number
     {equation.eq}
   </motion.div>
 ));
+Equation.displayName = 'Equation';
 
 const ClickEffect = React.memo(({ pos }: { pos: any }) => (
   <motion.div
@@ -198,6 +200,7 @@ const ClickEffect = React.memo(({ pos }: { pos: any }) => (
     />
   </motion.div>
 ));
+ClickEffect.displayName = 'ClickEffect';
 
 const BackgroundPatterns = () => {
   const [clickedPositions, setClickedPositions] = useState<Array<{ x: number; y: number; id: number }>>([]);

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { socialMedia } from "@/data";
 
 export const Socials = (): JSX.Element => (
@@ -13,7 +14,15 @@ export const Socials = (): JSX.Element => (
         rel="noopener noreferrer"
         className="w-10 h-10 cursor-pointer flex justify-center items-center transform transition-all duration-300 ease-in-out hover:scale-110"
       >
-        <img src={img} alt="social-icon" width={20} height={20} />
+        <div className="relative w-5 h-5">
+          <Image 
+            src={img} 
+            alt="social-icon" 
+            fill
+            sizes="20px"
+            priority={false}
+          />
+        </div>
       </a>
     ))}
   </div>

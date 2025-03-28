@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from 'next/image';
 import Reveal from "./ui/Reveal";
 import { certifications } from "@/data";
 
@@ -47,11 +48,14 @@ const Certifications = () => {
           >
             {/* Background Image with Animation */}
             <div className="absolute inset-0 w-full h-full">
-              <img
+              <Image
                 src="https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif"
                 alt="Background"
                 className="object-cover object-center opacity-15 w-full h-full transition-opacity duration-300 group-hover:opacity-25"
-                loading="lazy"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                priority={false}
+                unoptimized={true}
               />
             </div>
 
@@ -64,18 +68,22 @@ const Certifications = () => {
               <div className="w-[250px] h-[250px] flex items-center justify-center bg-black/15 rounded-lg">
                 <div className="relative w-[200px] h-[200px]">
                   {imageErrors[cert.id] ? (
-                    <img
+                    <Image
                       src={getFallbackBadgeUrl()}
                       alt={`${cert.title} Badge`}
-                      className="object-contain w-full h-full"
-                      loading="lazy"
+                      className="object-contain"
+                      fill
+                      sizes="200px"
+                      priority={false}
                     />
                   ) : (
-                    <img
+                    <Image
                       src={getBadgeUrl(cert.credlyBadgeId)}
                       alt={`${cert.title} Badge`}
-                      className="object-contain w-full h-full"
-                      loading="lazy"
+                      className="object-contain"
+                      fill
+                      sizes="200px"
+                      priority={false}
                       onError={() => handleImageError(cert.id)}
                     />
                   )}

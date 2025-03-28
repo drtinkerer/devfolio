@@ -1,6 +1,7 @@
 import Button from "./Button";
 import Reveal from "./ui/Reveal";
 import { Spotlight } from "./ui/Spotlight";
+import Image from "next/image";
 
 const Hero = () => {
   return (
@@ -47,7 +48,16 @@ const Hero = () => {
         <a className="mt-10 mx-auto" href="#contact">
           <Button
             title="Contact me"
-            icon={<img src="assets/send.svg" alt="Send Icon" />} // Added alt text
+            icon={
+              <div className="relative w-6 h-6">
+                <Image 
+                  src="/assets/send.svg" 
+                  alt="Send Icon" 
+                  fill
+                  priority={true}
+                />
+              </div>
+            }
             position="right"
             // Optional: Add specific classes if Button doesn't inherit theme
             // otherClasses="bg-electricBlue hover:bg-electricBlue-dark text-black-100"
