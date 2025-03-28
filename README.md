@@ -20,7 +20,7 @@ This project is based on the excellent work by [Atzin Escandia](https://github.c
 
 1. Clone this repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/drtinkerer/devfolio.git
 ```
 
 2. Install dependencies
