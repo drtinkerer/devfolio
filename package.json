@@ -52,8 +52,8 @@
     "eslint-config-next/@eslint/config-array": "^0.20.0",
     "eslint-config-next/@eslint/object-schema": "^2.1.0",
     "lru-cache": "^10.2.0",
-    "eslint/@humanwhocodes/config-array": "@eslint/config-array@0.20.0",
-    "eslint/@humanwhocodes/object-schema": "@eslint/object-schema@2.1.0"
+    "eslint/@humanwhocodes/config-array": "0.13.0",
+    "eslint/@humanwhocodes/object-schema": "2.0.3"
   },
   "overrides": {
     "@humanwhocodes/config-array": "@eslint/config-array",
