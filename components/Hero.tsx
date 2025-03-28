@@ -3,7 +3,7 @@ import Reveal from "./ui/Reveal";
 import { Spotlight } from "./ui/Spotlight";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { identities } from "../data/personal";
+import { identities, professionalDescription } from "../data/personal";
 
 const Hero = () => {
   const [currentIdentityIndex, setCurrentIdentityIndex] = useState(0);
@@ -72,10 +72,18 @@ const Hero = () => {
             </span>
           </h2>
         </div>
-        {/* Description - With reduced font size */}
-        <p className="max-w-[800px] mx-auto text-sm md:text-base lg:text-lg text-white-100 mt-4">
-          with expertise in building scalable infrastructure, implementing CI/CD pipelines, and leveraging data engineering and data science to drive business innovation. Let&apos;s transform your ideas into robust, data-driven solutions! 🚀
-        </p>
+        {/* Description - With increased font size */}
+        <div className="max-w-[850px] mx-auto text-base md:text-lg lg:text-xl text-white-100 mt-4 space-y-4">
+          <p className="leading-relaxed">
+            {professionalDescription.paragraph1}
+          </p>
+          <p className="leading-relaxed">
+            {professionalDescription.paragraph2}
+          </p>
+          <p className="leading-relaxed">
+            {professionalDescription.paragraph3}
+          </p>
+        </div>
       </div>
     </div>
   );
