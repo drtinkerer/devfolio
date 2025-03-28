@@ -582,7 +582,7 @@ const BackgroundPatterns = () => {
                 <polygon points="110,90 105,87 105,93" fill="currentColor" />
                 <text x="100" y="85" fontSize="8" fill="currentColor">F₂</text>
                 
-                <line x1="80" y1="90" x2="65" y1="105" stroke="currentColor" strokeWidth="1" />
+                <line x1="80" y1="90" x2="65" y2="105" stroke="currentColor" strokeWidth="1" />
                 <polygon points="65,105 70,102 68,96" fill="currentColor" />
                 <text x="60" y="105" fontSize="8" fill="currentColor">mg</text>
                 
