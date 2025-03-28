@@ -1,51 +1,32 @@
 "use client";
 
-import React, { useEffect } from "react";
-import Script from "next/script";
+import React, { useState } from "react";
 import Reveal from "./ui/Reveal";
 import { certifications } from "@/data";
 
-// Declare global Credly type
-declare global {
-  interface Window {
-    Credly?: {
-      init: () => void;
-      addBadges: () => void;
-    };
-  }
-}
-
 const Certifications = () => {
-  useEffect(() => {
-    // Function to initialize badges
-    const initBadges = () => {
-      const script = document.createElement('script');
-      script.src = "//cdn.credly.com/assets/utilities/embed.js";
-      script.async = true;
-      script.onload = () => {
-        if (window.Credly) {
-          window.Credly.init();
-          // Add a small delay to ensure DOM is ready
-          setTimeout(() => {
-            if (window.Credly && window.Credly.addBadges) {
-              window.Credly.addBadges();
-            }
-          }, 1000);
-        }
-      };
-      document.body.appendChild(script);
-    };
+  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
 
-    initBadges();
+  const handleImageError = (id: number) => {
+    setImageErrors(prev => ({ ...prev, [id]: true }));
+    console.error(`Failed to load image for certification ID: ${id}`);
+  };
 
-    return () => {
-      // Cleanup script on unmount
-      const script = document.querySelector('script[src="//cdn.credly.com/assets/utilities/embed.js"]');
-      if (script) {
-        document.body.removeChild(script);
-      }
-    };
-  }, []);
+  // Helper functions to derive URLs from badge ID
+  const getBadgeUrl = (badgeId: string) => {
+    // First try to use the specific badge ID PNG file if it exists
+    // Fallback to the AWS badge we know exists
+    return `/credly-badges/${badgeId}.png`;
+  };
+
+  const getCredentialUrl = (badgeId: string) => {
+    return `https://www.credly.com/badges/${badgeId}/public_url`;
+  };
+
+  const getFallbackBadgeUrl = () => {
+    // Use the AWS badge as fallback
+    return "/credly-badges/279777b5-af1c-4ecb-b311-74757d3e7184.png";
+  };
 
   return (
     <section id="certifications" className="py-20">
@@ -81,13 +62,24 @@ const Certifications = () => {
             <div className="relative flex flex-col items-center space-y-2">
               {/* Badge Container */}
               <div className="w-[250px] h-[250px] flex items-center justify-center bg-black/20 rounded-lg">
-                <div
-                  className="credly-badge"
-                  data-iframe-width="250"
-                  data-iframe-height="250"
-                  data-share-badge-id={cert.credlyBadgeId}
-                  data-share-badge-host="https://www.credly.com"
-                />
+                <div className="relative w-[200px] h-[200px]">
+                  {imageErrors[cert.id] ? (
+                    <img
+                      src={getFallbackBadgeUrl()}
+                      alt={`${cert.title} Badge`}
+                      className="object-contain w-full h-full"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <img
+                      src={getBadgeUrl(cert.credlyBadgeId)}
+                      alt={`${cert.title} Badge`}
+                      className="object-contain w-full h-full"
+                      loading="lazy"
+                      onError={() => handleImageError(cert.id)}
+                    />
+                  )}
+                </div>
               </div>
 
               {/* Certification Info */}
@@ -104,16 +96,14 @@ const Certifications = () => {
               </div>
 
               {/* Verification Link */}
-              {cert.credentialUrl && (
-                <a
-                  href={cert.credentialUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-electricBlue text-sm font-semibold transition-colors duration-200 mt-4 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] bg-electricBlue/20 px-4 py-2 rounded-full hover:bg-electricBlue/30"
-                >
-                  Verify on Credly →
-                </a>
-              )}
+              <a
+                href={getCredentialUrl(cert.credlyBadgeId)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-electricBlue text-sm font-semibold transition-colors duration-200 mt-4 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] bg-electricBlue/20 px-4 py-2 rounded-full hover:bg-electricBlue/30"
+              >
+                Verify on Credly →
+              </a>
             </div>
           </div>
         ))}
