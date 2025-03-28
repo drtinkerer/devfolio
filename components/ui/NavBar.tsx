@@ -46,6 +46,7 @@ const NavBar = (): JSX.Element => {
   const [activeSection, setActiveSection] = useState<string>("");
   const [isButtonHovered, setIsButtonHovered] = useState(false);
   const [isZenButtonHovered, setIsZenButtonHovered] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { zenMode, toggleZenMode } = useZenMode();
 
   // Memoize observer options
@@ -65,6 +66,22 @@ const NavBar = (): JSX.Element => {
         }
       }
     });
+  }, []);
+
+  // Handle scroll events to add background to navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -99,7 +116,7 @@ const NavBar = (): JSX.Element => {
   const memoizedNavItems = useMemo(() => navItems, []);
 
   return (
-    <nav className="fixed top-0 z-50 w-full bg-transparent">
+    <nav className={`fixed top-0 z-50 w-full transition-all duration-300 ${scrolled && !zenMode ? 'backdrop-blur-sm border-b border-white/5' : 'bg-transparent'}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-8">

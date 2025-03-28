@@ -107,6 +107,18 @@
   visibility: visible;
 }
 
+/* Add padding to prevent content from being hidden under navbar */
+section {
+  scroll-margin-top: 5rem;
+}
+
+/* Style for scrolled navbar with blur effect */
+nav.backdrop-blur-md {
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .zen-mode nav a,
 .zen-mode nav button:not(.zen-mode-toggle) {
   opacity: 0;
@@ -127,7 +139,29 @@
 .zen-mode .spotlight,
 .zen-mode .background-glow,
 .zen-mode .background-animate,
-.zen-mode .absolute {
+.zen-mode .absolute,
+.zen-mode svg,
+.zen-mode path,
+.zen-mode [class*="opacity-20"],
+.zen-mode [class*="opacity-30"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Ensure mathematical equations are visible */
+.zen-mode .font-mono,
+.zen-mode [class*="text-electricBlue"],
+.zen-mode [class*="text-circuitGreen"],
+.zen-mode [class*="text-brushedAluminum"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Ensure the graphs remain visible */
+.zen-mode [viewBox],
+.zen-mode [stroke],
+.zen-mode [stroke-width],
+.zen-mode [d] {
   opacity: 1 !important;
   visibility: visible !important;
 }

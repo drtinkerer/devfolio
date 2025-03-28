@@ -10,18 +10,26 @@ const EQUATIONS = [
   // Physics Equations
   { eq: "E = mc²", top: "8%", right: "2%", type: "physics" },
   { eq: "F = ma", bottom: "30%", left: "2%", type: "physics" },
-  { eq: "PV = nRT", top: "20%", left: "2%", type: "physics" },
   
   // Mathematics Equations
-  { eq: "∫(x² + 2x + 1)dx", top: "30%", left: "2%", type: "math" },
+  { eq: "∫(x² + 2x + 1)dx", top: "50%", left: "2%", type: "math" },
   { eq: "πr²", top: "50%", right: "2%", type: "math" },
   { eq: "∇ × F", bottom: "20%", right: "2%", type: "math" },
   { eq: "∑(n=1 to ∞) 1/n²", top: "70%", left: "2%", type: "math" },
   
   // Engineering Equations
-  { eq: "τ = F × r", bottom: "50%", left: "2%", type: "engineering" },
   { eq: "P = VI", top: "80%", right: "2%", type: "engineering" },
   { eq: "η = W/Q", top: "90%", left: "2%", type: "engineering" },
+  { eq: "η = 1 - T₁/T₂", top: "50%", left: "45%", type: "thermodynamics" },
+  
+  // Materials Science - Iron Carbon Diagram
+  { eq: "Fe-C (γ→α+Fe₃C)", top: "8%", left: "47%", type: "materials" },
+
+  // DevOps & Cloud Engineering
+  { eq: "CPU = f(load) × cores", top: "40%", right: "4%", type: "cloud" },
+  { eq: "latency ∝ 1/bandwidth", bottom: "60%", left: "3%", type: "networking" },
+  { eq: "availability = (1 - downtime/time)", top: "60%", right: "3%", type: "sre" },
+  { eq: "scaling = f(demand)", bottom: "70%", right: "4%", type: "cloud" },
 ];
 
 const SYMBOLS = [
@@ -92,6 +100,12 @@ const Equation = React.memo(({ equation, index }: { equation: any; index: number
     className={`absolute text-base md:text-lg font-mono whitespace-nowrap ${
       equation.type === "physics" ? "text-circuitGreen/60" :
       equation.type === "math" ? "text-electricBlue/60" :
+      equation.type === "devops" ? "text-electricBlue/60" :
+      equation.type === "cloud" ? "text-brushedAluminum/60" :
+      equation.type === "networking" ? "text-circuitGreen/60" :
+      equation.type === "sre" ? "text-electricBlue/60" :
+      equation.type === "materials" ? "text-brushedAluminum/70" :
+      equation.type === "thermodynamics" ? "text-circuitGreen/70" :
       "text-brushedAluminum/60"
     }`}
     style={{
@@ -169,20 +183,6 @@ const ClickEffect = React.memo(({ pos }: { pos: any }) => (
       }}
       transition={{ duration: 1, ease: "easeOut" }}
       className="absolute inset-0 border border-electricBlue/20 rounded-full"
-    />
-    <motion.div
-      initial={{ opacity: 1, scale: 1 }}
-      animate={{ 
-        opacity: [1, 0],
-        scale: [1, 2],
-      }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="absolute w-2 h-2 bg-electricBlue/60 rounded-full"
-      style={{
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-      }}
     />
   </motion.div>
 ));
@@ -409,6 +409,72 @@ const BackgroundPatterns = () => {
                 </svg>
               </motion.div>
 
+              {/* Additional engineering waveform */}
+              <motion.div
+                animate={{
+                  y: [0, 5, 0],
+                }}
+                transition={{
+                  duration: 3.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute top-[65%] right-[15%] w-32 md:w-40 h-16"
+              >
+                <svg viewBox="0 0 100 40" className="text-electricBlue/40">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    d="M0 20 L10 20 L10 5 L20 5 L20 35 L30 35 L30 20 L40 20 L40 5 L50 5 L50 35 L60 35 L60 20 L70 20 L70 5 L80 5 L80 35 L90 35 L90 20 L100 20"
+                  />
+                </svg>
+              </motion.div>
+
+              {/* Circuit diagram pattern */}
+              <motion.div
+                animate={{
+                  x: [0, 8, 0],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute top-[75%] left-[20%] w-32 md:w-40 h-20"
+              >
+                <svg viewBox="0 0 100 60" className="text-circuitGreen/40">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    d="M10 30 L30 30 M30 10 L30 50 M40 15 L40 45 M50 20 L50 40 M60 10 L60 50 M70 30 L90 30"
+                  />
+                </svg>
+              </motion.div>
+
+              {/* Parabola */}
+              <motion.div
+                animate={{
+                  y: [0, -7, 0],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute bottom-[20%] left-[30%] w-28 md:w-36 h-20"
+              >
+                <svg viewBox="0 0 100 60" className="text-brushedAluminum/40">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    d="M0 60 Q50 -20 100 60"
+                  />
+                </svg>
+              </motion.div>
+
               <motion.div
                 animate={{
                   y: [0, 5, 0],
@@ -437,6 +503,102 @@ const BackgroundPatterns = () => {
                 <Equation key={equation.eq} equation={equation} index={index} />
               ))}
             </div>
+
+            {/* Iron-Carbon Phase Diagram representation */}
+            <motion.div
+              animate={{
+                opacity: [0.3, 0.5, 0.3],
+                scale: [1, 1.05, 1],
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute top-[15%] left-[40%] w-48 h-40 opacity-40"
+            >
+              <svg viewBox="0 0 200 160" className="text-brushedAluminum/60">
+                {/* Temperature axis */}
+                <line x1="20" y1="20" x2="20" y2="140" stroke="currentColor" strokeWidth="1.5" />
+                {/* Carbon content axis */}
+                <line x1="20" y1="140" x2="180" y2="140" stroke="currentColor" strokeWidth="1.5" />
+                
+                {/* Phase boundaries */}
+                <path 
+                  d="M20,20 L80,20 L100,60 L140,80 L180,60" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="1" 
+                />
+                <path 
+                  d="M20,80 L60,80 L80,100 L120,100" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="1" 
+                  strokeDasharray="3,2"
+                />
+                <path 
+                  d="M60,80 L60,140" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="1" 
+                  strokeDasharray="2,2"
+                />
+                <path 
+                  d="M100,60 L100,140" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="1" 
+                  strokeDasharray="2,2"
+                />
+                
+                {/* Labels */}
+                <text x="10" y="15" fontSize="10" fill="currentColor">T</text>
+                <text x="185" y="145" fontSize="10" fill="currentColor">C%</text>
+                <text x="35" y="50" fontSize="8" fill="currentColor">γ</text>
+                <text x="75" y="110" fontSize="8" fill="currentColor">α+Fe₃C</text>
+                <text x="45" y="130" fontSize="8" fill="currentColor">0.8%</text>
+                <text x="90" y="130" fontSize="8" fill="currentColor">2.06%</text>
+              </svg>
+            </motion.div>
+
+            {/* Carnot Cycle PV Diagram */}
+            <motion.div
+              animate={{
+                opacity: [0.3, 0.5, 0.3],
+                scale: [1, 1.05, 1],
+              }}
+              transition={{
+                duration: 7,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute top-[50%] left-[45%] w-44 h-36 opacity-40"
+            >
+              <svg viewBox="0 0 180 140" className="text-circuitGreen/60">
+                {/* P-V Axes */}
+                <line x1="20" y1="120" x2="160" y2="120" stroke="currentColor" strokeWidth="1.5" />
+                <line x1="20" y1="20" x2="20" y2="120" stroke="currentColor" strokeWidth="1.5" />
+                
+                {/* Carnot Cycle */}
+                <path 
+                  d="M40,40 L120,40 C135,40 135,70 120,70 L40,100 C25,100 25,70 40,70 Z" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="1.2" 
+                />
+                
+                {/* Process Labels */}
+                <text x="80" y="35" fontSize="8" fill="currentColor">T₁ (isothermal)</text>
+                <text x="125" y="55" fontSize="8" fill="currentColor">adiabatic</text>
+                <text x="70" y="105" fontSize="8" fill="currentColor">T₂ (isothermal)</text>
+                <text x="5" y="85" fontSize="8" fill="currentColor">adiabatic</text>
+                
+                {/* Axis Labels */}
+                <text x="10" y="20" fontSize="10" fill="currentColor">P</text>
+                <text x="165" y="125" fontSize="10" fill="currentColor">V</text>
+              </svg>
+            </motion.div>
 
             {/* Euler's Identity */}
             <motion.div
@@ -515,6 +677,72 @@ const BackgroundPatterns = () => {
                     stroke="currentColor"
                     strokeWidth="1"
                     d="M0 0 Q25 25 50 0 T100 0"
+                  />
+                </svg>
+              </motion.div>
+
+              {/* Additional engineering waveform */}
+              <motion.div
+                animate={{
+                  y: [0, 5, 0],
+                }}
+                transition={{
+                  duration: 3.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute top-[65%] right-[15%] w-32 md:w-40 h-16"
+              >
+                <svg viewBox="0 0 100 40" className="text-electricBlue/40">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    d="M0 20 L10 20 L10 5 L20 5 L20 35 L30 35 L30 20 L40 20 L40 5 L50 5 L50 35 L60 35 L60 20 L70 20 L70 5 L80 5 L80 35 L90 35 L90 20 L100 20"
+                  />
+                </svg>
+              </motion.div>
+
+              {/* Circuit diagram pattern */}
+              <motion.div
+                animate={{
+                  x: [0, 8, 0],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute top-[75%] left-[20%] w-32 md:w-40 h-20"
+              >
+                <svg viewBox="0 0 100 60" className="text-circuitGreen/40">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    d="M10 30 L30 30 M30 10 L30 50 M40 15 L40 45 M50 20 L50 40 M60 10 L60 50 M70 30 L90 30"
+                  />
+                </svg>
+              </motion.div>
+
+              {/* Parabola */}
+              <motion.div
+                animate={{
+                  y: [0, -7, 0],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute bottom-[20%] left-[30%] w-28 md:w-36 h-20"
+              >
+                <svg viewBox="0 0 100 60" className="text-brushedAluminum/40">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    d="M0 60 Q50 -20 100 60"
                   />
                 </svg>
               </motion.div>
@@ -625,6 +853,72 @@ const BackgroundPatterns = () => {
                     stroke="currentColor"
                     strokeWidth="1"
                     d="M0 0 Q25 25 50 0 T100 0"
+                  />
+                </svg>
+              </motion.div>
+
+              {/* Additional engineering waveform */}
+              <motion.div
+                animate={{
+                  y: [0, 5, 0],
+                }}
+                transition={{
+                  duration: 3.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute top-[65%] right-[15%] w-32 md:w-40 h-16"
+              >
+                <svg viewBox="0 0 100 40" className="text-electricBlue/40">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    d="M0 20 L10 20 L10 5 L20 5 L20 35 L30 35 L30 20 L40 20 L40 5 L50 5 L50 35 L60 35 L60 20 L70 20 L70 5 L80 5 L80 35 L90 35 L90 20 L100 20"
+                  />
+                </svg>
+              </motion.div>
+
+              {/* Circuit diagram pattern */}
+              <motion.div
+                animate={{
+                  x: [0, 8, 0],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute top-[75%] left-[20%] w-32 md:w-40 h-20"
+              >
+                <svg viewBox="0 0 100 60" className="text-circuitGreen/40">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    d="M10 30 L30 30 M30 10 L30 50 M40 15 L40 45 M50 20 L50 40 M60 10 L60 50 M70 30 L90 30"
+                  />
+                </svg>
+              </motion.div>
+
+              {/* Parabola */}
+              <motion.div
+                animate={{
+                  y: [0, -7, 0],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute bottom-[20%] left-[30%] w-28 md:w-36 h-20"
+              >
+                <svg viewBox="0 0 100 60" className="text-brushedAluminum/40">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    d="M0 60 Q50 -20 100 60"
                   />
                 </svg>
               </motion.div>
