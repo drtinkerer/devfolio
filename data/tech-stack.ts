@@ -1,21 +1,18 @@
 // Core expertise items for the About section
 export const coreExpertise = [
-  "Cloud Computing",
+  "Multi-Cloud Architecture",
   "DevSecOps",
   "CI/CD",
+  "Data Science",
+  "LLM",
   "Solutions Architecture",
-  "Generative AI",
-  "Container Orchestration",
-  "Infrastructure as Code", 
   "Cloud Security",
+  "Infrastructure as Code", 
   "Microservices",
-  "Zero Trust Network Architecture",
-  "Multi-Cloud Architecture",
-  "Kubernetes Administration",
-  "Network Engineering",
-  "API Development",
-  "Compliance Frameworks (NIST, CIS)",
+  "Operating Systems",
+  "Distributed Systems",
   "Secure Cloud Landing Zones",
-  "Cloud Cost Optimization",
-  "Self-Hosting Solutions"
+  "ZTNA",
+  "Self-Hosting Solutions",
+  "Big Data Analytics"
 ];
