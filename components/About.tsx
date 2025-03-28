@@ -1,5 +1,4 @@
 import React from "react";
-import { Sparkle } from "./ui/Sparkle";
 import { myTechStack } from "@/data";
 import Reveal from "./ui/Reveal";
 
@@ -13,43 +12,64 @@ const About = () => (
         </span>
       </h3>
     </Reveal>
-    <div className="sm:flex grid-cols-[2fr_1fr] gap-6 space-y-5 sm:space-y-0">
-      <Sparkle
-        duration={Math.floor(Math.random() * 10000) + 10000}
-        className="flex-col text-left p-3 md:p-5 lg:p-10 gap-5 min-h-full"
-      >
-        <p className="text-white font-medium drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
-          Versatile DevOps, Cloud and Data specialist with 9 years of experience, having a deep understanding of software, analytics, manufacturing processes, and business operations.
-        </p>
-        <p className="text-white font-medium drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
-          Adept at rapidly assimilating information, drawing conclusions, and confidently presenting insights to both technical and non-technical audiences.
-        </p>
-        <p className="text-white font-medium drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
-          As a creative, curious and analytical thinker, I excel in approaching technology from a business perspective, with a strong focus on automation and data-driven solutions to drive growth and efficiency.
-        </p>
-      </Sparkle>
-
-      <Sparkle
-        duration={Math.floor(Math.random() * 10000) + 10000}
-        className="flex-col text-left p-3 md:p-5 lg:p-10 gap-5 min-h-full"
-      >
-        <p className="text-lg lg:text-3xl font-extrabold">
-          <span className="bg-gradient-to-r from-circuitGreen to-electricBlue bg-clip-text text-transparent">
-            Core Expertise
-          </span>
-        </p>
-
-        <div className="flex flex-wrap gap-3 py-4">
-          {myTechStack.map((skill) => (
-            <div
-              key={skill}
-              className="bg-electricBlue/20 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-lg hover:bg-electricBlue/30 transition duration-200 ease-in-out drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]"
-            >
-              {skill}
-            </div>
-          ))}
+    
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* About Me Card */}
+      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/30 backdrop-blur-sm p-8 flex flex-col">
+        {/* Background GIF */}
+        <div className="absolute inset-0 -z-10">
+          <img 
+            src="https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif" 
+            alt="Background animation"
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-black/50"></div>
         </div>
-      </Sparkle>
+        
+        {/* Content */}
+        <div className="space-y-6">
+          <p className="text-white font-medium">
+            Versatile DevOps, Cloud and Data specialist with 9 years of experience, having a deep understanding of software, analytics, manufacturing processes, and business operations.
+          </p>
+          <p className="text-white font-medium">
+            Adept at rapidly assimilating information, drawing conclusions, and confidently presenting insights to both technical and non-technical audiences.
+          </p>
+          <p className="text-white font-medium">
+            As a creative, curious and analytical thinker, I excel in approaching technology from a business perspective, with a strong focus on automation and data-driven solutions to drive growth and efficiency.
+          </p>
+        </div>
+      </div>
+      
+      {/* Expertise Card */}
+      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/30 backdrop-blur-sm p-8">
+        {/* Background GIF */}
+        <div className="absolute inset-0 -z-10">
+          <img 
+            src="https://i.pinimg.com/originals/84/f6/d1/84f6d14f1f88d34d3956150d19060d3a.gif" 
+            alt="Background animation"
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-black/50"></div>
+        </div>
+        
+        {/* Content */}
+        <div className="relative z-10">
+          <h4 className="text-3xl md:text-4xl font-bold mb-6">
+            <span className="text-[#00ff66]">Core Expertise</span>
+          </h4>
+          
+          <div className="flex flex-wrap gap-3">
+            {myTechStack.map((skill) => (
+              <div
+                key={skill}
+                className="bg-[#16463e]/60 text-white text-sm font-medium px-4 py-2 rounded-full border border-[#00ff66]/20"
+              >
+                {skill}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 );

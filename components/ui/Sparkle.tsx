@@ -20,29 +20,33 @@ type SparkleProps = {
 
 export function Sparkle({
   children,
-  as: Component = "button",
-  duration = 2000,
+  as: Component = "div",
+  duration = 8000,
   className = "",
   ...otherProps
 }: SparkleProps) {
 
   return (
     <Component
-      className="relative bg-transparent text-xl p-[1px] overflow-hidden rounded-3xl"
+      className="relative text-xl p-[1px] overflow-hidden rounded-3xl group/bento hover:shadow-xl transition duration-200"
       {...otherProps}
     >
-      <div
-        className="absolute inset-0 rounded-3xl"
-      >
+      {/* Animated sparkle effect */}
+      <div className="absolute inset-0 rounded-3xl">
         <SparkleBox duration={duration} rx="30%" ry="30%">
           <div
-            className="h-20 w-20 opacity-80 bg-[radial-gradient(purple_70%,transparent_80%)] "
+            className="h-24 w-24 opacity-60 bg-[radial-gradient(#9935ff_10%,#3490dc_50%,transparent_80%)]"
           />
         </SparkleBox>
       </div>
+      
+      {/* Gradient overlay that appears on hover */}
+      <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-b from-transparent to-black/40 opacity-0 group-hover/bento:opacity-100 transition-opacity duration-300" />
+      
+      {/* Main content container */}
       <div
         className={cn(
-          "relative rounded-3xl flex items-center justify-center w-full h-full text-sm text-white border border-white/[0.1] bg-purple-900/[0.5] backdrop-blur-xl",
+          "relative rounded-3xl flex items-center justify-center w-full h-full text-sm text-white border border-white/10 bg-black/40 backdrop-blur-sm group-hover/bento:translate-x-1 transition duration-200",
           className
         )}
       >
@@ -62,7 +66,7 @@ type SparkleBoxProps = {
 
 export const SparkleBox = ({
   children,
-  duration = 2000,
+  duration = 8000,
   rx = "0%",
   ry = "0%",
   ...otherProps

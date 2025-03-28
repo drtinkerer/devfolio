@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="text-center my-10">
             <p className="mx-auto pt-5 sm:text-3xl">
               ✷ Link to the  <a
-                className="text-purple font-extrabold hover:scale-105 inline-block transition-transform duration-200"
+                className="bg-gradient-to-r from-electricBlue-light via-electricBlue to-circuitGreen bg-clip-text text-transparent font-extrabold hover:scale-105 inline-block transition-transform duration-200"
                 target="_blank"
                 href="https://github.com/drtinkerer/devfolio"
               >
@@ -21,7 +21,7 @@ const Footer = () => {
           <div className="text-center">
             <p className="md:text-base text-sm md:font-normal font-light mt-5 opacity-60">
               Crafted with ❤ by  <a
-                className="text-purple font-extrabold hover:scale-105 inline-block transition-transform duration-200"
+                className="bg-gradient-to-r from-electricBlue-light via-electricBlue to-circuitGreen bg-clip-text text-transparent font-extrabold hover:scale-105 inline-block transition-transform duration-200"
                 target="_blank"
                 href="https://theplumup.com"
               >

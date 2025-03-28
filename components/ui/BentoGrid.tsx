@@ -1,4 +1,3 @@
-import { skills } from "@/data";
 import { cn } from "@/lib/utils";
 
 interface BentoGridProps {
@@ -46,7 +45,7 @@ export const BentoGridItem: React.FC<BentoGridItemProps> = ({
 }) => (
   <div
     className={cn(
-      "row-span-1 relative overflow-hidden rounded-3xl border border-white/10 group/bento hover:shadow-xl transition duration-200 flex flex-col bg-black/40 backdrop-blur-sm",
+      "row-span-1 relative overflow-hidden rounded-3xl border border-white/10 group/bento hover:shadow-xl transition duration-200 flex flex-col bg-black/30 backdrop-blur-sm",
       className
     )}
   >
@@ -56,12 +55,12 @@ export const BentoGridItem: React.FC<BentoGridItemProps> = ({
           <img
             src={img}
             alt={`Image for ${title}`}
-            className="object-cover object-center opacity-10 w-full h-full transition-opacity duration-300 group-hover/bento:opacity-20"
+            className="object-cover object-center opacity-15 w-full h-full transition-opacity duration-300 group-hover/bento:opacity-25"
           />
         </div>
       )}
 
-      <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-b from-transparent to-black/40 opacity-0 group-hover/bento:opacity-100 transition-opacity duration-300" />
+      <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-b from-transparent to-black/30 opacity-0 group-hover/bento:opacity-100 transition-opacity duration-300" />
 
       <div
         className={cn(
@@ -115,7 +114,7 @@ export const BentoGridItem: React.FC<BentoGridItemProps> = ({
                 {techs?.map((tech) => (
                   <div
                     key={tech}
-                    className="bg-electricBlue/20 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-lg hover:bg-electricBlue/30 transition duration-200 ease-in-out drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]"
+                    className="bg-electricBlue/15 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-lg hover:bg-electricBlue/25 transition duration-200 ease-in-out drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]"
                   >
                     {tech}
                   </div>

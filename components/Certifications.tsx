@@ -43,25 +43,25 @@ const Certifications = () => {
         {certifications.map((cert) => (
           <div 
             key={cert.id} 
-            className="group relative bg-black/40 rounded-3xl border border-white/10 p-4 hover:border-white/20 transition-all duration-300 overflow-hidden backdrop-blur-sm"
+            className="group relative bg-black/30 rounded-3xl border border-white/10 p-4 hover:border-white/20 transition-all duration-300 overflow-hidden backdrop-blur-sm"
           >
             {/* Background Image with Animation */}
             <div className="absolute inset-0 w-full h-full">
               <img
                 src="https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif"
                 alt="Background"
-                className="object-cover object-center opacity-10 w-full h-full transition-opacity duration-300 group-hover:opacity-20"
+                className="object-cover object-center opacity-15 w-full h-full transition-opacity duration-300 group-hover:opacity-25"
                 loading="lazy"
               />
             </div>
 
             {/* Gradient Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-b from-transparent to-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-b from-transparent to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
             {/* Content */}
             <div className="relative flex flex-col items-center space-y-2">
               {/* Badge Container */}
-              <div className="w-[250px] h-[250px] flex items-center justify-center bg-black/20 rounded-lg">
+              <div className="w-[250px] h-[250px] flex items-center justify-center bg-black/15 rounded-lg">
                 <div className="relative w-[200px] h-[200px]">
                   {imageErrors[cert.id] ? (
                     <img
