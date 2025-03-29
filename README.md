@@ -19,6 +19,11 @@
 </div>
 
 
+## 🙏 Credits and Inspirations
+
+This project is created on the top of excellent work by [Atzin Escandia](https://github.com/atzin-escandia). 
+Original repository: [atzin-escandia-devfolio](https://github.com/atzin-escandia/devfolio.git)
+
 ## 🌟 Features
 
 - **Responsive Design**: Looks great on all devices - mobile, tablet, and desktop
@@ -30,10 +35,6 @@
 - **Touch-Optimized**: Enhanced mobile experience with responsive touch targets
 - **Dark Theme**: Modern dark theme with gradient accents
 
-## 🙏 Credits and Inspirations
-
-This project is created on the top of excellent work by [Atzin Escandia](https://github.com/atzin-escandia). 
-Original repository: [atzin-escandia-devfolio](https://github.com/atzin-escandia/devfolio.git)
 
 ## 🚀 Getting Started
 
@@ -125,14 +126,14 @@ Customize the navigation menu items if needed.
 
 ### Setting Up Credly Badges
 
-This portfolio uses local PNG images instead of iFrames for Credly badges:
+This portfolio uses local OpenBadge 3.0 PNG images instead of iFrames for Credly badges.
+OpenBadge 3.0 is an open standard for verifiable digital credentials that includes transparent PNGs with embedded metadata about the achievement :
 
 1. **Get your badge ID**: For each certification on Credly, get the badge ID from your public URL (e.g., `https://www.credly.com/badges/1a2b3c4d-5e6f-7g8h-9i0j/public_url` → badge ID is `1a2b3c4d-5e6f-7g8h-9i0j`)
 
 2. **Download badge images**: 
    - Go to your Credly badge page
    - Click on "Share" and then "Download" to get the badge in OpenBadge 3.0 format
-   - OpenBadge 3.0 is an open standard for verifiable digital credentials that includes transparent PNGs with embedded metadata about the achievement.
    - Save the transparent PNG with your badge ID as the filename (e.g., `1a2b3c4d-5e6f-7g8h-9i0j.png`)
 
 3. **Add badges to your project**:
@@ -144,6 +145,7 @@ This portfolio uses local PNG images instead of iFrames for Credly badges:
 1. Place your SVG icons in the `public/floating-icons` directory
 2. The icons will be automatically loaded and displayed in the background
 3. Icons will inherit the floating animation and click interactions
+4. For a large collection of tech icons, refer to [Tech Icons](https://techicons.dev/)
 
 ### Modifying Colors
 
@@ -173,8 +175,9 @@ theme: {
 ### Vibe Coding Stack
 - [Windsurf](https://windsurf.ai) - Agentic AI IDE
 - [Cursor](https://cursor.sh) - AI-powered code editor
-- [Bolt.DIY](https://bolt.diy) - AI coding assistant
-- [Gemini 2.5](https://deepmind.google/technologies/gemini/) - Advanced AI thinking model
+- [Bolt.DIY](https://bolt.diy) - Open Source Web based AI coding assistant
+- [Gemini 2.5 Experimental](https://deepmind.google/technologies/gemini/) - Advanced AI thinking model by Google
+- [Claude AI](https://claude.ai/) - Large language model for generating code based on human instructions
 
 ### Deployment
 - [Vercel](https://vercel.com/) - Cloud platform for static and serverless deployment
@@ -182,6 +185,7 @@ theme: {
 ## 📝 License
 
 This project is open source and available under the [MIT License](LICENSE).
+Feel free to use, modify, and redistribute this project as you see fit.
 
 ## 🚀 Deployment
 
@@ -235,7 +239,8 @@ This portfolio is optimized for mobile devices with:
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](issues).
+Contributions, issues, and feature requests are always welcome! 
+Feel free to check the [issues page](https://github.com/drtinkerer/devfolio/issues).
 
 ## 💫 Show your support
 
