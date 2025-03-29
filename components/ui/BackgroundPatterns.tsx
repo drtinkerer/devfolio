@@ -62,7 +62,7 @@ const MUSICAL_NOTES = [
 ];
 
 // Memoized components
-const TechIcon = React.memo(({ icon, isAnimating }: { icon: any; isAnimating: boolean }) => {
+const TechIcon = React.memo(({ icon, isAnimating, onIconClick }: { icon: any; isAnimating: boolean; onIconClick: (icon: any) => void }) => {
   const { zenMode } = useZenMode();
   
   return (
@@ -90,6 +90,7 @@ const TechIcon = React.memo(({ icon, isAnimating }: { icon: any; isAnimating: bo
           ease: "easeInOut",
         }
       }}
+      onClick={() => !zenMode && onIconClick(icon)}
       className={`absolute w-10 h-10 md:w-14 md:h-14 opacity-25 hover:opacity-40 transition-opacity ${zenMode ? 'pointer-events-none' : ''}`}
     >
       <Image
@@ -364,6 +365,24 @@ const BackgroundPatterns = () => {
     return () => window.removeEventListener('click', handleClick);
   }, []);
 
+  // Add click handler for icons
+  const handleIconClick = useCallback((clickedIcon: any) => {
+    setTechIcons(prevIcons => 
+      prevIcons.map(icon => {
+        if (icon.src === clickedIcon.src) {
+          return {
+            ...icon,
+            velocity: {
+              x: (Math.random() - 0.5) * 4, // Increased speed range
+              y: (Math.random() - 0.5) * 4
+            }
+          };
+        }
+        return icon;
+      })
+    );
+  }, []);
+
   if (!mounted) {
     return null;
   }
@@ -386,7 +405,12 @@ const BackgroundPatterns = () => {
             {/* Floating Tech Icons */}
             <div className="absolute inset-0 pointer-events-none z-10">
               {techIcons.map((icon, index) => (
-                <TechIcon key={icon.src} icon={icon} isAnimating={isAnimating} />
+                <TechIcon 
+                  key={icon.src} 
+                  icon={icon} 
+                  isAnimating={isAnimating} 
+                  onIconClick={handleIconClick}
+                />
               ))}
             </div>
 
@@ -777,7 +801,7 @@ const BackgroundPatterns = () => {
             {/* Floating Tech Icons */}
             <div className="absolute inset-0 pointer-events-none">
               {techIcons.map((icon, index) => (
-                <TechIcon key={`center-${icon.src}`} icon={icon} isAnimating={isAnimating} />
+                <TechIcon key={`center-${icon.src}`} icon={icon} isAnimating={isAnimating} onIconClick={handleIconClick} />
               ))}
             </div>
 
@@ -959,7 +983,12 @@ const BackgroundPatterns = () => {
             {/* Floating Tech Icons */}
             <div className="absolute inset-0 pointer-events-none">
               {techIcons.map((icon, index) => (
-                <TechIcon key={`right-${icon.src}`} icon={icon} isAnimating={isAnimating} />
+                <TechIcon 
+                  key={`right-${icon.src}`} 
+                  icon={icon} 
+                  isAnimating={isAnimating} 
+                  onIconClick={handleIconClick}
+                />
               ))}
             </div>
 
