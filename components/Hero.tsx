@@ -17,9 +17,9 @@ const Hero = () => {
         setCurrentIdentityIndex((prevIndex) => (prevIndex + 1) % identities.length);
         setTimeout(() => {
           setIsAnimating(false);
-        }, 500); // Delay before showing new text
-      }, 1000); // Wait for fade out to complete
-    }, 3000); // Total cycle time
+        }, 200); // Reduced from 500ms to 200ms for faster fade in
+      }, 500); // Reduced from 1000ms to 500ms for faster fade out
+    }, 2000); // Reduced from 3000ms to 2000ms for faster cycle
     
     return () => clearInterval(intervalId);
   }, []);
@@ -63,7 +63,9 @@ const Hero = () => {
           </h2>
           <h2 className="title text-2xl md:text-3xl lg:text-4xl font-semibold text-center h-16 flex items-center">
             <span 
-              className={`inline-block transition-all duration-1000 ${isAnimating ? 'opacity-0 translate-y-10' : 'opacity-100 translate-y-0'} bg-gradient-to-r from-brushedAluminum-light via-electricBlue/70 to-circuitGreen/80 bg-clip-text text-transparent px-3`}
+              className={`inline-block transition-all duration-500 ${
+                isAnimating ? 'opacity-0 translate-y-10' : 'opacity-100 translate-y-0'
+              } bg-gradient-to-r from-brushedAluminum-light via-electricBlue/70 to-circuitGreen/80 bg-clip-text text-transparent px-3`}
             >
               {identities[currentIdentityIndex]}
             </span>
