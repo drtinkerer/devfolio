@@ -32,8 +32,8 @@
 
 ## 🙏 Credits and Inspirations
 
-This project is created on the top of excellent work by [Atzin Escandia](https://github.com/atzinescandia). 
-Original repository: [atzin-escandia-devfolio](https://github.com/atzinescandia/atzin-escandia-devfolio)
+This project is created on the top of excellent work by [Atzin Escandia](https://github.com/atzin-escandia). 
+Original repository: [atzin-escandia-devfolio](https://github.com/atzin-escandia/devfolio.git)
 
 ## 🚀 Getting Started
 
