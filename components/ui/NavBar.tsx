@@ -201,7 +201,7 @@ const NavBar = (): JSX.Element => {
               onMouseEnter={() => setIsZenButtonHovered(true)}
               onMouseLeave={() => setIsZenButtonHovered(false)}
               className={cn(
-                "flex items-center space-x-2 text-sm font-medium transition-all duration-300 rounded-full px-4 py-3 zen-mode-toggle", /* Increased padding for better touch target */
+                "flex items-center space-x-2 text-sm font-medium transition-all duration-300 rounded-full px-4 py-3 zen-mode-toggle focus:ring-0 focus:ring-offset-0", /* Added focus:ring-0 and focus:ring-offset-0 */
                 zenMode 
                   ? "bg-primary text-white shadow-lg shadow-primary/20" 
                   : "text-muted-foreground hover:text-primary",

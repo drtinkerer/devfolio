@@ -69,7 +69,7 @@ const Certifications = () => {
                 href={getCredentialUrl(cert.credlyBadgeId)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="cursor-pointer transition-transform duration-300 hover:scale-105"
+                className="cursor-pointer transition-transform duration-300 hover:scale-105 block"
                 aria-label={`${cert.title} - Click to verify on Credly`}
               >
                 <div className="w-[160px] h-[160px] flex items-center justify-center bg-black/15 rounded-lg">
@@ -100,7 +100,7 @@ const Certifications = () => {
 
               {/* Certification Info */}
               <div className="text-center space-y-2 mt-3">
-                <h4 className="text-sm font-bold text-white leading-snug tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] line-clamp-2 min-h-[2.5rem]">
+                <h4 className="text-sm font-bold text-white leading-snug tracking-wide">
                   {cert.title}
                 </h4>
                 <p className="text-xs font-medium text-electricBlue-light drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] opacity-90">

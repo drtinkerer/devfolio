@@ -38,7 +38,12 @@
   }
 
   button {
-    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background;
+    @apply focus:outline-none;
+  }
+
+  /* Override focus styles for zen mode button */
+  .zen-mode-toggle {
+    @apply focus:ring-0 focus:ring-offset-0 !important;
   }
 }
 
