@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import Image from "next/image";
 import React from "react";
+import { useZenMode } from "@/lib/ZenModeContext";
 
 // Memoize static data
 const EQUATIONS = [
@@ -30,6 +31,7 @@ const EQUATIONS = [
   { eq: "latency ∝ 1/bandwidth", bottom: "60%", left: "3%", type: "networking" },
   { eq: "availability = (1 - downtime/time)", top: "60%", right: "3%", type: "sre" },
   { eq: "scaling = f(demand)", bottom: "70%", right: "4%", type: "cloud" },
+  { eq: "Consistency = f(replicas)", top: "85%", right: "40%", type: "cloud" },
 ];
 
 const SYMBOLS = [
@@ -60,41 +62,48 @@ const MUSICAL_NOTES = [
 ];
 
 // Memoized components
-const TechIcon = React.memo(({ icon, isAnimating }: { icon: any; isAnimating: boolean }) => (
-  <motion.div
-    style={{
-      position: 'absolute',
-      left: `${icon.position.x}vw`,
-      top: `${icon.position.y}vh`,
-    }}
-    animate={{
-      rotate: icon.rotate ? 360 : 0,
-      scale: isAnimating ? [1, 1.3, 0.9, 1.1, 1] : 1,
-    }}
-    transition={{
-      rotate: {
-        duration: 15,
-        repeat: Infinity,
-        ease: "linear",
-      },
-      scale: {
-        duration: 0.5,
-        times: [0, 0.2, 0.4, 0.6, 1],
-        ease: "easeInOut",
-      }
-    }}
-    className="absolute w-10 h-10 md:w-14 md:h-14 opacity-25 hover:opacity-40 transition-opacity"
-  >
-    <Image
-      src={icon.src}
-      alt={icon.alt}
-      width={56}
-      height={56}
-      className="w-full h-full drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"
-      priority={false}
-    />
-  </motion.div>
-));
+const TechIcon = React.memo(({ icon, isAnimating }: { icon: any; isAnimating: boolean }) => {
+  const { zenMode } = useZenMode();
+  
+  return (
+    <motion.div
+      style={{
+        position: 'absolute',
+        left: `${icon.position.x}vw`,
+        top: `${icon.position.y}vh`,
+        pointerEvents: zenMode ? 'none' : 'auto',
+        cursor: zenMode ? 'default' : 'pointer'
+      }}
+      animate={{
+        rotate: icon.rotate ? 360 : 0,
+        scale: isAnimating ? [1, 1.3, 0.9, 1.1, 1] : 1,
+      }}
+      transition={{
+        rotate: {
+          duration: 15,
+          repeat: Infinity,
+          ease: "linear",
+        },
+        scale: {
+          duration: 0.5,
+          times: [0, 0.2, 0.4, 0.6, 1],
+          ease: "easeInOut",
+        }
+      }}
+      className={`absolute w-10 h-10 md:w-14 md:h-14 opacity-25 hover:opacity-40 transition-opacity ${zenMode ? 'pointer-events-none' : ''}`}
+    >
+      <Image
+        src={icon.src}
+        alt={icon.alt}
+        width={56}
+        height={56}
+        className={`w-full h-full drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] ${zenMode ? 'pointer-events-none' : ''}`}
+        priority={false}
+        style={{ pointerEvents: zenMode ? 'none' : 'auto' }}
+      />
+    </motion.div>
+  );
+});
 TechIcon.displayName = 'TechIcon';
 
 const Equation = React.memo(({ equation, index }: { equation: any; index: number }) => (
@@ -213,6 +222,7 @@ const BackgroundPatterns = () => {
     position: { x: number; y: number };
     velocity: { x: number; y: number };
   }>>([]);
+  const { zenMode } = useZenMode();
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const scrollTimeoutRef = useRef<NodeJS.Timeout>();
@@ -684,6 +694,71 @@ const BackgroundPatterns = () => {
                 {/* Axis Labels */}
                 <text x="10" y="20" fontSize="10" fill="currentColor">P</text>
                 <text x="165" y="125" fontSize="10" fill="currentColor">V</text>
+              </svg>
+            </motion.div>
+
+            {/* CAP Theorem Venn Diagram */}
+            <motion.div
+              animate={{
+                opacity: [0.3, 0.5, 0.3],
+                scale: [1, 1.05, 1],
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute top-[35%] left-[18%] w-72 h-72 opacity-40"
+              style={{
+                pointerEvents: zenMode ? 'none' : 'auto',
+                cursor: zenMode ? 'default' : 'pointer'
+              }}
+            >
+              <svg 
+                viewBox="0 0 400 400" 
+                className={`text-electricBlue/60 ${zenMode ? 'pointer-events-none' : ''}`}
+                xmlns="http://www.w3.org/2000/svg"
+                style={{ pointerEvents: zenMode ? 'none' : 'auto' }}
+              >
+                <g transform="translate(50, 50)" style={{ pointerEvents: zenMode ? 'none' : 'auto' }}>
+                  <circle 
+                    cx="150" 
+                    cy="120" 
+                    r="100" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="1"
+                    className={`text-electricBlue/30 ${zenMode ? 'pointer-events-none' : ''}`}
+                    style={{ pointerEvents: zenMode ? 'none' : 'auto' }}
+                  />
+                  <circle 
+                    cx="80" 
+                    cy="250" 
+                    r="100" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="1"
+                    className={`text-circuitGreen/30 ${zenMode ? 'pointer-events-none' : ''}`}
+                    style={{ pointerEvents: zenMode ? 'none' : 'auto' }}
+                  />
+                  <circle 
+                    cx="220" 
+                    cy="250" 
+                    r="100" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="1"
+                    className={`text-brushedAluminum/30 ${zenMode ? 'pointer-events-none' : ''}`}
+                    style={{ pointerEvents: zenMode ? 'none' : 'auto' }}
+                  />
+                  <text x="150" y="85" fontSize="18" fill="currentColor" className={`text-electricBlue/70 ${zenMode ? 'pointer-events-none select-none' : ''}`} textAnchor="middle" style={{ pointerEvents: zenMode ? 'none' : 'auto', userSelect: zenMode ? 'none' : 'auto' }}>Consistency</text>
+                  <text x="50" y="280" fontSize="18" fill="currentColor" className={`text-circuitGreen/70 ${zenMode ? 'pointer-events-none select-none' : ''}`} textAnchor="middle" style={{ pointerEvents: zenMode ? 'none' : 'auto', userSelect: zenMode ? 'none' : 'auto' }}>Availability</text>
+                  <text x="250" y="280" fontSize="18" fill="currentColor" className={`text-brushedAluminum/70 ${zenMode ? 'pointer-events-none select-none' : ''}`} textAnchor="middle" style={{ pointerEvents: zenMode ? 'none' : 'auto', userSelect: zenMode ? 'none' : 'auto' }}>Partition Tolerance</text>
+                  <text x="115" y="170" fontSize="14" fill="currentColor" className={`text-electricBlue/50 ${zenMode ? 'pointer-events-none select-none' : ''}`} textAnchor="middle" style={{ pointerEvents: zenMode ? 'none' : 'auto', userSelect: zenMode ? 'none' : 'auto' }}>CA</text>
+                  <text x="185" y="170" fontSize="14" fill="currentColor" className={`text-circuitGreen/50 ${zenMode ? 'pointer-events-none select-none' : ''}`} textAnchor="middle" style={{ pointerEvents: zenMode ? 'none' : 'auto', userSelect: zenMode ? 'none' : 'auto' }}>CP</text>
+                  <text x="150" y="250" fontSize="14" fill="currentColor" className={`text-brushedAluminum/50 ${zenMode ? 'pointer-events-none select-none' : ''}`} textAnchor="middle" style={{ pointerEvents: zenMode ? 'none' : 'auto', userSelect: zenMode ? 'none' : 'auto' }}>AP</text>
+                  <text x="150" y="20" fontSize="22" fill="currentColor" className={`text-electricBlue/80 ${zenMode ? 'pointer-events-none select-none' : ''}`} textAnchor="middle" style={{ pointerEvents: zenMode ? 'none' : 'auto', userSelect: zenMode ? 'none' : 'auto' }}>CAP Theorem</text>
+                </g>
               </svg>
             </motion.div>
 
