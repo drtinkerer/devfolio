@@ -15,9 +15,11 @@ const Hero = () => {
       setIsAnimating(true);
       setTimeout(() => {
         setCurrentIdentityIndex((prevIndex) => (prevIndex + 1) % identities.length);
-        setIsAnimating(false);
-      }, 500); // Fade out duration
-    }, 1500); // Total time each identity is displayed
+        setTimeout(() => {
+          setIsAnimating(false);
+        }, 500); // Delay before showing new text
+      }, 1000); // Wait for fade out to complete
+    }, 3000); // Total cycle time
     
     return () => clearInterval(intervalId);
   }, []);
@@ -61,12 +63,7 @@ const Hero = () => {
           </h2>
           <h2 className="title text-2xl md:text-3xl lg:text-4xl font-semibold text-center h-16 flex items-center">
             <span 
-              className={`inline-block ${isAnimating ? 'opacity-0' : 'opacity-100'} bg-gradient-to-r from-brushedAluminum-light via-electricBlue/70 to-circuitGreen/80 bg-clip-text text-transparent px-3`}
-              style={{ 
-                transition: 'all 0.5s ease-in-out',
-                transform: isAnimating ? 'translateY(-10px)' : 'translateY(0)',
-                letterSpacing: '0.02em'
-              }}
+              className={`inline-block transition-all duration-1000 ${isAnimating ? 'opacity-0 translate-y-10' : 'opacity-100 translate-y-0'} bg-gradient-to-r from-brushedAluminum-light via-electricBlue/70 to-circuitGreen/80 bg-clip-text text-transparent px-3`}
             >
               {identities[currentIdentityIndex]}
             </span>
