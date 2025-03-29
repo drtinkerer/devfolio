@@ -13,11 +13,13 @@ const EQUATIONS = [
   { eq: "F = ma", bottom: "30%", left: "2%", type: "physics" },
   
   // Mathematics Equations
+  { eq: "e^(iπ) = -1", top: "10%", left: "2%", type: "math" },
   { eq: "∫(x² + 2x + 1)dx", top: "50%", left: "2%", type: "math" },
   { eq: "πr²", top: "50%", right: "2%", type: "math" },
   { eq: "∇ × F", bottom: "20%", right: "2%", type: "math" },
   { eq: "∑(n=1 to ∞) 1/n²", top: "70%", left: "2%", type: "math" },
-  
+  { eq: "ln(xy) = ln(x) + ln(y)", bottom: "5%", left: "15%", type: "math" },
+  { eq: "sin(2θ) = 2sin(θ)cos(θ)", bottom: "5%", right: "15%", type: "math" },
   // Engineering Equations
   { eq: "P = VI", top: "80%", right: "2%", type: "engineering" },
   { eq: "η = W/Q", top: "90%", left: "2%", type: "engineering" },
