@@ -1,61 +1,75 @@
-@import "../styles/smoothScroll.css";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Import custom styles after Tailwind layers */
+@import "../styles/smoothScroll.css";
+
 @layer base {
   :root {
-    /* Define base HSL values (already done in tailwind.config.js via plugin) */
-    /* Example: --background: 210 40% 96%; */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
   }
 
-  /* Define dark mode if needed later
-  .dark {
-     Example: --background: 210 40% 9%;
+  * {
+    @apply border-border;
   }
-  */
+
+  body {
+    @apply bg-black-100 text-white;
+  }
+
+  button {
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background;
+  }
 }
 
-@layer base {
-  * {
-    @apply border-border; /* Removed !scroll-smooth */
+@layer components {
+  /* Typography styles */
+  h1 {
+    @apply text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight;
   }
-  body {
-    @apply bg-black-100 text-white; /* Use new background and text colors */
-    /* Apply a subtle background texture if desired */
-    /* Example: background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px); background-size: 20px 20px; */
+
+  h2 {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight;
   }
-  button {
-    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background; /* Enhanced focus state */
+
+  h3 {
+    @apply text-3xl sm:text-4xl md:text-5xl text-center font-semibold;
+  }
+
+  p {
+    @apply text-base sm:text-lg text-white-100 leading-relaxed;
   }
 }
 
 @layer utilities {
-  /* Typography adjustments for technical rigor + modern minimalism */
-  h1 {
-      @apply text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight; /* Slightly tighter tracking */
+  /* Animation delay utilities */
+  .animation-delay-2000 {
+    animation-delay: 2s;
   }
-  h2 {
-    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight; /* Bold instead of extrabold */
-  }
-  h3 {
-    @apply text-3xl sm:text-4xl md:text-5xl text-center font-semibold; /* Semibold for subheadings */
-  }
-  p {
-     @apply text-base sm:text-lg text-white-100 leading-relaxed; /* Slightly lighter text, relaxed leading */
-  }
-  /* Add styles for code blocks if needed */
-  /* code, pre { @apply font-mono text-sm bg-steelGray-dark text-circuitGreen-light p-1 rounded; } */
-}
 
-/* Animation delay utilities */
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
-
-.animation-delay-4000 {
-  animation-delay: 4s;
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
 }
 
 /* Zen Mode Styles */
