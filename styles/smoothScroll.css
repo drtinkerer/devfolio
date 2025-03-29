@@ -12,7 +12,8 @@
 .animate-out,
 .transition-all,
 .transform,
-.opacity-transition {
+.opacity-transition,
+.animate-float {
   will-change: transform, opacity;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -37,4 +38,39 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Optimize scrolling performance */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Optimize transform animations */
+.transform {
+  transform-style: preserve-3d;
+  transform: translateZ(0);
+}
+
+/* Optimize opacity transitions */
+.opacity-transition {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Optimize background patterns */
+.background-pattern {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Optimize floating elements */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }

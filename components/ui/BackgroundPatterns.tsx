@@ -68,32 +68,19 @@ const TechIcon = React.memo(({ icon, isAnimating, onIconClick }: { icon: any; is
   const { zenMode } = useZenMode();
   
   return (
-    <motion.div
+    <div
       style={{
         position: 'absolute',
         left: `${icon.position.x}vw`,
         top: `${icon.position.y}vh`,
         pointerEvents: zenMode ? 'none' : 'auto',
-        cursor: zenMode ? 'default' : 'pointer'
+        cursor: zenMode ? 'default' : 'pointer',
+        transform: 'translateZ(0)',
+        willChange: 'transform',
+        backfaceVisibility: 'hidden'
       }}
-      animate={{
-        rotate: icon.rotate ? 360 : 0,
-        scale: isAnimating ? [1, 1.3, 0.9, 1.1, 1] : 1,
-      }}
-      transition={{
-        rotate: {
-          duration: 15,
-          repeat: Infinity,
-          ease: "linear",
-        },
-        scale: {
-          duration: 0.5,
-          times: [0, 0.2, 0.4, 0.6, 1],
-          ease: "easeInOut",
-        }
-      }}
+      className={`absolute w-10 h-10 md:w-14 md:h-14 opacity-25 hover:opacity-40 transition-opacity ${zenMode ? 'pointer-events-none' : ''} animate-float`}
       onClick={() => !zenMode && onIconClick(icon)}
-      className={`absolute w-10 h-10 md:w-14 md:h-14 opacity-25 hover:opacity-40 transition-opacity ${zenMode ? 'pointer-events-none' : ''}`}
     >
       <Image
         src={icon.src}
@@ -104,25 +91,14 @@ const TechIcon = React.memo(({ icon, isAnimating, onIconClick }: { icon: any; is
         priority={false}
         style={{ pointerEvents: zenMode ? 'none' : 'auto' }}
       />
-    </motion.div>
+    </div>
   );
 });
 TechIcon.displayName = 'TechIcon';
 
 const Equation = React.memo(({ equation, index }: { equation: any; index: number }) => (
-  <motion.div
-    animate={{
-      y: [0, -10, 0],
-      opacity: [0.4, 0.6, 0.4],
-      scale: [1, 1.1, 1],
-    }}
-    transition={{
-      duration: 8 + index,
-      repeat: Infinity,
-      ease: "easeInOut",
-      delay: index * 1.5,
-    }}
-    className={`absolute text-base md:text-lg font-mono whitespace-nowrap ${
+  <div
+    className={`absolute text-base md:text-lg font-mono whitespace-nowrap animate-float ${
       equation.type === "physics" ? "text-circuitGreen/60" :
       equation.type === "math" ? "text-electricBlue/60" :
       equation.type === "devops" ? "text-electricBlue/60" :
@@ -138,10 +114,14 @@ const Equation = React.memo(({ equation, index }: { equation: any; index: number
       bottom: equation.bottom,
       left: equation.left,
       right: equation.right,
+      transform: 'translateZ(0)',
+      willChange: 'transform',
+      backfaceVisibility: 'hidden',
+      animationDelay: `${index * 1.5}s`
     }}
   >
     {equation.eq}
-  </motion.div>
+  </div>
 ));
 Equation.displayName = 'Equation';
 

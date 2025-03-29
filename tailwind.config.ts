@@ -131,6 +131,10 @@ const config: Config = {
           "0%": { transform: "translateY(20px)", opacity: "0" },
           "100%": { transform: "translateY(0)", opacity: "1" },
         },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -141,6 +145,7 @@ const config: Config = {
         blob: "blob 7s infinite",
         "fade-in": "fade-in 0.5s ease-in-out",
         "slide-up": "slide-up 0.5s ease-in-out",
+        float: "float 3s ease-in-out infinite",
       },
     },
   },

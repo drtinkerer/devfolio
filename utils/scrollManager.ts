@@ -10,6 +10,8 @@ class ScrollManager {
   private ticking: boolean = false;
   private scheduledAnimationFrame: number | null = null;
   private isInitialized: boolean = false;
+  private scrollTimeout: number | null = null;
+  private readonly SCROLL_THROTTLE = 16; // ~60fps
 
   constructor() {
     // Bind methods to this instance
@@ -30,7 +32,7 @@ class ScrollManager {
     // Initialize with current scroll position
     this.lastScrollY = window.scrollY || window.pageYOffset;
     
-    // Add event listener
+    // Add event listener with passive option for better performance
     window.addEventListener('scroll', this.handleScroll, { passive: true });
     
     // Immediate first update to initialize positions
@@ -49,6 +51,11 @@ class ScrollManager {
     if (this.scheduledAnimationFrame) {
       cancelAnimationFrame(this.scheduledAnimationFrame);
       this.scheduledAnimationFrame = null;
+    }
+
+    if (this.scrollTimeout) {
+      clearTimeout(this.scrollTimeout);
+      this.scrollTimeout = null;
     }
     
     window.removeEventListener('scroll', this.handleScroll);
@@ -83,8 +90,21 @@ class ScrollManager {
    */
   private handleScroll(): void {
     if (!this.ticking) {
+      // Use requestAnimationFrame for smooth updates
       this.scheduledAnimationFrame = requestAnimationFrame(this.update);
       this.ticking = true;
+
+      // Add a class to body during scroll for CSS optimizations
+      document.body.classList.add('is-scrolling');
+      
+      // Remove the class after scrolling stops
+      if (this.scrollTimeout) {
+        clearTimeout(this.scrollTimeout);
+      }
+      
+      this.scrollTimeout = window.setTimeout(() => {
+        document.body.classList.remove('is-scrolling');
+      }, this.SCROLL_THROTTLE);
     }
   }
 
@@ -97,10 +117,13 @@ class ScrollManager {
     const currentScrollY = window.scrollY || window.pageYOffset;
     const direction = currentScrollY > this.lastScrollY ? 'down' : 'up';
     
-    // Notify all observers
-    this.observers.forEach(observer => {
-      observer(currentScrollY, direction);
-    });
+    // Only notify observers if scroll position has changed significantly
+    if (Math.abs(currentScrollY - this.lastScrollY) > 0) {
+      // Notify all observers
+      this.observers.forEach(observer => {
+        observer(currentScrollY, direction);
+      });
+    }
     
     // Update state for next scroll event
     this.lastScrollY = currentScrollY;
