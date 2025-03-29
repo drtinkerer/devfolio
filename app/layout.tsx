@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ZenModeProvider } from "@/lib/ZenModeContext";
 import { SmoothScrollProvider } from "./SmoothScrollProvider";
+import { Analytics } from "@vercel/analytics/react";
 import { personalInfo } from '@/data';
 
 // Adjust weights for balance: lighter for body, bolder for headings
@@ -26,6 +27,7 @@ export default function RootLayout({
             {children}
           </SmoothScrollProvider>
         </ZenModeProvider>
+        <Analytics />
       </body>
     </html>
   );

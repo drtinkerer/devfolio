@@ -10,6 +10,7 @@
     "deploy": "vercel --prod"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.5.0",
     "clsx": "^2.1.0",
     "critters": "^0.0.25",
     "framer-motion": "^11.0.8",
