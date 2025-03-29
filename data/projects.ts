@@ -1,3 +1,5 @@
+import { personalInfo } from './social-media';
+
 export interface Project {
   id: number;
   title: string;
@@ -18,8 +20,8 @@ export const projects: Project[] = [
     className: "md:col-span-1",
     titleClassName: "justify-end",
     img: "https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif",
-    github: "https://github.com/ollionorg/aws-landing-zone",
-    link: "https://github.com/ollionorg/aws-landing-zone",
+    github: `https://github.com/${personalInfo.github}/aws-landing-zone`,
+    link: `https://github.com/${personalInfo.github}/aws-landing-zone`,
     techs: ["AWS", "Terraform", "AWS DevOps", "Secure Networking", "Cloud Security", "DevSecOps", "Platform Management"]
   },
   {
@@ -29,8 +31,8 @@ export const projects: Project[] = [
     className: "md:col-span-1",
     titleClassName: "justify-start",
     img: "https://i.pinimg.com/originals/84/f6/d1/84f6d14f1f88d34d3956150d19060d3a.gif",
-    github: "https://github.com/ollionorg/aws-security-comply-360.git",
-    link: "https://github.com/ollionorg/aws-security-comply-360.git",
+    github: `https://github.com/${personalInfo.github}/aws-security-comply-360.git`,
+    link: `https://github.com/${personalInfo.github}/aws-security-comply-360.git`,
     techs: ["AWS", "Python","CyberSecurity", "Vulnerability Assessments", "Compliance", "Python", "NIST", "CIS", "Benchmarking", "MCP", "LLM", "Gen AI"]
   },
   {
@@ -40,8 +42,8 @@ export const projects: Project[] = [
     className: "md:col-span-1",
     titleClassName: "justify-end",
     img: "https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif",
-    github: "https://github.com/drtinkerer/gcp-sandbox-provisioner-infra",
-    link: "https://github.com/drtinkerer/gcp-sandbox-provisioner-infra",
+    github: `https://github.com/${personalInfo.github}/gcp-sandbox-provisioner-infra`,
+    link: `https://github.com/${personalInfo.github}/gcp-sandbox-provisioner-infra`,
     techs: ["Google Cloud", "Terraform", "Python", "FastAPI", "Gen AI", "DevSecOps", "Platform Management"]
   },
   {
@@ -51,8 +53,8 @@ export const projects: Project[] = [
     className: "md:col-span-1",
     titleClassName: "justify-end",
     img: "https://i.pinimg.com/originals/84/f6/d1/84f6d14f1f88d34d3956150d19060d3a.gif",
-    github: "https://github.com/drtinkerer/the-self-hosted-engineer",
-    link: "https://github.com/drtinkerer/the-self-hosted-engineer",
+    github: `https://github.com/${personalInfo.github}/the-self-hosted-engineer`,
+    link: `https://github.com/${personalInfo.github}/the-self-hosted-engineer`,
     techs: ["Raspberry Pi", "Debian", "Oracle Cloud", "Terraform", "Python", "Traefik", "Cloudflare", "Netbird", "Kubernetes", "Ollama", "DevSecOps", "Homelab"]
   }
 ];

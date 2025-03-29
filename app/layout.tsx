@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ZenModeProvider } from "@/lib/ZenModeContext";
 import { SmoothScrollProvider } from "./SmoothScrollProvider";
+import { personalInfo } from '@/data';
 
 // Adjust weights for balance: lighter for body, bolder for headings
 const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "600", "700", '800'] });
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: 'Bhushan Rane',
-      url: 'https://www.linkedin.com/in/drtinkerer/', // Verify URL
+      url: `https://www.linkedin.com/in/${personalInfo.linkedin}/`, // Verify URL
     },
   ],
   generator: 'Next.js',

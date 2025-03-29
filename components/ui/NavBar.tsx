@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { navItems, socialMedia } from "@/data";
+import { navItems, socialLinks } from "@/data";
 import { User, Briefcase, Code2, Award, Mail, Download, Github, Linkedin, Instagram, BookOpen, Eye, EyeOff, Menu, X } from "lucide-react";
 import { useZenMode } from "@/lib/ZenModeContext";
 import { smoothScrollTo } from "@/utils/smoothScroll";
@@ -15,27 +15,6 @@ const iconMap = {
   Certifications: Award,
   Contact: Mail,
 } as const;
-
-const socialLinks = [
-  {
-    name: "GitHub",
-    icon: Github,
-    href: "https://github.com/drtinkerer",
-    color: "hover:text-gray-400"
-  },
-  {
-    name: "LinkedIn",
-    icon: Linkedin,
-    href: "https://linkedin.com/in/drtinkerer",
-    color: "hover:text-blue-500"
-  },
-  {
-    name: "Medium",
-    icon: BookOpen,
-    href: "https://medium.com/@drtinkerer",
-    color: "hover:text-gray-600"
-  }
-];
 
 const NavBar = (): JSX.Element => {
   const [activeSection, setActiveSection] = useState<string>("");
@@ -113,6 +92,12 @@ const NavBar = (): JSX.Element => {
   // Memoize nav items
   const memoizedNavItems = useMemo(() => navItems, []);
 
+  const socialIconMap = {
+    Github: Github,
+    Linkedin: Linkedin,
+    BookOpen: BookOpen
+  };
+
   return (
     <nav className={`fixed top-0 z-50 w-full transition-all duration-300 ${scrolled && !zenMode ? 'backdrop-blur-sm border-b border-white/5' : 'bg-transparent'}`}>
       <div className="container mx-auto px-4">
@@ -182,21 +167,20 @@ const NavBar = (): JSX.Element => {
               
               {/* Mobile social links */}
               <div className="flex items-center space-x-4 pt-2 pb-1 border-t border-white/10 mt-2">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className={cn(
-                      "text-muted-foreground transition-colors duration-200 p-4", /* Increased padding for mobile */
-                      social.color
-                    )}
-                    aria-label={social.name}
-                  >
-                    <social.icon className="h-6 w-6" />
-                  </a>
-                ))}
+                {socialLinks.map((link) => {
+                  const Icon = socialIconMap[link.icon as keyof typeof socialIconMap];
+                  return (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className={`text-white ${link.color} transition-colors duration-300`}
+                    >
+                      <Icon size={24} />
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -238,21 +222,20 @@ const NavBar = (): JSX.Element => {
             
             {/* Social links - only visible on desktop */}
             <div className="hidden md:flex items-center space-x-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    "text-muted-foreground transition-colors duration-200",
-                    social.color
-                  )}
-                  aria-label={social.name}
-                >
-                  <social.icon className="h-5 w-5" />
-                </a>
-              ))}
+              {socialLinks.map((link) => {
+                const Icon = socialIconMap[link.icon as keyof typeof socialIconMap];
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`text-white ${link.color} transition-colors duration-300`}
+                  >
+                    <Icon size={24} />
+                  </a>
+                );
+              })}
             </div>
             
             {/* CV button - Simplified on mobile */}

@@ -51,7 +51,7 @@ const Certifications = () => {
               <Image
                 src="https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif"
                 alt="Background"
-                className="object-cover object-center opacity-15 w-full h-full transition-opacity duration-300 group-hover:opacity-25"
+                className="object-cover object-center opacity-30 w-full h-full transition-opacity duration-300 group-hover:opacity-40 blur-[1px]"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 priority={false}

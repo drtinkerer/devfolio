@@ -1,6 +1,7 @@
 import Button from "./Button";
 import Reveal from "./ui/Reveal";
 import Image from "next/image";
+import { personalInfo, socialMedia } from '@/data';
 
 const Contact = () => {
   return (
@@ -19,13 +20,13 @@ const Contact = () => {
           Check out my work on <a
             className="text-steelGray-light font-extrabold hover:text-brushedAluminum transition-colors duration-200"
             target="_blank"
-            href="https://github.com/drtinkerer"
+            href={`https://github.com/${personalInfo.github}`}
           >
             GitHub
           </a>
         </p>
 
-        <a className="mt-10" href="mailto:eulersidentity2718@gmail.com">
+        <a className="mt-10" href={`mailto:${personalInfo.email}`}>
           <Button
             title="Let's connect"
             icon={

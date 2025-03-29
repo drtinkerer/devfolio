@@ -1,4 +1,5 @@
 import { Socials } from "./ui/Socials";
+import { personalInfo } from '@/data';
 
 const Footer = () => {
   return (
@@ -9,9 +10,10 @@ const Footer = () => {
           <div className="text-center my-10">
             <p className="mx-auto pt-5 sm:text-3xl">
               ✷ Link to the  <a
-                className="bg-gradient-to-r from-electricBlue-light via-electricBlue to-circuitGreen bg-clip-text text-transparent font-extrabold hover:scale-105 inline-block transition-transform duration-200"
+                href={`https://github.com/${personalInfo.github}/devfolio`}
                 target="_blank"
-                href="https://github.com/drtinkerer/devfolio"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-r from-electricBlue-light to-circuitGreen bg-clip-text text-transparent font-extrabold hover:scale-105 inline-block transition-transform duration-200"
               >
                 github
               </a> repository ✷
@@ -23,7 +25,7 @@ const Footer = () => {
               Crafted with ❤ by  <a
                 className="bg-gradient-to-r from-electricBlue-light via-electricBlue to-circuitGreen bg-clip-text text-transparent font-extrabold hover:scale-105 inline-block transition-transform duration-200"
                 target="_blank"
-                href="https://theplumup.com"
+                href="https://cloudpoet.in"
               >
                 Bhushan Rane.
               </a>

@@ -24,21 +24,22 @@
 - **Responsive Design**: Looks great on all devices - mobile, tablet, and desktop
 - **Dynamic Floating Icons**: Interactive animations with customizable tech icons that represent your skills
 - **Zen Mode**: Toggle to hide text and focus on the visual elements
-- **Local Credly Badge Display**: Uses transparent PNG images instead of iframes for a cleaner look
+- **Local Credly Badge Display**: Uses transparent Openbadge 3.0 PNG images instead of iframes for a cleaner look
 - **Smooth Animations**: Beautiful transitions and scroll effects using Framer Motion
 - **Circuit Pattern Background**: Animated elements that create a tech-focused aesthetic
 - **Touch-Optimized**: Enhanced mobile experience with responsive touch targets
 - **Dark Theme**: Modern dark theme with gradient accents
 
-## 🙏 Credits
+## 🙏 Credits and Inspirations
 
-This project is based on the excellent work by [Atzin Escandia](https://github.com/atzinescandia). Original repository: [atzin-escandia-devfolio](https://github.com/atzinescandia/atzin-escandia-devfolio)
+This project is created on the top of excellent work by [Atzin Escandia](https://github.com/atzinescandia). 
+Original repository: [atzin-escandia-devfolio](https://github.com/atzinescandia/atzin-escandia-devfolio)
 
 ## 🚀 Getting Started
 
 1. Clone this repository
 ```bash
-git clone https://github.com/drtinkerer/devfolio.git
+git clone https://github.com/{{ personalInfo.github }}/devfolio.git
 ```
 
 2. Navigate to the project directory
@@ -197,6 +198,32 @@ This portfolio can be easily deployed to various platforms:
 1. Create an account on [Netlify](https://netlify.com)
 2. Click 'New site from Git'
 3. Connect your GitHub repository
+
+### Docker Deployment
+
+1. Build the Docker image:
+```bash
+docker build -t devfolio .
+```
+
+2. Run the Docker container:
+```bash
+docker run -p 3000:3000 devfolio
+```
+
+#### Docker Deployment Options
+
+##### Local Development
+- Builds and runs the Next.js application in a containerized environment
+- Useful for consistent development across different machines
+
+##### Production Deployment
+- Can be used with container orchestration platforms like:
+  - Kubernetes
+  - AWS ECS
+  - Google Cloud Run
+
+**Note**: Ensure you have a `Dockerfile` in your project root configured for Next.js deployment.
 
 ## 📱 Mobile Optimization
 
