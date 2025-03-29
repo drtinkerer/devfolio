@@ -102,7 +102,7 @@ const CustomCursor = () => {
         }
       }
     };
-  }, [updateCursor, handleMouseEnter, handleMouseLeave, handleVisibilityChange, handleScroll]);
+  }, [updateCursor, handleMouseEnter, handleMouseLeave, handleVisibilityChange, handleScroll, isTouchDevice]);
 
   // Don't render cursor on touch devices
   if (isTouchDevice) {
