@@ -67,6 +67,23 @@
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
+/* Hide scrollbars in zen mode */
+.zen-mode {
+  overflow: hidden !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.zen-mode::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Prevent URL redirections in zen mode */
+.zen-mode a[href] {
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
 /* Specifically target Hero section content */
 .zen-mode h1,
 .zen-mode h2,

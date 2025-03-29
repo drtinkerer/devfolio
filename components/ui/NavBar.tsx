@@ -70,16 +70,17 @@ const NavBar = (): JSX.Element => {
   }, [observerCallback, observerOptions]);
 
   // Handle navigation click - works for both mouse and touch events
-  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement> | React.TouchEvent<HTMLAnchorElement>, sectionId: string) => {
+  const handleNavClick = (e: React.MouseEvent | React.TouchEvent, sectionId: string) => {
     e.preventDefault();
+    if (zenMode) return; // Prevent navigation in zen mode
     const section = document.getElementById(sectionId);
     if (section) {
-      smoothScrollTo(section, 800, 'easeInOutCubic', 60); 
+      smoothScrollTo(section, 800, 'easeInOutCubic', 60);
       setActiveSection(sectionId);
       // Close mobile menu after navigation
       setMobileMenuOpen(false);
     }
-  }, []);
+  };
 
   // Memoize handleDownloadCV
   const handleDownloadCV = useCallback(() => {
@@ -104,13 +105,15 @@ const NavBar = (): JSX.Element => {
         <div className="flex items-center justify-between h-16">
           {/* Mobile menu button */}
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => !zenMode && setMobileMenuOpen(!mobileMenuOpen)}
             onTouchStart={(e) => {
+              if (zenMode) return;
               e.preventDefault();
               setMobileMenuOpen(!mobileMenuOpen);
             }}
             className="md:hidden text-white focus:outline-none"
             aria-label="Toggle mobile menu"
+            disabled={zenMode}
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -127,10 +130,11 @@ const NavBar = (): JSX.Element => {
                   onClick={(e) => handleNavClick(e, sectionId)}
                   onTouchStart={(e) => handleNavClick(e, sectionId)}
                   className={cn(
-                    "flex items-center space-x-2 text-sm font-medium transition-colors px-3 py-2", /* Added padding for larger touch target */
+                    "flex items-center space-x-2 text-sm font-medium transition-colors px-3 py-2",
                     activeSection === sectionId
                       ? "text-primary"
-                      : "text-muted-foreground hover:text-primary"
+                      : "text-muted-foreground hover:text-primary",
+                    zenMode && "pointer-events-none cursor-default"
                   )}
                 >
                   <Icon className="h-5 w-5" />
