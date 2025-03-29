@@ -8,7 +8,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Styled%20with-Tailwind%20CSS-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Animated%20with-Framer%20Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
 
-**[✨ Live Demo](https://devfolio-ten-plum.vercel.app/) • [🔍 Source Code](https://github.com/drtinkerer/devfolio)
+**[✨ Live Site](https://cloudpoet.in/) • [🔍 Source Code](https://github.com/drtinkerer/devfolio)
 
 </div>
 
@@ -90,7 +90,7 @@ export const professionalDescription = {
 Showcase your projects by editing this file with your project details, including:
 - Title, description, and image URL
 - Technologies used
-- GitHub repository and live demo links
+- GitHub repository and live site links
 
 #### 3. Experience (`data/experience.ts`)
 
