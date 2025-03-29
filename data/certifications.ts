@@ -51,23 +51,30 @@ export const certifications: Certification[] = [
   },
   {
     id: 7,
+    title: "CKAD: Certified Kubernetes Application Developer",
+    issuer: "The Linux Foundation",
+    date: "March 2025",
+    credlyBadgeId: "45498019-a538-4851-b53a-238967709dcb"
+  },
+  {
+    id: 8,
     title: "KCNA: Kubernetes and Cloud Native Associate",
     issuer: "The Linux Foundation",
     date: "February 2025",
     credlyBadgeId: "e0f81c84-ae65-4026-9e2e-6b285d5837f0"
   },
   {
-    id: 8,
+    id: 9,
     title: "KCSA: Kubernetes and Cloud Native Security Associate",
     issuer: "The Linux Foundation",
     date: "March 2025",
     credlyBadgeId: "f1ff45e4-4de6-47ad-99f9-3a2506bd935d"
   },
   {
-    id: 9,
-    title: "CKAD: Certified Kubernetes Application Developer",
-    issuer: "The Linux Foundation",
-    date: "March 2025",
-    credlyBadgeId: "45498019-a538-4851-b53a-238967709dcb"
+    id: 10,
+    title: "Associate Cloud Engineer",
+    issuer: "Google Cloud",
+    date: "February 2023",
+    credlyBadgeId: "cd0f1d53-2a09-4308-a206-e0604a856ac6"
   }
 ];

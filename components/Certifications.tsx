@@ -72,15 +72,15 @@ const Certifications = () => {
                 className="cursor-pointer transition-transform duration-300 hover:scale-105"
                 aria-label={`${cert.title} - Click to verify on Credly`}
               >
-                <div className="w-[180px] h-[180px] flex items-center justify-center bg-black/15 rounded-lg">
-                  <div className="relative w-[150px] h-[150px]">
+                <div className="w-[160px] h-[160px] flex items-center justify-center bg-black/15 rounded-lg">
+                  <div className="relative w-[130px] h-[130px]">
                     {imageErrors[cert.id] ? (
                       <Image
                         src={getFallbackBadgeUrl()}
                         alt={`${cert.title} Badge`}
                         className="object-contain"
                         fill
-                        sizes="150px"
+                        sizes="130px"
                         priority={false}
                       />
                     ) : (
@@ -89,7 +89,7 @@ const Certifications = () => {
                         alt={`${cert.title} Badge`}
                         className="object-contain"
                         fill
-                        sizes="150px"
+                        sizes="130px"
                         priority={false}
                         onError={() => handleImageError(cert.id)}
                       />
