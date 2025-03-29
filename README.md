@@ -40,7 +40,7 @@ Original repository: [atzin-escandia-devfolio](https://github.com/atzin-escandia
 
 1. Clone this repository
 ```bash
-git clone https://github.com/{{ personalInfo.github }}/devfolio.git
+git clone https://github.com/drtinkerer/devfolio.git
 ```
 
 2. Navigate to the project directory
