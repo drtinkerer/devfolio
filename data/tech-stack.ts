@@ -1,6 +1,7 @@
 // Core expertise items for the About section
 export const coreExpertise = [
   "Multi-Cloud Architecture",
+  "AI Platforms",
   "DevSecOps",
   "CI/CD",
   "Data Science",
@@ -14,5 +15,7 @@ export const coreExpertise = [
   "Secure Cloud Landing Zones",
   "ZTNA",
   "Self-Hosting Solutions",
-  "Big Data Analytics"
+  "Big Data Analytics",
+  "System Design",
+  "Cloud Native Development"
 ];

@@ -1,13 +1,13 @@
 // Array of professional identities to display in the hero section
 export const identities = [
-  "an Engineer 🛠️",
-  "a Cloud Expert ☁️",
-  "a Hacker 👨‍💻",
-  "a Platform Specialist 🌐",
-  "a Video Gamer 🎮",
-  "a Musician 🎸",
-  "a Ponderer 🤔",
-  "a Problem Solver 🧩"
+  "🛠️ an Engineer 🛠️",
+  "☁️ a Cloud Expert ☁️",
+  "👨‍💻 a Hacker 👨‍💻",
+  "🌐 a Platform Specialist 🌐",
+  "🎮 a Video Gamer 🎮",
+  "🎸 a Musician 🎸",
+  "💭 a Ponderer 💭",
+  "🧩 a Problem Solver 🧩"
 ];
 
 // Professional description paragraphs for the hero section
