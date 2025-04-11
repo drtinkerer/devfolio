@@ -3,6 +3,7 @@ export * from './navigation';
 export * from './projects';
 export * from './certifications';
 export * from './experience';
+export * from './education';
 export * from './tech-stack';
 export * from './social-media';
 
