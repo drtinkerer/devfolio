@@ -147,6 +147,9 @@ const config: Config = {
         "slide-up": "slide-up 0.5s ease-in-out",
         float: "float 3s ease-in-out infinite",
       },
+      boxShadow: {
+        glow: "0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3)",
+      },
     },
   },
   plugins: [
