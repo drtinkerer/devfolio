@@ -15,37 +15,19 @@ export const education: Education[] = [
   {
     id: 1,
     degree: "Bachelor of Engineering in Mechanical Engineering",
-    institution: "University of Pune",
-    location: "Pune, India",
-    startDate: "August 2011",
+    institution: "Veermata Jijabai Technological Institute",
+    location: "Mumbai, India",
+    startDate: "July 2011",
     endDate: "May 2015",
     description: [
-      "Specialized in Design Engineering and Manufacturing Technology",
-      "Completed coursework in Thermodynamics, Fluid Mechanics, Machine Design, and Manufacturing Processes"
+      "Specialized in Mechanical Engineering",
+      "Completed coursework in Thermodynamics, Fluid Mechanics, Machine Design, and Manufacturing Technologies"
     ],
     achievements: [
       "Graduated with First Class Honors",
       "Completed a capstone project on Automated Manufacturing Systems"
     ],
-    institutionLogo: "https://upload.wikimedia.org/wikipedia/en/thumb/1/1b/Savitribai_Phule_Pune_University_Logo.svg/1200px-Savitribai_Phule_Pune_University_Logo.svg.png",
-    institutionUrl: "http://www.unipune.ac.in/"
-  },
-  {
-    id: 2,
-    degree: "Diploma in Mechanical Engineering",
-    institution: "Government Polytechnic",
-    location: "Pune, India",
-    startDate: "June 2008",
-    endDate: "May 2011",
-    description: [
-      "Focused on practical applications of mechanical engineering principles",
-      "Gained hands-on experience with various manufacturing tools and techniques"
-    ],
-    achievements: [
-      "Ranked in the top 5% of the class",
-      "Participated in state-level technical competitions"
-    ],
-    institutionLogo: "https://gpnashik.ac.in/assets/img/logo.png",
-    institutionUrl: "https://gpnashik.ac.in/"
+    institutionLogo: "https://upload.wikimedia.org/wikipedia/en/thumb/c/c8/Veermata_Jijabai_Technological_Institute_logo.png/220px-Veermata_Jijabai_Technological_Institute_logo.png",
+    institutionUrl: "http://vjti.ac.in/"
   }
 ];

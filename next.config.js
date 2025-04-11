@@ -29,7 +29,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'gpnashik.ac.in',
+        hostname: 'www.festivalsfromindia.com',
         port: '',
         pathname: '/**',
       },

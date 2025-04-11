@@ -121,22 +121,25 @@ const Experience = () => {
                         : (item as typeof education[0]).degree
                       }
                     </h4>
-                    <div className="flex items-center mt-1 gap-2">
+                    {/* Logo and Institution/Company Name */}
+                    <div className="flex flex-col items-start mt-2 gap-3">
+                      {/* Logo - Much larger and more visible */}
                       {activeTab === 'experience' && (item as typeof experience[0]).companyLogo ? (
                         <a
                           href={(item as typeof experience[0]).companyUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="block w-6 h-6 rounded overflow-hidden"
+                          className="block w-16 h-16 rounded-md overflow-hidden border border-white/20 hover:border-electricBlue/50 transition-all duration-300"
                         >
-                          <div className="relative w-full h-full">
+                          <div className="relative w-full h-full bg-white/10 hover:bg-white/20 transition-all duration-300">
                             <Image
                               src={(item as typeof experience[0]).companyLogo!}
                               alt="Company Logo"
-                              className="object-contain bg-white/5"
+                              className="object-contain p-2"
                               fill
-                              sizes="24px"
-                              priority={false}
+                              sizes="64px"
+                              priority={true}
+                              unoptimized={true}
                             />
                           </div>
                         </a>
@@ -145,28 +148,31 @@ const Experience = () => {
                           href={(item as typeof education[0]).institutionUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="block w-6 h-6 rounded overflow-hidden"
+                          className="block w-20 h-20 rounded-md overflow-hidden border border-white/20 hover:border-electricBlue/50 transition-all duration-300"
                         >
-                          <div className="relative w-full h-full">
+                          <div className="relative w-full h-full bg-white/15 hover:bg-white/25 transition-all duration-300">
                             <Image
                               src={(item as typeof education[0]).institutionLogo!}
                               alt="Institution Logo"
-                              className="object-contain bg-white/5"
+                              className="object-contain p-2"
                               fill
-                              sizes="24px"
-                              priority={false}
+                              sizes="80px"
+                              priority={true}
+                              unoptimized={true}
                             />
                           </div>
                         </a>
                       ) : null}
+                    </div>
+                    <div>
                       <h5 className="text-lg font-medium text-electricBlue">
                         {activeTab === 'experience'
                           ? (item as typeof experience[0]).company
                           : (item as typeof education[0]).institution
                         }
                       </h5>
+                      <p className="text-sm text-gray-400">{item.location}</p>
                     </div>
-                    <p className="text-sm text-gray-400 mt-1">{item.location}</p>
                   </div>
                 </div>
 
