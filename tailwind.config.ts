@@ -26,26 +26,26 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // Core Palette
+        // Core Palette - Refined Tech Colors
         steelGray: {
-          DEFAULT: "#71797E", // Base steel gray
-          light: "#A9B1B6",   // Lighter shade
-          dark: "#4A4F54",    // Darker shade
+          DEFAULT: "#8B9DC3", // Softer blue-gray
+          light: "#B4C2D7",   // Light blue-gray
+          dark: "#5D6B7D",    // Darker blue-gray
         },
         brushedAluminum: {
-          DEFAULT: "#C0C0C0", // Silver/Aluminum
-          light: "#D9D9D9",
-          dark: "#A8A8A8",
+          DEFAULT: "#A8B2C8", // Refined silver with slight blue tint
+          light: "#C4CDD9",
+          dark: "#8A9BB0",
         },
         electricBlue: {
-          DEFAULT: "#00FFFF", // Cyan/Electric Blue
-          light: "#7FFFD4",   // Aquamarine shade
-          dark: "#00CED1",    // Dark Turquoise
+          DEFAULT: "#64B5F6", // Softer electric blue
+          light: "#90CAF9",   // Light sky blue
+          dark: "#42A5F5",    // Medium blue
         },
         circuitGreen: {
-          DEFAULT: "#39FF14", // Neon Green
-          light: "#ADFF2F",   // Green Yellow
-          dark: "#008000",    // Standard Green
+          DEFAULT: "#81C784", // Softer green
+          light: "#A5D6A7",   // Light green
+          dark: "#66BB6A",    // Medium green
         },
 
         // Supporting Palette & Existing (adjust if needed)
@@ -148,7 +148,8 @@ const config: Config = {
         float: "float 3s ease-in-out infinite",
       },
       boxShadow: {
-        glow: "0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3)",
+        glow: "0 0 10px rgba(100, 181, 246, 0.4), 0 0 20px rgba(100, 181, 246, 0.2)",
+        greenGlow: "0 0 10px rgba(129, 199, 132, 0.4), 0 0 20px rgba(129, 199, 132, 0.2)",
       },
     },
   },
@@ -209,24 +210,24 @@ function addVariablesForColors({ addBase, theme }: any) {
       "--popover-hsl": "0 0% 7%",
       "--popover-foreground-hsl": "0 0% 96%",
 
-      "--primary-hsl": "195 100% 50%", // ~ electricBlue.DEFAULT (adjust HSL)
+      "--primary-hsl": "207 90% 68%", // ~ electricBlue.DEFAULT (adjust HSL)
       "--primary-foreground-hsl": "0 0% 5%", // ~ black.DEFAULT
 
-      "--secondary-hsl": "210 6% 70%", // ~ steelGray.light (adjust HSL)
+      "--secondary-hsl": "219 25% 70%", // ~ steelGray.light (adjust HSL)
       "--secondary-foreground-hsl": "0 0% 10%", // ~ black.100
 
-      "--muted-hsl": "210 6% 30%", // ~ steelGray.dark
+      "--muted-hsl": "219 20% 45%", // ~ steelGray.dark
       "--muted-foreground-hsl": "0 0% 70%", // ~ white.100
 
-      "--accent-hsl": "128 100% 54%", // ~ circuitGreen.DEFAULT (adjust HSL)
+      "--accent-hsl": "124 39% 65%", // ~ circuitGreen.DEFAULT (adjust HSL)
       "--accent-foreground-hsl": "0 0% 5%", // ~ black.DEFAULT
 
       "--destructive-hsl": "0 84% 60%",
       "--destructive-foreground-hsl": "0 0% 98%",
 
-      "--border-hsl": "210 6% 40%", // ~ steelGray.dark
-      "--input-hsl": "210 6% 50%", // ~ steelGray.DEFAULT
-      "--ring-hsl": "195 100% 50%", // ~ electricBlue.DEFAULT
+      "--border-hsl": "219 20% 45%", // ~ steelGray.dark
+      "--input-hsl": "219 25% 62%", // ~ steelGray.DEFAULT
+      "--ring-hsl": "207 90% 68%", // ~ electricBlue.DEFAULT
 
       "--radius": "0.5rem",
       ...newVars // Add the flattened color variables
