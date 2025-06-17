@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import Image from "next/image";
 import { coreExpertise } from "@/data/tech-stack";
 import Reveal from "./ui/Reveal";
 
-const About = () => (
+const About = memo(() => (
   <section id="about" className="py-20 w-full space-y-10">
     <Reveal>
       <h3 className="mb-10">
@@ -27,7 +27,7 @@ const About = () => (
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               priority={false}
-              unoptimized={true}
+              loading="lazy"
             />
           </div>
           <div className="absolute inset-0 bg-black/50"></div>
@@ -85,6 +85,8 @@ const About = () => (
       </div>
     </div>
   </section>
-);
+));
+
+About.displayName = 'About';
 
 export default About;

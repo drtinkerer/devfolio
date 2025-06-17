@@ -1,11 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { memo, useMemo } from "react";
 import { projects } from "@/data";
 import { BentoGrid, BentoGridItem } from "./ui/BentoGrid";
 import Reveal from "./ui/Reveal";
 
-const Projects = () => {
+const Projects = memo(() => {
+  // Memoize the projects list to prevent unnecessary re-renders
+  const memoizedProjects = useMemo(() => projects, []);
   return (
     <section id="projects" className="py-20">
       <Reveal>
@@ -17,7 +19,7 @@ const Projects = () => {
         </h3>
       </Reveal>
       <BentoGrid className="w-full py-20">
-        {projects.map((item, i) => (
+        {memoizedProjects.map((item, i) => (
           <BentoGridItem
             key={item.id}
             {...item}
@@ -26,6 +28,8 @@ const Projects = () => {
       </BentoGrid>
     </section>
   );
-};
+});
+
+Projects.displayName = 'Projects';
 
 export default Projects;

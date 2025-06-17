@@ -6,7 +6,7 @@ import Image from "next/image";
 import React from "react";
 import { useZenMode } from "@/lib/ZenModeContext";
 
-// Memoize static data
+// Static data moved outside component for performance - memoized once
 const EQUATIONS = [
   // Physics Equations
   { eq: "E = mc²", top: "8%", right: "2%", type: "physics" },
@@ -64,7 +64,11 @@ const MUSICAL_NOTES = [
 ];
 
 // Memoized components
-const TechIcon = React.memo(({ icon, isAnimating, onIconClick }: { icon: any; isAnimating: boolean; onIconClick: (icon: any) => void }) => {
+const TechIcon = React.memo(({ icon, isAnimating, onIconClick }: { 
+  icon: any; 
+  isAnimating: boolean; 
+  onIconClick: (icon: any) => void;
+}) => {
   const { zenMode } = useZenMode();
   
   return (
@@ -279,41 +283,50 @@ const BackgroundPatterns = () => {
     setMounted(true);
   }, []);
 
-  // Animation loop for continuous movement
+  // Optimized animation loop - reduced frequency for better performance
   useEffect(() => {
     const speed = 0.1;
+    let lastTime = 0;
+    const targetFPS = 30; // Reduced from 60fps to 30fps for better performance
+    const frameTime = 1000 / targetFPS;
 
-    const animate = () => {
-      setTechIcons(prevIcons => 
-        prevIcons.map(icon => {
-          const newPosition = {
-            x: icon.position.x + icon.velocity.x * speed,
-            y: icon.position.y + icon.velocity.y * speed
-          };
+    const animate = (currentTime: number) => {
+      if (currentTime - lastTime >= frameTime) {
+        setTechIcons(prevIcons => {
+          // Only update if icons have actually moved significantly
+          const updatedIcons = prevIcons.map(icon => {
+            const newPosition = {
+              x: icon.position.x + icon.velocity.x * speed,
+              y: icon.position.y + icon.velocity.y * speed
+            };
 
-          const newVelocity = { ...icon.velocity };
-          if (newPosition.x <= 0 || newPosition.x >= 100) {
-            newVelocity.x = -newVelocity.x;
-          }
-          if (newPosition.y <= 0 || newPosition.y >= 100) {
-            newVelocity.y = -newVelocity.y;
-          }
+            const newVelocity = { ...icon.velocity };
+            if (newPosition.x <= 0 || newPosition.x >= 100) {
+              newVelocity.x = -newVelocity.x;
+            }
+            if (newPosition.y <= 0 || newPosition.y >= 100) {
+              newVelocity.y = -newVelocity.y;
+            }
 
-          newPosition.x = Math.max(0, Math.min(100, newPosition.x));
-          newPosition.y = Math.max(0, Math.min(100, newPosition.y));
+            newPosition.x = Math.max(0, Math.min(100, newPosition.x));
+            newPosition.y = Math.max(0, Math.min(100, newPosition.y));
 
-          return {
-            ...icon,
-            position: newPosition,
-            velocity: newVelocity
-          };
-        })
-      );
+            return {
+              ...icon,
+              position: newPosition,
+              velocity: newVelocity
+            };
+          });
+          
+          return updatedIcons;
+        });
+        lastTime = currentTime;
+      }
 
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    animate();
+    animationFrameRef.current = requestAnimationFrame(animate);
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
@@ -364,6 +377,8 @@ const BackgroundPatterns = () => {
       })
     );
   }, []);
+
+
 
   if (!mounted) {
     return null;

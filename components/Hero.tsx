@@ -2,27 +2,29 @@ import Button from "./Button";
 import Reveal from "./ui/Reveal";
 import { Spotlight } from "./ui/Spotlight";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, memo } from "react";
 import { identities, professionalDescription } from "../data/personal";
 
-const Hero = () => {
+const Hero = memo(() => {
   const [currentIdentityIndex, setCurrentIdentityIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   
+  // Memoized cycle function to prevent recreation
+  const cycleIdentity = useCallback(() => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentIdentityIndex((prevIndex) => (prevIndex + 1) % identities.length);
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, 200);
+    }, 500);
+  }, []);
+
   // Effect to cycle through identities
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setIsAnimating(true);
-      setTimeout(() => {
-        setCurrentIdentityIndex((prevIndex) => (prevIndex + 1) % identities.length);
-        setTimeout(() => {
-          setIsAnimating(false);
-        }, 200); // Reduced from 500ms to 200ms for faster fade in
-      }, 500); // Reduced from 1000ms to 500ms for faster fade out
-    }, 2000); // Reduced from 3000ms to 2000ms for faster cycle
-    
+    const intervalId = setInterval(cycleIdentity, 2000);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [cycleIdentity]);
   return (
     <div className="pb-20 pt-36 relative">
       {/* Background Grid - Industrial Touch */}
@@ -83,6 +85,8 @@ const Hero = () => {
       </div>
     </div>
   );
-};
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero;
