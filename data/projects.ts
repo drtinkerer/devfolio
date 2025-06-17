@@ -33,7 +33,7 @@ export const projects: Project[] = [
     img: "https://i.pinimg.com/originals/84/f6/d1/84f6d14f1f88d34d3956150d19060d3a.gif",
     github: `https://github.com/${personalInfo.github}/aws-security-comply-360.git`,
     link: `https://github.com/${personalInfo.github}/aws-security-comply-360.git`,
-    techs: ["AWS", "Python","CyberSecurity", "Vulnerability Assessments", "Compliance", "Python", "NIST", "CIS", "Benchmarking", "MCP", "LLM", "Gen AI"]
+    techs: ["AWS", "Python", "CyberSecurity", "Vulnerability Assessments", "Compliance", "NIST", "CIS", "Benchmarking", "MCP", "LLM", "Gen AI"]
   },
   {
     id: 3,

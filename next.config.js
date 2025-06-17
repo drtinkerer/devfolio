@@ -45,11 +45,16 @@ const nextConfig = {
   experimental: {
     optimizeCss: process.env.NODE_ENV === 'production',
     optimizePackageImports: ['framer-motion', 'lucide-react'],
-    serverComponentsExternalPackages: ['sharp'],
   },
+  serverExternalPackages: ['sharp'],
   webpack: (config, { dev, isServer }) => {
-    // Optimize bundle size
-    if (!dev && !isServer) {
+    // Skip webpack config in development when using Turbopack
+    if (dev) {
+      return config;
+    }
+    
+    // Optimize bundle size for production builds only
+    if (!isServer) {
       config.optimization = {
         ...config.optimization,
         splitChunks: {
