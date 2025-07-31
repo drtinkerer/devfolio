@@ -9,12 +9,19 @@ export interface Education {
   achievements: string[];
   institutionLogo?: string;
   institutionUrl?: string;
+  // New fields for enhanced design
+  gpa?: string; // Grade point average
+  honors?: string[]; // Academic honors
+  relevantCourses?: string[]; // Key courses
+  projects?: string[]; // Academic projects
+  completionPercentage?: number; // For progress indicator
+  institutionColor?: string; // For theming
 }
 
 export const education: Education[] = [
   {
     id: 1,
-    degree: "Bachelor of Engineering in Mechanical Engineering",
+    degree: "Bachelor of Technology in Mechanical Engineering",
     institution: "Veermata Jijabai Technological Institute",
     location: "Mumbai, India",
     startDate: "July 2011",
@@ -28,6 +35,23 @@ export const education: Education[] = [
       "Completed a capstone project on Automated Manufacturing Systems"
     ],
     institutionLogo: "https://upload.wikimedia.org/wikipedia/en/thumb/c/c8/Veermata_Jijabai_Technological_Institute_logo.png/220px-Veermata_Jijabai_Technological_Institute_logo.png",
-    institutionUrl: "http://vjti.ac.in/"
+    institutionUrl: "http://vjti.ac.in/",
+    gpa: "First Class",
+    honors: ["First Class Honors", "Dean's List"],
+    relevantCourses: [
+      "Thermodynamics",
+      "Fluid Mechanics", 
+      "Machine Design",
+      "Manufacturing Technologies",
+      "Computer Aided Design",
+      "Materials Science"
+    ],
+    projects: [
+      "Automated Manufacturing Systems - Capstone Project",
+      "Heat Exchanger Design Optimization",
+      "CNC Machine Programming and Operation"
+    ],
+    completionPercentage: 100,
+    institutionColor: "#1E40AF"
   }
 ];

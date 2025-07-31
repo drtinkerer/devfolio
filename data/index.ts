@@ -6,6 +6,7 @@ export * from './experience';
 export * from './education';
 export * from './tech-stack';
 export * from './social-media';
+export * from './types';
 
 export const navItems = [
   { name: "About", link: "#about" },

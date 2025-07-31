@@ -9,6 +9,11 @@ export interface Experience {
   technologies: string[];
   companyLogo?: string;
   companyUrl?: string;
+  // New fields for enhanced design
+  companyColor?: string; // For timeline dot customization
+  isCurrentPosition?: boolean; // For special current position styling
+  achievements?: string[]; // Key achievements for this role
+  teamSize?: string; // Team size information
 }
 
 export const experience: Experience[] = [
@@ -30,7 +35,15 @@ export const experience: Experience[] = [
     ],
     technologies: ["AWS", "GCP", "Kubernetes", "GitHub Actions", "GitLab DevOps", "Terraform", "Argo Stack", "Cloudflare Tunnels"],
     companyLogo: "https://ollion.com/imgs/logo.svg",
-    companyUrl: "https://ollion.com"
+    companyUrl: "https://ollion.com",
+    companyColor: "#0066CC",
+    isCurrentPosition: true,
+    achievements: [
+      "95% cost savings with Sandbox Provisioner system",
+      "Led secure multi-cloud migration for Swiss asset management client",
+      "Implemented GitOps across multiple GKE clusters"
+    ],
+    teamSize: "5-8 engineers"
   },
   {
     id: 2,
