@@ -3,9 +3,8 @@ import { personalInfo } from '@/data';
 
 const Footer = () => {
   return (
-    <footer className="w-full sm:pt-60 pb-10 relative overflow-hidden ">
+    <footer className="w-full pt-16 pb-10 relative">
       <div className="relative w-full h-full">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-steelGray-dark/50"></div>
         <div className="relative z-10">
           <div className="text-center my-10">
             <p className="mx-auto pt-5 sm:text-3xl">

@@ -34,7 +34,7 @@ export const education: Education[] = [
       "Graduated with First Class Honors",
       "Completed a capstone project on Automated Manufacturing Systems"
     ],
-    institutionLogo: "https://upload.wikimedia.org/wikipedia/en/thumb/c/c8/Veermata_Jijabai_Technological_Institute_logo.png/220px-Veermata_Jijabai_Technological_Institute_logo.png",
+    institutionLogo: "https://vjti.ac.in/wp-content/uploads/2024/05/logo-light.gif",
     institutionUrl: "http://vjti.ac.in/",
     gpa: "First Class",
     honors: ["First Class Honors", "Dean's List"],
