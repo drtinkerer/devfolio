@@ -36,8 +36,9 @@ const Home = () => {
             <Certifications />
             <Contact />
           </div>
-          <Footer />
         </div>
+        {/* Make footer full-width by placing it outside the centered wrapper */}
+        <Footer />
       </div>
     </main>
   );

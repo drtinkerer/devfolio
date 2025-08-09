@@ -28,6 +28,7 @@ const About = memo(() => (
               sizes="(max-width: 768px) 100vw, 50vw"
               priority={false}
               loading="lazy"
+              unoptimized={true}
             />
           </div>
           <div className="absolute inset-0 bg-black/50"></div>

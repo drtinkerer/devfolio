@@ -1,5 +1,7 @@
+const { PHASE_PRODUCTION_BUILD } = require('next/constants');
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const baseConfig = {
   reactStrictMode: true,
   images: {
     remotePatterns: [
@@ -47,42 +49,6 @@ const nextConfig = {
     optimizePackageImports: ['framer-motion', 'lucide-react'],
   },
   serverExternalPackages: ['sharp'],
-  webpack: (config, { dev, isServer }) => {
-    // Skip webpack config in development when using Turbopack
-    if (dev) {
-      return config;
-    }
-    
-    // Optimize bundle size for production builds only
-    if (!isServer) {
-      config.optimization = {
-        ...config.optimization,
-        splitChunks: {
-          chunks: 'all',
-          minSize: 20000,
-          maxSize: 244000,
-          minChunks: 1,
-          maxAsyncRequests: 30,
-          maxInitialRequests: 30,
-          cacheGroups: {
-            defaultVendors: {
-              test: /[\\/]node_modules[\\/]/,
-              priority: -10,
-              reuseExistingChunk: true,
-            },
-            default: {
-              minChunks: 2,
-              priority: -20,
-              reuseExistingChunk: true,
-            },
-          },
-        },
-        runtimeChunk: 'single',
-        minimize: true,
-      };
-    }
-    return config;
-  },
   // Enable compression
   compress: true,
   // Disable powered by header
@@ -91,4 +57,44 @@ const nextConfig = {
   productionBrowserSourceMaps: false,
 };
 
-module.exports = nextConfig;
+module.exports = (phase) => {
+  // In dev (Turbopack) do NOT expose a webpack config to avoid warnings
+  if (phase !== PHASE_PRODUCTION_BUILD) {
+    return baseConfig;
+  }
+
+  // Only include webpack customizations during production builds
+  return {
+    ...baseConfig,
+    webpack: (config, { isServer }) => {
+      if (!isServer) {
+        config.optimization = {
+          ...config.optimization,
+          splitChunks: {
+            chunks: 'all',
+            minSize: 20000,
+            maxSize: 244000,
+            minChunks: 1,
+            maxAsyncRequests: 30,
+            maxInitialRequests: 30,
+            cacheGroups: {
+              defaultVendors: {
+                test: /[\\/]node_modules[\\/]/,
+                priority: -10,
+                reuseExistingChunk: true,
+              },
+              default: {
+                minChunks: 2,
+                priority: -20,
+                reuseExistingChunk: true,
+              },
+            },
+          },
+          runtimeChunk: 'single',
+          minimize: true,
+        };
+      }
+      return config;
+    },
+  };
+};
