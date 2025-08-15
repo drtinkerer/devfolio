@@ -63,11 +63,11 @@ const Hero = memo(() => {
           <h2 className="title text-2xl md:text-3xl lg:text-4xl font-semibold text-brushedAluminum-light text-center">
             I&apos;m
           </h2>
-          <h2 className="title text-2xl md:text-3xl lg:text-4xl font-semibold text-center h-16 flex items-center">
+          <h2 className="title text-2xl md:text-3xl lg:text-4xl font-semibold text-center h-16 flex items-center justify-center">
             <span 
               className={`inline-block transition-all duration-500 ${
                 isAnimating ? 'opacity-0 translate-y-10' : 'opacity-100 translate-y-0'
-              } bg-gradient-to-r from-brushedAluminum-light via-electricBlue/70 to-circuitGreen/80 bg-clip-text text-transparent px-3`}
+              } text-white px-3`}
             >
               {identities[currentIdentityIndex]}
             </span>
