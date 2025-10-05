@@ -84,18 +84,18 @@ export const BentoGridItem: React.FC<BentoGridItemProps> = ({
         <div
           className={cn(
             titleClassName,
-            "group-hover/bento:translate-x-2 transition duration-200 relative flex flex-col px-5 py-5 lg:py-10"
+            "group-hover/bento:translate-x-2 transition duration-200 relative flex flex-col px-4 py-4 lg:py-5"
           )}
         >
-          <div className="flex flex-col gap-5">
-            <div className="flex items-start gap-5">
-              <div className="flex-1 space-y-6">
-                <div className="drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                  <h2 className="text-xl md:text-2xl font-bold">
+          <div className="flex flex-col gap-3">
+            <div className="flex items-start gap-3">
+              <div className="flex-1 space-y-3">
+                <div className="drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                  <h2 className="text-lg md:text-xl font-bold">
                     {link ? (
-                      <a 
-                        href={link} 
-                        target="_blank" 
+                      <a
+                        href={link}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="hover:text-gray-300 transition-colors duration-200"
                       >
@@ -110,15 +110,15 @@ export const BentoGridItem: React.FC<BentoGridItemProps> = ({
                       href={github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="self-start sm:self-auto flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-gray-800/70 to-gray-900/70 hover:from-gray-700/80 hover:to-gray-800/80 text-sm font-medium text-gray-200 hover:text-white transition-all duration-300 border border-gray-700/50 hover:border-gray-500/70 backdrop-blur-sm shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                      className="self-start sm:self-auto flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-gray-800/70 to-gray-900/70 hover:from-gray-700/80 hover:to-gray-800/80 text-xs font-medium text-gray-200 hover:text-white transition-all duration-300 border border-gray-700/50 hover:border-gray-500/70 backdrop-blur-sm shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
                     >
-                      <div className="relative w-4 h-4 mr-1">
+                      <div className="relative w-3.5 h-3.5">
                         <Image
                           src="/assets/git.svg"
                           alt="GitHub"
                           className="transition-all duration-300"
                           fill
-                          sizes="16px"
+                          sizes="14px"
                           priority={false}
                         />
                       </div>
@@ -126,15 +126,15 @@ export const BentoGridItem: React.FC<BentoGridItemProps> = ({
                     </a>
                   )}
                 </div>
-                <div className="font-medium text-gray-200 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] z-10">
+                <div className="text-sm font-medium text-gray-200 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] z-10 line-clamp-3">
                   {description}
                 </div>
 
-                <div className="flex flex-wrap gap-2 py-1">
+                <div className="flex flex-wrap gap-1.5">
                   {techs?.map((tech) => (
                     <div
                       key={tech}
-                      className="bg-electricBlue/15 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-lg hover:bg-electricBlue/25 transition duration-200 ease-in-out drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]"
+                      className="bg-electricBlue/15 text-white text-xs font-semibold px-2.5 py-1 rounded-full shadow-lg hover:bg-electricBlue/25 transition duration-200 ease-in-out drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]"
                     >
                       {tech}
                     </div>

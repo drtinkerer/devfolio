@@ -15,6 +15,28 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 1,
+    title: "NetBird Python Client",
+    description: "An unofficial Python library for interacting with NetBird's API, providing comprehensive network management and automation capabilities. Features complete API coverage for 11 NetBird resources, network topology visualization, advanced error handling, and type-safe Pydantic models with 98% test coverage.",
+    className: "md:col-span-1",
+    titleClassName: "justify-end",
+    img: "https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif",
+    github: `https://github.com/${personalInfo.github}/netbird-python-client`,
+    link: `https://github.com/${personalInfo.github}/netbird-python-client`,
+    techs: ["Python", "Pydantic", "REST API", "Network Automation", "DevOps", "Infrastructure as Code", "Security", "Graphviz"]
+  },
+  {
+    id: 2,
+    title: "Terraform NetBird Network Module",
+    description: "A Terraform module for creating and managing NetBird networks with advanced networking capabilities. Features automatic peer group creation, network resource management, advanced routing configuration, granular access policy control, setup key generation for device enrollment, and multi-group resource assignment.",
+    className: "md:col-span-1",
+    titleClassName: "justify-start",
+    img: "https://i.pinimg.com/originals/84/f6/d1/84f6d14f1f88d34d3956150d19060d3a.gif",
+    github: `https://github.com/${personalInfo.github}/terraform-netbird-network`,
+    link: `https://github.com/${personalInfo.github}/terraform-netbird-network`,
+    techs: ["Terraform", "NetBird", "Infrastructure as Code", "Network Automation", "DevOps", "Security", "SDN", "Multi-tier Architecture"]
+  },
+  {
+    id: 3,
     title: "AWS: Landing Zone",
     description: "An AWS Landing Zone is a well-architected, multi-account AWS environment that serves as a secure and scalable starting point for deploying workloads and applications, based on AWS best practices for security, governance, and networking.",
     className: "md:col-span-1",
@@ -25,7 +47,7 @@ export const projects: Project[] = [
     techs: ["AWS", "Terraform", "AWS DevOps", "Secure Networking", "Cloud Security", "DevSecOps", "Platform Management"]
   },
   {
-    id: 2,
+    id: 4,
     title: "AWS Security Comply 360",
     description: "AWS Security Comply 360 is a comprehensive security and compliance solution that helps organizations manage and monitor their AWS environments, ensuring compliance with security and regulatory requirements.",
     className: "md:col-span-1",
@@ -36,7 +58,7 @@ export const projects: Project[] = [
     techs: ["AWS", "Python", "CyberSecurity", "Vulnerability Assessments", "Compliance", "NIST", "CIS", "Benchmarking", "MCP", "LLM", "Gen AI"]
   },
   {
-    id: 3,
+    id: 5,
     title: "AI Powered Cloud Sandbox Provisiner",
     description: "A cloud sandbox provisioner is a API service that allows users to create and manage temporary, isolated environments for testing, development, or training purposes, based on Google Cloud.",
     className: "md:col-span-1",
@@ -47,7 +69,7 @@ export const projects: Project[] = [
     techs: ["Google Cloud", "Terraform", "Python", "FastAPI", "Gen AI", "DevSecOps", "Platform Management"]
   },
   {
-    id: 4,
+    id: 6,
     title: "The Self Hosted Engineer",
     description: "The Self-Hosted Engineer explores building cost-effective homelabs using open-source tools, Raspberry Pi clusters, and free-tier cloud services. It blends technical guidance with real-world insights, helping tech enthusiasts and aspiring DevOps engineers experiment with Kubernetes, automation, and cloud integration.",
     className: "md:col-span-1",
