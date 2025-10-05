@@ -229,7 +229,7 @@ const BackgroundPatterns = () => {
       try {
         const response = await fetch('/api/get-floating-icons');
         const icons = await response.json();
-        const mappedIcons = icons.map((icon: string, index) => {
+        const mappedIcons = icons.map((icon: string, index: number) => {
           // Create a grid-like distribution with random offset for more even spacing
           const cols = Math.ceil(Math.sqrt(icons.length));
           const rows = Math.ceil(icons.length / cols);
