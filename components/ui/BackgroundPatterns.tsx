@@ -5,6 +5,8 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import Image from "next/image";
 import React from "react";
 import { useZenMode } from "@/lib/ZenModeContext";
+import ZenSpaceShooter from "./ZenSpaceShooter";
+import InteractiveTechIcon from "./InteractiveTechIcon";
 
 // Static data moved outside component for performance - memoized once
 const EQUATIONS = [
@@ -63,42 +65,7 @@ const MUSICAL_NOTES = [
   { symbol: "𝄞", position: { top: "30%", right: "25%" } },
 ];
 
-// Memoized components
-const TechIcon = React.memo(({ icon, isAnimating, onIconClick }: { 
-  icon: any; 
-  isAnimating: boolean; 
-  onIconClick: (icon: any) => void;
-}) => {
-  const { zenMode } = useZenMode();
-  
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        left: `${icon.position.x}vw`,
-        top: `${icon.position.y}vh`,
-        pointerEvents: zenMode ? 'none' : 'auto',
-        cursor: zenMode ? 'default' : 'pointer',
-        transform: 'translateZ(0)',
-        willChange: 'transform',
-        backfaceVisibility: 'hidden'
-      }}
-      className={`absolute w-10 h-10 md:w-14 md:h-14 opacity-25 hover:opacity-40 transition-opacity ${zenMode ? 'pointer-events-none' : ''} animate-float`}
-      onClick={() => !zenMode && onIconClick(icon)}
-    >
-      <Image
-        src={icon.src}
-        alt={icon.alt}
-        width={56}
-        height={56}
-        className={`w-full h-full drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] ${zenMode ? 'pointer-events-none' : ''}`}
-        priority={false}
-        style={{ pointerEvents: zenMode ? 'none' : 'auto' }}
-      />
-    </div>
-  );
-});
-TechIcon.displayName = 'TechIcon';
+// Removed TechIcon component - using InteractiveTechIcon instead
 
 const Equation = React.memo(({ equation, index }: { equation: any; index: number }) => (
   <div
@@ -206,9 +173,11 @@ const BackgroundPatterns = () => {
     src: string; 
     alt: string; 
     rotate?: boolean;
-    position: { x: number; y: number };
+    position: { x: number; y: number };  // Static position for normal mode
+    gamePosition: { x: number; y: number };  // Dynamic position for zen mode
     velocity: { x: number; y: number };
   }>>([]);
+  const [destroyedIcons, setDestroyedIcons] = useState<Set<string>>(new Set());
   const { zenMode } = useZenMode();
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -260,19 +229,29 @@ const BackgroundPatterns = () => {
       try {
         const response = await fetch('/api/get-floating-icons');
         const icons = await response.json();
-        const mappedIcons = icons.map((icon: string) => ({
-          src: `/floating-icons/${icon}`,
-          alt: icon.replace('.svg', ''),
-          rotate: icon.toLowerCase().includes('gear') || icon.toLowerCase().includes('cog'),
-          position: {
-            x: Math.random() * 80 + 10,
-            y: Math.random() * 80 + 10
-          },
-          velocity: {
-            x: (Math.random() - 0.5) * 2,
-            y: (Math.random() - 0.5) * 2
-          }
-        }));
+        const mappedIcons = icons.map((icon: string, index) => {
+          // Create a grid-like distribution with random offset for more even spacing
+          const cols = Math.ceil(Math.sqrt(icons.length));
+          const rows = Math.ceil(icons.length / cols);
+          const gridX = (index % cols) / (cols - 1);
+          const gridY = Math.floor(index / cols) / (rows - 1);
+          
+          const staticPos = {
+            x: Math.max(5, Math.min(95, (gridX * 80 + 10) + (Math.random() - 0.5) * 15)),
+            y: Math.max(5, Math.min(80, (gridY * 60 + 10) + (Math.random() - 0.5) * 15)) // Keep in top 80% area only
+          };
+          return {
+            src: `/floating-icons/${icon}`,
+            alt: icon.replace('.svg', ''),
+            rotate: icon.toLowerCase().includes('gear') || icon.toLowerCase().includes('cog'),
+            position: staticPos,  // Static position for normal mode
+            gamePosition: { ...staticPos },  // Initialize game position same as static
+            velocity: {
+              x: (Math.random() - 0.5) * 2,
+              y: (Math.random() - 0.5) * 2
+            }
+          };
+        });
         setTechIcons(mappedIcons);
       } catch (error) {
         console.error('Error fetching icons:', error);
@@ -283,37 +262,58 @@ const BackgroundPatterns = () => {
     setMounted(true);
   }, []);
 
-  // Optimized animation loop - reduced frequency for better performance
+  // Reset destroyed icons when zen mode changes
   useEffect(() => {
+    if (!zenMode) {
+      setDestroyedIcons(new Set());
+    }
+  }, [zenMode]);
+
+  // Handle icon destruction from space shooter
+  const handleIconDestroy = useCallback((iconSrc: string) => {
+    setDestroyedIcons(prev => {
+      const newSet = new Set(prev);
+      newSet.add(iconSrc);
+      return newSet;
+    });
+  }, []);
+
+  // Handle game reset
+  const handleResetGame = useCallback(() => {
+    setDestroyedIcons(new Set());
+  }, []);
+
+  // Animation loop - runs in both modes for smooth movement
+  useEffect(() => {
+    
     const speed = 0.1;
     let lastTime = 0;
-    const targetFPS = 30; // Reduced from 60fps to 30fps for better performance
+    const targetFPS = 30;
     const frameTime = 1000 / targetFPS;
 
     const animate = (currentTime: number) => {
       if (currentTime - lastTime >= frameTime) {
         setTechIcons(prevIcons => {
-          // Only update if icons have actually moved significantly
           const updatedIcons = prevIcons.map(icon => {
-            const newPosition = {
-              x: icon.position.x + icon.velocity.x * speed,
-              y: icon.position.y + icon.velocity.y * speed
+            const newGamePosition = {
+              x: icon.gamePosition.x + icon.velocity.x * speed,
+              y: icon.gamePosition.y + icon.velocity.y * speed
             };
 
             const newVelocity = { ...icon.velocity };
-            if (newPosition.x <= 0 || newPosition.x >= 100) {
+            if (newGamePosition.x <= 0 || newGamePosition.x >= 100) {
               newVelocity.x = -newVelocity.x;
             }
-            if (newPosition.y <= 0 || newPosition.y >= 100) {
+            if (newGamePosition.y <= 0 || newGamePosition.y >= 80) { // Keep in top 80% only
               newVelocity.y = -newVelocity.y;
             }
 
-            newPosition.x = Math.max(0, Math.min(100, newPosition.x));
-            newPosition.y = Math.max(0, Math.min(100, newPosition.y));
+            newGamePosition.x = Math.max(0, Math.min(100, newGamePosition.x));
+            newGamePosition.y = Math.max(0, Math.min(80, newGamePosition.y)); // Cap at 80% to stay above spaceship
 
             return {
               ...icon,
-              position: newPosition,
+              gamePosition: newGamePosition,  // Only update game position
               velocity: newVelocity
             };
           });
@@ -332,7 +332,7 @@ const BackgroundPatterns = () => {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, []);
+  }, []); // Runs always for smooth movement
 
   // Handle click effects
   useEffect(() => {
@@ -402,11 +402,13 @@ const BackgroundPatterns = () => {
             {/* Floating Tech Icons */}
             <div className="absolute inset-0 pointer-events-none z-10">
               {techIcons.map((icon, index) => (
-                <TechIcon 
+                <InteractiveTechIcon 
                   key={icon.src} 
                   icon={icon} 
                   isAnimating={isAnimating} 
                   onIconClick={handleIconClick}
+                  isDestroyed={destroyedIcons.has(icon.src)}
+                  gamePosition={icon.gamePosition}
                 />
               ))}
             </div>
@@ -798,7 +800,14 @@ const BackgroundPatterns = () => {
             {/* Floating Tech Icons */}
             <div className="absolute inset-0 pointer-events-none">
               {techIcons.map((icon, index) => (
-                <TechIcon key={`center-${icon.src}`} icon={icon} isAnimating={isAnimating} onIconClick={handleIconClick} />
+                <InteractiveTechIcon 
+                  key={`center-${icon.src}`} 
+                  icon={icon} 
+                  isAnimating={isAnimating} 
+                  onIconClick={handleIconClick}
+                  isDestroyed={destroyedIcons.has(icon.src)}
+                  gamePosition={icon.gamePosition}
+                />
               ))}
             </div>
 
@@ -980,11 +989,13 @@ const BackgroundPatterns = () => {
             {/* Floating Tech Icons */}
             <div className="absolute inset-0 pointer-events-none">
               {techIcons.map((icon, index) => (
-                <TechIcon 
+                <InteractiveTechIcon 
                   key={`right-${icon.src}`} 
                   icon={icon} 
                   isAnimating={isAnimating} 
                   onIconClick={handleIconClick}
+                  isDestroyed={destroyedIcons.has(icon.src)}
+                  gamePosition={icon.gamePosition}
                 />
               ))}
             </div>
@@ -1161,6 +1172,13 @@ const BackgroundPatterns = () => {
           </div>
         </div>
       </div>
+
+      {/* Zen Space Shooter Game */}
+      <ZenSpaceShooter 
+        techIcons={techIcons}
+        onIconDestroy={handleIconDestroy}
+        onResetGame={handleResetGame}
+      />
     </div>
   );
 };
