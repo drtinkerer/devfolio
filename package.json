@@ -27,39 +27,22 @@
     "vercel": "^35.0.0"
   },
   "devDependencies": {
-    "@eslint/config-array": "^0.20.0",
-    "@eslint/object-schema": "^2.1.0",
     "@types/node": "^20.11.25",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "autoprefixer": "^10.4.18",
-    "eslint": "8.56.0",
+    "eslint": "^9.0.0",
     "eslint-config-next": "^15.0.3",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
     "typescript": "5.3.3"
   },
   "resolutions": {
-    "glob": "^9.3.5",
+    "glob": "^11.0.0",
     "rimraf": "^5.0.1",
     "uuid": "^9.0.1",
     "debug": "^4.3.4",
-    "@vercel/fun/uuid": "^9.0.1",
-    "@vercel/fun/debug": "^4.3.4",
-    "@vercel/next/glob": "^9.3.5",
-    "@vercel/nft/glob": "^9.3.5",
-    "@mapbox/node-pre-gyp/rimraf": "^5.0.1",
-    "@eslint/config-array": "^0.20.0",
-    "@eslint/object-schema": "^2.1.0",
-    "flat-cache/rimraf": "^5.0.1",
-    "eslint-config-next/@eslint/config-array": "^0.20.0",
-    "eslint-config-next/@eslint/object-schema": "^2.1.0",
-    "lru-cache": "^10.2.0",
-    "eslint/@humanwhocodes/config-array": "0.13.0",
-    "eslint/@humanwhocodes/object-schema": "2.0.3"
-  },
-  "overrides": {
-    "@humanwhocodes/config-array": "@eslint/config-array",
-    "@humanwhocodes/object-schema": "@eslint/object-schema"
+    "tar": "^7.4.0",
+    "lru-cache": "^10.2.0"
   }
 }
