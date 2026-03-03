@@ -22,16 +22,12 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ className, children }) => 
 
 interface BentoGridItemProps {
   className?: string;
-  id: number;
   title?: string | React.ReactNode;
   description?: string | React.ReactNode;
   link?: string;
   github?: string;
   img?: string;
-  titleClassName?: string;
   techs?: string[];
-  companyLogo?: string;
-  companyUrl?: string;
   status?: "in-progress" | "private";
 }
 
@@ -68,7 +64,7 @@ export const BentoGridItem: React.FC<BentoGridItemProps> = ({
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
             priority={false}
-            unoptimized={true}
+            unoptimized
             onError={() => setImgError(true)}
           />
         </div>
