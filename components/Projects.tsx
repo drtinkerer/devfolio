@@ -18,7 +18,7 @@ const Projects = memo(() => {
           </span>
         </h3>
       </Reveal>
-      <BentoGrid className="w-full py-20">
+      <BentoGrid className="w-full py-10">
         {memoizedProjects.map((item, i) => (
           <BentoGridItem
             key={item.id}

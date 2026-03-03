@@ -8,7 +8,6 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/ui/NavBar";
 import Certifications from "@/components/Certifications";
-import CustomCursor from "@/components/ui/CustomCursor";
 import BackgroundPatterns from "@/components/ui/BackgroundPatterns";
 import { motion } from "framer-motion";
 import { useZenMode } from "@/lib/ZenModeContext";
@@ -19,7 +18,6 @@ const Home = () => {
   return (
     // Add overflow-x-hidden to prevent horizontal scrollbar
     <main className={`min-h-screen relative bg-black overflow-x-hidden ${zenMode ? 'zen-mode' : ''}`}>
-      <CustomCursor />
       <BackgroundPatterns />
 
       {/* Content */}

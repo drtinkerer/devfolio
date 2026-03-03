@@ -7,76 +7,76 @@ export interface Project {
   className: string;
   titleClassName: string;
   img: string;
-  github: string;
-  link: string;
+  github?: string;
+  link?: string;
   techs: string[];
+  status?: "in-progress" | "private";
 }
 
 export const projects: Project[] = [
   {
     id: 1,
     title: "NetBird Python Client",
-    description: "An unofficial Python library for interacting with NetBird's API, providing comprehensive network management and automation capabilities. Features complete API coverage for 11 NetBird resources, network topology visualization, advanced error handling, and type-safe Pydantic models with 98% test coverage.",
+    description: "Python SDK for NetBird API with full resource coverage, topology visualization, and type-safe Pydantic models.",
     className: "md:col-span-1",
     titleClassName: "justify-end",
     img: "https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif",
     github: `https://github.com/${personalInfo.github}/netbird-python-client`,
     link: `https://github.com/${personalInfo.github}/netbird-python-client`,
-    techs: ["Python", "Pydantic", "REST API", "Network Automation", "DevOps", "Infrastructure as Code", "Security", "Graphviz"]
+    techs: ["Python", "Pydantic", "REST API", "Graphviz"]
   },
   {
     id: 2,
     title: "Terraform NetBird Network Module",
-    description: "A Terraform module for creating and managing NetBird networks with advanced networking capabilities. Features automatic peer group creation, network resource management, advanced routing configuration, granular access policy control, setup key generation for device enrollment, and multi-group resource assignment.",
+    description: "Terraform module for provisioning NetBird networks with peer groups, routing, access policies, and device enrollment.",
     className: "md:col-span-1",
     titleClassName: "justify-start",
     img: "https://i.pinimg.com/originals/84/f6/d1/84f6d14f1f88d34d3956150d19060d3a.gif",
     github: `https://github.com/${personalInfo.github}/terraform-netbird-network`,
     link: `https://github.com/${personalInfo.github}/terraform-netbird-network`,
-    techs: ["Terraform", "NetBird", "Infrastructure as Code", "Network Automation", "DevOps", "Security", "SDN", "Multi-tier Architecture"]
+    techs: ["Terraform", "NetBird", "HCL", "SDN"]
   },
   {
     id: 3,
     title: "AWS: Landing Zone",
-    description: "An AWS Landing Zone is a well-architected, multi-account AWS environment that serves as a secure and scalable starting point for deploying workloads and applications, based on AWS best practices for security, governance, and networking.",
+    description: "Multi-account AWS environment with security guardrails, governance, and networking best practices baked in.",
     className: "md:col-span-1",
     titleClassName: "justify-end",
     img: "https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif",
-    github: `https://github.com/${personalInfo.github}/aws-landing-zone`,
-    link: `https://github.com/${personalInfo.github}/aws-landing-zone`,
-    techs: ["AWS", "Terraform", "AWS DevOps", "Secure Networking", "Cloud Security", "DevSecOps", "Platform Management"]
+    github: "https://github.com/ollionorg/aws-landing-zone",
+    link: "https://github.com/ollionorg/aws-landing-zone",
+    techs: ["AWS", "Terraform", "CloudFormation", "IAM"]
   },
   {
     id: 4,
     title: "AWS Security Comply 360",
-    description: "AWS Security Comply 360 is a comprehensive security and compliance solution that helps organizations manage and monitor their AWS environments, ensuring compliance with security and regulatory requirements.",
+    description: "Security and compliance monitoring for AWS environments against NIST, CIS, and regulatory frameworks.",
     className: "md:col-span-1",
     titleClassName: "justify-start",
     img: "https://i.pinimg.com/originals/84/f6/d1/84f6d14f1f88d34d3956150d19060d3a.gif",
-    github: `https://github.com/${personalInfo.github}/aws-security-comply-360.git`,
-    link: `https://github.com/${personalInfo.github}/aws-security-comply-360.git`,
-    techs: ["AWS", "Python", "CyberSecurity", "Vulnerability Assessments", "Compliance", "NIST", "CIS", "Benchmarking", "MCP", "LLM", "Gen AI"]
+    techs: ["AWS", "Python", "NIST", "CIS", "Gen AI"],
+    status: "private"
   },
   {
     id: 5,
-    title: "AI Powered Cloud Sandbox Provisiner",
-    description: "A cloud sandbox provisioner is a API service that allows users to create and manage temporary, isolated environments for testing, development, or training purposes, based on Google Cloud.",
+    title: "AI Powered Cloud Sandbox Provisioner",
+    description: "Multi-cloud operations platform with a conversational chat interface, enterprise security guardrails, and federated auth.",
     className: "md:col-span-1",
     titleClassName: "justify-end",
     img: "https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif",
-    github: `https://github.com/${personalInfo.github}/gcp-sandbox-provisioner-infra`,
-    link: `https://github.com/${personalInfo.github}/gcp-sandbox-provisioner-infra`,
-    techs: ["Google Cloud", "Terraform", "Python", "FastAPI", "Gen AI", "DevSecOps", "Platform Management"]
+    techs: ["Next.js", "FastAPI", "Go", "LiteLLM", "Multi-Cloud"],
+    status: "private"
   },
   {
     id: 6,
     title: "The Self Hosted Engineer",
-    description: "The Self-Hosted Engineer explores building cost-effective homelabs using open-source tools, Raspberry Pi clusters, and free-tier cloud services. It blends technical guidance with real-world insights, helping tech enthusiasts and aspiring DevOps engineers experiment with Kubernetes, automation, and cloud integration.",
+    description: "Homelab guide for building cost-effective infrastructure with Raspberry Pi, Kubernetes, and open-source tools.",
     className: "md:col-span-1",
     titleClassName: "justify-end",
     img: "https://i.pinimg.com/originals/84/f6/d1/84f6d14f1f88d34d3956150d19060d3a.gif",
     github: `https://github.com/${personalInfo.github}/the-self-hosted-engineer`,
     link: `https://github.com/${personalInfo.github}/the-self-hosted-engineer`,
-    techs: ["Raspberry Pi", "Debian", "Oracle Cloud", "Terraform", "Python", "Traefik", "Cloudflare", "Netbird", "Kubernetes", "Ollama", "DevSecOps", "Homelab"]
+    techs: ["Raspberry Pi", "Kubernetes", "Terraform", "Homelab"],
+    status: "in-progress"
   }
 ];
